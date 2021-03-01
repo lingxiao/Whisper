@@ -229,7 +229,7 @@
 		2CD3269B25EC61DD000638A0 /* PodMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodMedia.swift; sourceTree = "<group>"; };
 		2CD3269C25EC61DD000638A0 /* PodPlayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodPlayList.swift; sourceTree = "<group>"; };
 		2CD3269D25EC61DD000638A0 /* DemoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
-		2CD3269F25EC61DD000638A0 /* Club.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
+		2CD3269F25EC61DD000638A0 /* Club.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Club.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Model/Club/Club.swift; sourceTree = "<absolute>"; };
 		2CD326A025EC61DD000638A0 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		2CD326A125EC61DD000638A0 /* Room+Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Room+Chat.swift"; sourceTree = "<group>"; };
 		2CD326A225EC61DD000638A0 /* Room+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Room+Data.swift"; sourceTree = "<group>"; };
@@ -518,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD326C025EC61DD000638A0 /* ClubList.swift */,
+				2CD3269F25EC61DD000638A0 /* Club.swift */,
 				2CD3269725EC61DD000638A0 /* Club+Social.swift */,
 				2CD3269825EC61DD000638A0 /* Club+Media.swift */,
 				2CD3269925EC61DD000638A0 /* Club+Cards.swift */,
@@ -537,7 +538,6 @@
 		2CD3269E25EC61DD000638A0 /* Room */ = {
 			isa = PBXGroup;
 			children = (
-				2CD3269F25EC61DD000638A0 /* Club.swift */,
 				2CD326A025EC61DD000638A0 /* Room.swift */,
 				2CD326A125EC61DD000638A0 /* Room+Chat.swift */,
 				2CD326A225EC61DD000638A0 /* Room+Data.swift */,
