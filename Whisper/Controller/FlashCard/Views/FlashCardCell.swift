@@ -462,7 +462,7 @@ extension FlashCardCell: PlayerDelegate {
     }
     
     func player(_ player: Player, didFailWithError error: Error?) {
-        if let e = error?.localizedDescription as? String {
+        if let e = error?.localizedDescription {
             ToastSuccess(title: "Oh no!", body: e)
         }
     }

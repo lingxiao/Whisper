@@ -74,7 +74,7 @@ func computeAgo(from t: Int) -> String {
 
 func prettifyTime( at epochTime: String?) -> String {
     
-    guard let epochTime = epochTime as? String else {
+    guard let epochTime = epochTime else { 
         return ""
     }
 
@@ -83,7 +83,7 @@ func prettifyTime( at epochTime: String?) -> String {
         return ""
     }
 
-    guard let _interval = TimeInterval(epochTime) as? TimeInterval else {
+    guard let _interval = TimeInterval(epochTime) else { //as? TimeInterval else {
         return ""
     }
     

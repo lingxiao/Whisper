@@ -194,7 +194,7 @@ extension EditClubController: InviteUserProtocol {
 
 //MARK:- events
 
-extension EditClubController : SettingCellProtocol, InputStringModalDelegate , ExplainModalDelegate {
+extension EditClubController : SettingCellProtocol, InputStringModalDelegate  {
 
     func handleConsent(from domain: Int){
         
