@@ -98,13 +98,9 @@
 		2CD3278725EC6358000638A0 /* UserRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276225EC6358000638A0 /* UserRowCell.swift */; };
 		2CD3278825EC6358000638A0 /* InputStringModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276425EC6358000638A0 /* InputStringModal.swift */; };
 		2CD3278925EC6358000638A0 /* ConfirmBreakoutRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276525EC6358000638A0 /* ConfirmBreakoutRoomModal.swift */; };
-		2CD3278A25EC6358000638A0 /* SelectWidgetsModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276625EC6358000638A0 /* SelectWidgetsModal.swift */; };
 		2CD3278B25EC6358000638A0 /* AudioRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276725EC6358000638A0 /* AudioRoomModal.swift */; };
 		2CD3278C25EC6358000638A0 /* InviteGroupModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276825EC6358000638A0 /* InviteGroupModal.swift */; };
-		2CD3278D25EC6358000638A0 /* ExitRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276925EC6358000638A0 /* ExitRoomModal.swift */; };
 		2CD3278F25EC6358000638A0 /* ClubPageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276B25EC6358000638A0 /* ClubPageModal.swift */; };
-		2CD3279025EC6358000638A0 /* LockRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276C25EC6358000638A0 /* LockRoomModal.swift */; };
-		2CD3279125EC6358000638A0 /* RequestNumberModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */; };
 		2CD3279225EC6358000638A0 /* SwitchRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */; };
 		2CD3279325EC6358000638A0 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277025EC6358000638A0 /* AppText.swift */; };
 		2CD3279425EC6358000638A0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277125EC6358000638A0 /* Color.swift */; };
@@ -308,13 +304,9 @@
 		2CD3276225EC6358000638A0 /* UserRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowCell.swift; sourceTree = "<group>"; };
 		2CD3276425EC6358000638A0 /* InputStringModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStringModal.swift; sourceTree = "<group>"; };
 		2CD3276525EC6358000638A0 /* ConfirmBreakoutRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmBreakoutRoomModal.swift; sourceTree = "<group>"; };
-		2CD3276625EC6358000638A0 /* SelectWidgetsModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWidgetsModal.swift; sourceTree = "<group>"; };
 		2CD3276725EC6358000638A0 /* AudioRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRoomModal.swift; sourceTree = "<group>"; };
 		2CD3276825EC6358000638A0 /* InviteGroupModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGroupModal.swift; sourceTree = "<group>"; };
-		2CD3276925EC6358000638A0 /* ExitRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitRoomModal.swift; sourceTree = "<group>"; };
 		2CD3276B25EC6358000638A0 /* ClubPageModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubPageModal.swift; sourceTree = "<group>"; };
-		2CD3276C25EC6358000638A0 /* LockRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockRoomModal.swift; sourceTree = "<group>"; };
-		2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestNumberModal.swift; sourceTree = "<group>"; };
 		2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchRoomModal.swift; sourceTree = "<group>"; };
 		2CD3277025EC6358000638A0 /* AppText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		2CD3277125EC6358000638A0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -730,13 +722,9 @@
 				2CD327ED25EC636E000638A0 /* PhoneNumberView.swift */,
 				2CD3276425EC6358000638A0 /* InputStringModal.swift */,
 				2CD3276525EC6358000638A0 /* ConfirmBreakoutRoomModal.swift */,
-				2CD3276625EC6358000638A0 /* SelectWidgetsModal.swift */,
 				2CD3276725EC6358000638A0 /* AudioRoomModal.swift */,
 				2CD3276825EC6358000638A0 /* InviteGroupModal.swift */,
-				2CD3276925EC6358000638A0 /* ExitRoomModal.swift */,
 				2CD3276B25EC6358000638A0 /* ClubPageModal.swift */,
-				2CD3276C25EC6358000638A0 /* LockRoomModal.swift */,
-				2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */,
 				2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */,
 			);
 			path = Modal;
@@ -1296,7 +1284,6 @@
 				2CD3284B25EC636F000638A0 /* BreakoutRoomCell.swift in Sources */,
 				2CD3273E25EC62E0000638A0 /* AuthDelegate.swift in Sources */,
 				2CD3281D25EC636F000638A0 /* ClubCohortCell.swift in Sources */,
-				2CD3279025EC6358000638A0 /* LockRoomModal.swift in Sources */,
 				2CD3278F25EC6358000638A0 /* ClubPageModal.swift in Sources */,
 				2CD326CD25EC61DD000638A0 /* Club+Social.swift in Sources */,
 				2CD3282225EC636F000638A0 /* InviteUser+Table.swift in Sources */,
@@ -1369,7 +1356,6 @@
 				2CD3272E25EC6281000638A0 /* UIButton+Style.swift in Sources */,
 				2CD3271725EC626A000638A0 /* ViewDelegate.swift in Sources */,
 				2CD3284225EC636F000638A0 /* AudioButtonStack.swift in Sources */,
-				2CD3279125EC6358000638A0 /* RequestNumberModal.swift in Sources */,
 				2CD3283D25EC636F000638A0 /* PlayListController.swift in Sources */,
 				2CD3274D25EC632B000638A0 /* UtilityFunctions.swift in Sources */,
 				2CD3283225EC636F000638A0 /* ExploreParent.swift in Sources */,
@@ -1387,7 +1373,6 @@
 				2CD3278B25EC6358000638A0 /* AudioRoomModal.swift in Sources */,
 				2CD3272A25EC6281000638A0 /* UICollectionCell+Shape.swift in Sources */,
 				2CD3283925EC636F000638A0 /* ContactBookCell.swift in Sources */,
-				2CD3278A25EC6358000638A0 /* SelectWidgetsModal.swift in Sources */,
 				2CD3278625EC6358000638A0 /* SongCell.swift in Sources */,
 				2CD3279925EC6358000638A0 /* AppTextField.swift in Sources */,
 				2CD3277D25EC6358000638A0 /* PlayListHero.swift in Sources */,
@@ -1430,7 +1415,6 @@
 				2CD3273325EC6281000638A0 /* Date+Pretty.swift in Sources */,
 				2CD3272C25EC6281000638A0 /* UIView+Dim.swift in Sources */,
 				2CD3279A25EC6358000638A0 /* TinderButton.swift in Sources */,
-				2CD3278D25EC6358000638A0 /* ExitRoomModal.swift in Sources */,
 				2CD326F525EC61DD000638A0 /* Authed+Twitter.swift in Sources */,
 				2CD3283B25EC636F000638A0 /* UserList+Table.swift in Sources */,
 				2CD3284D25EC636F000638A0 /* CardDirectoryController.swift in Sources */,
