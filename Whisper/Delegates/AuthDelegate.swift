@@ -72,7 +72,7 @@ class AuthDelegate {
              if let user = Auth.auth().currentUser {
                 self.syncToDb( with: user.uid ){ return }
                 self.showMainApp(withWindow: window){_ in return }
-            } else { 
+            } else {
                 self.showLogin(withWindow: window)
             }
         }

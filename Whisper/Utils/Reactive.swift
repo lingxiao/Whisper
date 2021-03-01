@@ -62,8 +62,8 @@ func runAnimation( with: @escaping () -> Void, for dt: Double,  _ complete: @esc
 }
 */
 
-func delay( _ then: @escaping () -> Void ){
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+func delay( for m : Double, _ then: @escaping () -> Void ){
+    DispatchQueue.main.asyncAfter(deadline: .now() + m, execute: {
             then()
     })
 }

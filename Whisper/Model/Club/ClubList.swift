@@ -154,7 +154,7 @@ extension ClubList {
                     }
                 }
             }
-        }
+        } 
     }
     
     

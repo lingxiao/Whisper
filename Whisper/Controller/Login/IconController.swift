@@ -16,31 +16,31 @@ class IconController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        mountLanding()
+        mountName()
     }
     
     private func mountName(){
 
-        self.view.backgroundColor = Color.black
+        self.view.backgroundColor = Color.tertiary_dark // UIColor.black
 
         let f = view.frame
         let ht = f.width*0.40
         
         let h1 = UILabel(frame: CGRect(x: 0, y: 0, width: f.width, height: ht))
         h1.textAlignment = .center
-        h1.text = "W"
-        h1.font = UIFont(name: FontName.icon, size: f.width*0.40)
-        h1.textColor = Color.tan
+        h1.text = APP_NAME
+        h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1*2 )
+        h1.textColor = UIColor.white
         h1.center = view.center
         view.addSubview(h1)
         
-        let dy = self.view.center.y + ht/2 
+        /*let dy = self.view.center.y + ht/2
         let v = UIView(frame: CGRect(x: 0, y: dy, width: 60, height: 10))
         v.backgroundColor = Color.tan
         let _ = v.roundCorners(corners: [.topLeft,.bottomLeft,.topRight,.bottomRight], radius: 5)
         view.addSubview(v)
         v.center.x = self.view.center.x
-
+        */
     }
     
     private func mountLanding(){
