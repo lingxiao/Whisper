@@ -1,9 +1,8 @@
 //
 //  ModalLib.swift
-//  byte
+//  Whisper
 //
-//  Created by Xiao Ling on 7/7/20.
-//  Copyright © 2020 Xiao Ling. All rights reserved.
+//  Created by Xiao Ling on 2/28/21.
 //
 
 import Foundation
@@ -211,5 +210,4 @@ private func topToastFactory( title: String, body: String, imgName: String? ) ->
 
 
 }
-
 

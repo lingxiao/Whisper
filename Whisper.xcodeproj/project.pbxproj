@@ -102,14 +102,12 @@
 		2CD3278B25EC6358000638A0 /* AudioRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276725EC6358000638A0 /* AudioRoomModal.swift */; };
 		2CD3278C25EC6358000638A0 /* InviteGroupModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276825EC6358000638A0 /* InviteGroupModal.swift */; };
 		2CD3278D25EC6358000638A0 /* ExitRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276925EC6358000638A0 /* ExitRoomModal.swift */; };
-		2CD3278E25EC6358000638A0 /* ExplainModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276A25EC6358000638A0 /* ExplainModal.swift */; };
 		2CD3278F25EC6358000638A0 /* ClubPageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276B25EC6358000638A0 /* ClubPageModal.swift */; };
 		2CD3279025EC6358000638A0 /* LockRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276C25EC6358000638A0 /* LockRoomModal.swift */; };
 		2CD3279125EC6358000638A0 /* RequestNumberModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */; };
 		2CD3279225EC6358000638A0 /* SwitchRoomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */; };
 		2CD3279325EC6358000638A0 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277025EC6358000638A0 /* AppText.swift */; };
 		2CD3279425EC6358000638A0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277125EC6358000638A0 /* Color.swift */; };
-		2CD3279525EC6358000638A0 /* ModalLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277325EC6358000638A0 /* ModalLib.swift */; };
 		2CD3279625EC6358000638A0 /* AppHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277525EC6358000638A0 /* AppHeader.swift */; };
 		2CD3279725EC6358000638A0 /* AwaitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277625EC6358000638A0 /* AwaitWidget.swift */; };
 		2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277725EC6358000638A0 /* PictureRow.swift */; };
@@ -189,6 +187,7 @@
 		2CD3285A25EC636F000638A0 /* PodHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281225EC636F000638A0 /* PodHeaderCell.swift */; };
 		2CD3287925EC661C000638A0 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3287825EC661B000638A0 /* BannerCell.swift */; };
 		2CD328C425EC6C80000638A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CD328C325EC6C80000638A0 /* GoogleService-Info.plist */; };
+		2CD328D825EC7341000638A0 /* ModalLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD328D725EC7341000638A0 /* ModalLib.swift */; };
 		E6D51CF105ED3BD0DA3F4350 /* Pods_WhisperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388362C2340A9A532FB86709 /* Pods_WhisperTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -313,14 +312,12 @@
 		2CD3276725EC6358000638A0 /* AudioRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRoomModal.swift; sourceTree = "<group>"; };
 		2CD3276825EC6358000638A0 /* InviteGroupModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGroupModal.swift; sourceTree = "<group>"; };
 		2CD3276925EC6358000638A0 /* ExitRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitRoomModal.swift; sourceTree = "<group>"; };
-		2CD3276A25EC6358000638A0 /* ExplainModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplainModal.swift; sourceTree = "<group>"; };
 		2CD3276B25EC6358000638A0 /* ClubPageModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubPageModal.swift; sourceTree = "<group>"; };
 		2CD3276C25EC6358000638A0 /* LockRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockRoomModal.swift; sourceTree = "<group>"; };
 		2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestNumberModal.swift; sourceTree = "<group>"; };
 		2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchRoomModal.swift; sourceTree = "<group>"; };
 		2CD3277025EC6358000638A0 /* AppText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		2CD3277125EC6358000638A0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		2CD3277325EC6358000638A0 /* ModalLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalLib.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/View/SwiftModal/ModalLib.swift; sourceTree = "<absolute>"; };
 		2CD3277525EC6358000638A0 /* AppHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHeader.swift; sourceTree = "<group>"; };
 		2CD3277625EC6358000638A0 /* AwaitWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwaitWidget.swift; sourceTree = "<group>"; };
 		2CD3277725EC6358000638A0 /* PictureRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureRow.swift; sourceTree = "<group>"; };
@@ -373,7 +370,7 @@
 		2CD327E825EC636E000638A0 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		2CD327E925EC636E000638A0 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		2CD327EA25EC636E000638A0 /* Profile+Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Table.swift"; sourceTree = "<group>"; };
-		2CD327ED25EC636E000638A0 /* PhoneNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberView.swift; sourceTree = "<group>"; };
+		2CD327ED25EC636E000638A0 /* PhoneNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhoneNumberView.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/View/Modal/PhoneNumberView.swift; sourceTree = "<absolute>"; };
 		2CD327EE25EC636E000638A0 /* AudioButtonStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioButtonStack.swift; sourceTree = "<group>"; };
 		2CD327EF25EC636E000638A0 /* AudioRoom+Db.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioRoom+Db.swift"; sourceTree = "<group>"; };
 		2CD327F125EC636E000638A0 /* AudioRoomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioRoomHeader.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoom/Views/AudioRoomHeader.swift; sourceTree = "<absolute>"; };
@@ -400,6 +397,7 @@
 		2CD3281225EC636F000638A0 /* PodHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodHeaderCell.swift; sourceTree = "<group>"; };
 		2CD3287825EC661B000638A0 /* BannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		2CD328C325EC6C80000638A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2CD328D725EC7341000638A0 /* ModalLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLib.swift; sourceTree = "<group>"; };
 		388362C2340A9A532FB86709 /* Pods_WhisperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhisperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44405CDF533739D9316B96CF /* Pods-Whisper-WhisperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.debug.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C0435E974E2078A8748E0F80 /* Pods-WhisperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhisperTests.debug.xcconfig"; path = "Target Support Files/Pods-WhisperTests/Pods-WhisperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -699,7 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD3276F25EC6358000638A0 /* Style */,
-				2CD3276325EC6358000638A0 /* SwiftModal */,
+				2CD3276325EC6358000638A0 /* Modal */,
 				2CD3275725EC6358000638A0 /* Cells */,
 				2CD3277425EC6358000638A0 /* Widgets */,
 			);
@@ -725,23 +723,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		2CD3276325EC6358000638A0 /* SwiftModal */ = {
+		2CD3276325EC6358000638A0 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				2CD3277325EC6358000638A0 /* ModalLib.swift */,
+				2CD328D725EC7341000638A0 /* ModalLib.swift */,
+				2CD327ED25EC636E000638A0 /* PhoneNumberView.swift */,
 				2CD3276425EC6358000638A0 /* InputStringModal.swift */,
 				2CD3276525EC6358000638A0 /* ConfirmBreakoutRoomModal.swift */,
 				2CD3276625EC6358000638A0 /* SelectWidgetsModal.swift */,
 				2CD3276725EC6358000638A0 /* AudioRoomModal.swift */,
 				2CD3276825EC6358000638A0 /* InviteGroupModal.swift */,
 				2CD3276925EC6358000638A0 /* ExitRoomModal.swift */,
-				2CD3276A25EC6358000638A0 /* ExplainModal.swift */,
 				2CD3276B25EC6358000638A0 /* ClubPageModal.swift */,
 				2CD3276C25EC6358000638A0 /* LockRoomModal.swift */,
 				2CD3276D25EC6358000638A0 /* RequestNumberModal.swift */,
 				2CD3276E25EC6358000638A0 /* SwitchRoomModal.swift */,
 			);
-			path = SwiftModal;
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		2CD3276F25EC6358000638A0 /* Style */ = {
@@ -940,7 +938,6 @@
 			isa = PBXGroup;
 			children = (
 				2CD327F525EC636E000638A0 /* Views */,
-				2CD327ED25EC636E000638A0 /* PhoneNumberView.swift */,
 				2CD327EE25EC636E000638A0 /* AudioButtonStack.swift */,
 				2CD327EF25EC636E000638A0 /* AudioRoom+Db.swift */,
 				2CD327F325EC636E000638A0 /* AudioRoomController.swift */,
@@ -1307,7 +1304,6 @@
 				2CD3282025EC636F000638A0 /* InviteUserController.swift in Sources */,
 				2CD3285025EC636F000638A0 /* OnboardCommunController.swift in Sources */,
 				2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */,
-				2CD3279525EC6358000638A0 /* ModalLib.swift in Sources */,
 				2CD3275225EC632B000638A0 /* AskPermissions.swift in Sources */,
 				2CD326F125EC61DD000638A0 /* Authed+Renderable.swift in Sources */,
 				2CD3282D25EC636F000638A0 /* FlashCardCell.swift in Sources */,
@@ -1322,6 +1318,7 @@
 				2CD326EC25EC61DD000638A0 /* ClubList.swift in Sources */,
 				2CD3282F25EC636F000638A0 /* FlashCardSetting.swift in Sources */,
 				2CD3274B25EC632B000638A0 /* ImageCache.swift in Sources */,
+				2CD328D825EC7341000638A0 /* ModalLib.swift in Sources */,
 				2CD3285625EC636F000638A0 /* RoomHeaderCell.swift in Sources */,
 				2CD3284025EC636F000638A0 /* Profile+Table.swift in Sources */,
 				2CD3279725EC6358000638A0 /* AwaitWidget.swift in Sources */,
@@ -1410,7 +1407,6 @@
 				2CD3285325EC636F000638A0 /* IconController.swift in Sources */,
 				2CD326DB25EC61DD000638A0 /* FlashCardCache.swift in Sources */,
 				2CD3287925EC661C000638A0 /* BannerCell.swift in Sources */,
-				2CD3278E25EC6358000638A0 /* ExplainModal.swift in Sources */,
 				2CD3277E25EC6358000638A0 /* ClubDiscoveryCell.swift in Sources */,
 				2CD3272F25EC6281000638A0 /* String+SubStr.swift in Sources */,
 				2CD3273225EC6281000638A0 /* UIViewController+Events.swift in Sources */,

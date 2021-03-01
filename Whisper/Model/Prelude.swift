@@ -62,7 +62,7 @@ func uploadImageToFireStorage( to path: String,  with data: Data?, _ complete: @
 
     storageRef.putData( data!, metadata:nil){ (metadata,error) in
 
-        guard let metadata = metadata else {
+        guard let _ = metadata else {
             return complete(false,"")
         }
 

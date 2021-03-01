@@ -76,9 +76,7 @@ class AudioRoomHeader : UIView {
     }
 
     @objc func onAdd(_ button: TinderButton ){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 ) { [weak self] in
-            //self?.delegate?.onHandleAddToGroup()
-        }
+        return
     }
 
     @objc func onShare(_ button: TinderButton ){

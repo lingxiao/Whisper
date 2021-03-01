@@ -15,7 +15,7 @@ import SwiftEntryKit
 
 protocol PhoneNumberViewDelegate {
     func onDismissPhoneNumberView() -> Void
-}
+}  
 
 private let TEXT : String = "Share this number with prospective members so they can access this space. If you believe your number has been compromised, you can request a new number by tapping the scramble button. Existing members can still access the space, but prospective users can no longer access this channel with your old number."
 
