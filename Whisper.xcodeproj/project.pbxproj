@@ -560,8 +560,8 @@
 		2CD326A925EC61DD000638A0 /* Org */ = {
 			isa = PBXGroup;
 			children = (
-				2CD326AA25EC61DD000638A0 /* TagModel.swift */,
 				2CD326AB25EC61DD000638A0 /* OrgModel.swift */,
+				2CD326AA25EC61DD000638A0 /* TagModel.swift */,
 				2CD326AC25EC61DD000638A0 /* WhisperCalendar.swift */,
 			);
 			path = Org;
@@ -579,8 +579,8 @@
 		2CD326B125EC61DD000638A0 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				2CD326B225EC61DD000638A0 /* User+Social.swift */,
 				2CD326B325EC61DD000638A0 /* User.swift */,
+				2CD326B225EC61DD000638A0 /* User+Social.swift */,
 				2CD326B425EC61DD000638A0 /* User+Renderable.swift */,
 			);
 			path = User;
@@ -608,8 +608,8 @@
 		2CD326C125EC61DD000638A0 /* UserAuthed */ = {
 			isa = PBXGroup;
 			children = (
-				2CD326C225EC61DD000638A0 /* Authed+Social.swift */,
 				2CD326C325EC61DD000638A0 /* UserAuthed.swift */,
+				2CD326C225EC61DD000638A0 /* Authed+Social.swift */,
 				2CD326C425EC61DD000638A0 /* Authed+Mutate.swift */,
 				2CD326C525EC61DD000638A0 /* Authed+Alerts.swift */,
 				2CD326C625EC61DD000638A0 /* Authed+Renderable.swift */,
