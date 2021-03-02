@@ -80,7 +80,7 @@ class WhisperAnalytics : Sink {
         
         WhisperAnalytics.col()?
             .whereField("clubID", isEqualTo: clubID)
-//            .whereField("t0", isGreaterThan: now() - 60*60*24)
+            // .whereField("t0", isGreaterThan: now() - 60*60*24)
             .addSnapshotListener { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else { return }
                 for doc in documents {

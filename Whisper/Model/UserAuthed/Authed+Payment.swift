@@ -96,7 +96,6 @@ extension UserAuthed {
      @use: redirect to this page after authenticating with stripe
      */
     func stripeRedirectURL() -> URL? {
-
         // https://dashboard.stripe.com/settings/applications
         let client_ID = "ca_HrJ5BodouHC8bzbQew2XFm56KO9cXyR4"
         let redirect  = "https://play-house-social.web.app/deposit_info"
