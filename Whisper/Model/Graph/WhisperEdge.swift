@@ -21,9 +21,10 @@ func makeBlankPair( with userA: User?, and userB: User? ) -> FirestoreData? {
     if userA.uuid == userB.uuid { return nil }
     
     let ids = sortIds(ids: [userA.uuid,userB.uuid])
+    let uuid : String = "\(ids[0])_\(ids[1])"
     
     let p : FirestoreData = [
-        "uuid"  : UUID().uuidString,
+        "uuid"  : uuid,
         "userA" : ids[0],
         "userB" : ids[1],
         "userIds": ids,
