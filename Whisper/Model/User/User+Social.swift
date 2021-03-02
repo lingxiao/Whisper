@@ -25,9 +25,7 @@ extension User {
     func fetchPeopleISpokeTo( _ then: @escaping ([User]) -> Void ){
         
         // get all the organziations that I belong to
-        let orgs = ClubList.shared.fetchNewsFeed()
-            .map{ $0.0 }
-            .filter{ $0 != nil }
+        let orgs = ClubList.shared.fetchNewsFeed().map{ $0.0 }
         
         // get all people from this org
         var users_i_know : [UserID] = []
