@@ -36,7 +36,7 @@ func blankWallet( for uid : String ) -> FirestoreData{
 }
 
 
-//MARK:- suspended serivces
+//MARK:- Get data
 
 extension UserAuthed {
     
@@ -82,11 +82,7 @@ extension UserAuthed {
                 }
         }
     }
-
-
 }
-
-
 
 //MARK:- API
 
@@ -97,12 +93,21 @@ extension UserAuthed {
      */
     func stripeRedirectURL() -> URL? {
         // https://dashboard.stripe.com/settings/applications
-        let client_ID = "ca_HrJ5BodouHC8bzbQew2XFm56KO9cXyR4"
+        let client_ID = "ca_J2Rw8ve1TpIobX0Zh63Tx27Z9Uv4KQpa"
         let redirect  = "https://play-house-social.web.app/deposit_info"
         let raw  = "https://connect.stripe.com/express/oauth/authorize?redirect_uri=\(redirect)&client_id=\(client_ID)&state=\(self.uuid)"
         return URL(string: raw)
     }
     
+}
+
+
+
+
+
+//MARK:- DEPRICATED-
+
+extension UserAuthed {
 
     /*
      @use: check if there is sufficient funds
