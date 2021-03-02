@@ -14,8 +14,10 @@ import UIKit
 import UserNotifications
 
 
-// @source: https://console.firebase.google.com/u/0/project/play-house-social/settings/cloudmessaging/ios:com.byteme.meme
-let SERVER_KEY = "AAAAVQdxgQc:APA91bFSnFbelIu_zU8eBhvbbhaPKldCnKHxCkQRLFl5aH2iAU4DLYQZfBoGyNvzaTkvJJ5ds_gRAAw28cvs2BIGZn32jEqivFotrNlVUiNDktLhvANNVigcFzus2rXMmnEa4PBP2wqx"
+//// @source: https://console.firebase.google.com/u/0/project/play-house-social/settings/cloudmessaging/ios:com.byteme.meme
+/// @Source: https://console.firebase.google.com/u/0/project/joinwhisper/settings/cloudmessaging/web:MDhhNjY0MWMtNGVmOS00OWU0LWEwYTUtZDExZWQ1NThhMDRj
+let SERVER_KEY = "AAAAnyNIIvs:APA91bGPxxYfq8kuhLt0kbI5W5xeOrpP0Tby8RRfsV6qiD8B_wcD4ev3nxqBDpthAE0M5X0WPcgnj0yN0wO-REamBh_5txosX4ljr_Fk0j8sjczqygjF68YtV1ggCxBzEakvjWTVsfif"
+///" "AAAAVQdxgQc:APA91bFSnFbelIu_zU8eBhvbbhaPKldCnKHxCkQRLFl5aH2iAU4DLYQZfBoGyNvzaTkvJJ5ds_gRAAw28cvs2BIGZn32jEqivFotrNlVUiNDktLhvANNVigcFzus2rXMmnEa4PBP2wqx"
 
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     

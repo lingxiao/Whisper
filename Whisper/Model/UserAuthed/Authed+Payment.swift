@@ -54,7 +54,6 @@ extension UserAuthed {
             self.stripe_user_id = unsafeCastString(data["stripe_user_id"])
         }
 
-
         balanceRef?.addSnapshotListener { documentSnapshot, error in
 
                 // parse
@@ -94,7 +93,7 @@ extension UserAuthed {
     func stripeRedirectURL() -> URL? {
         // https://dashboard.stripe.com/settings/applications
         let client_ID = "ca_J2Rw8ve1TpIobX0Zh63Tx27Z9Uv4KQpa"
-        let redirect  = "https://play-house-social.web.app/deposit_info"
+        let redirect  = "https://play-house-social.web.app/confirmed"
         let raw  = "https://connect.stripe.com/express/oauth/authorize?redirect_uri=\(redirect)&client_id=\(client_ID)&state=\(self.uuid)"
         return URL(string: raw)
     }
@@ -103,10 +102,9 @@ extension UserAuthed {
 
 
 
-
-
 //MARK:- DEPRICATED-
 
+/*
 extension UserAuthed {
 
     /*
@@ -420,7 +418,6 @@ extension UserAuthed {
     
 }
 
-
 extension UserAuthed {
 
     /*
@@ -477,3 +474,4 @@ extension UserAuthed {
 
     
 }
+*/

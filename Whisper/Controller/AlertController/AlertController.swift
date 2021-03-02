@@ -130,19 +130,10 @@ extension AlertController: AlertCellDelegate, AppHeaderDelegate {
         case .inviteToGroup:
             onJoinGroup(at: alert)
             
-        case .taggedDeck:
-            onFollow(at: alert.source)
-
-        case .taggedDeckAndInviteToGroup:
-            onJoinGroup(at: alert)
-            
-        case .seeingDeck:
-            break;
-            
         case .joinGroup:
             break
             
-        case .none:
+        default:
             break;
         }
         

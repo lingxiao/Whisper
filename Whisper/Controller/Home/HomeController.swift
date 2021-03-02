@@ -109,6 +109,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 self.goOnboard()
             }
         }
+            
     }
     
     
@@ -127,7 +128,10 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     func reload(_ then: @escaping() -> Void ){
         loopReload(for: 2){ then() }
     }
-        
+    
+    
+    // @todo: remove this call back, and just do 3second timeout
+    // either get the data or do not and show reload button.
     private func loopReload(for n: Int, _ then: @escaping() -> Void ){
      
         let item : (OrgModel,[Club])? = ClubList.shared.fetchPriorityOrg()

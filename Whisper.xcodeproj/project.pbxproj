@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05C497E8043C40E91BD70E5B /* Pods_Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA420C1A2B3389D4FE14172D /* Pods_Whisper.framework */; };
 		29AF0AF3D4F4CAAC16B4A984 /* Pods_Whisper_WhisperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91A2AEBBFA7B6FA82EBDDD6 /* Pods_Whisper_WhisperUITests.framework */; };
+		2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */; };
 		2CD3260925EC52CE000638A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260825EC52CE000638A0 /* AppDelegate.swift */; };
 		2CD3260B25EC52CE000638A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */; };
 		2CD3261025EC52CE000638A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD3260E25EC52CE000638A0 /* Main.storyboard */; };
@@ -182,7 +183,6 @@
 		2CD3285925EC636F000638A0 /* SpeakerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281125EC636F000638A0 /* SpeakerRow.swift */; };
 		2CD3285A25EC636F000638A0 /* PodHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281225EC636F000638A0 /* PodHeaderCell.swift */; };
 		2CD3287925EC661C000638A0 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3287825EC661B000638A0 /* BannerCell.swift */; };
-		2CD328C425EC6C80000638A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CD328C325EC6C80000638A0 /* GoogleService-Info.plist */; };
 		2CD328D825EC7341000638A0 /* ModalLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD328D725EC7341000638A0 /* ModalLib.swift */; };
 		E6D51CF105ED3BD0DA3F4350 /* Pods_WhisperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388362C2340A9A532FB86709 /* Pods_WhisperTests.framework */; };
 /* End PBXBuildFile section */
@@ -206,6 +206,7 @@
 
 /* Begin PBXFileReference section */
 		2952496FA50DEAEBEF5F0695 /* Pods-Whisper-WhisperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.release.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CD3260525EC52CE000638A0 /* Whisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whisper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD3260825EC52CE000638A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../New Group/AppDelegate.swift"; sourceTree = "<group>"; };
 		2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../New Group/SceneDelegate.swift"; sourceTree = "<group>"; };
@@ -388,7 +389,6 @@
 		2CD3281125EC636F000638A0 /* SpeakerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerRow.swift; sourceTree = "<group>"; };
 		2CD3281225EC636F000638A0 /* PodHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodHeaderCell.swift; sourceTree = "<group>"; };
 		2CD3287825EC661B000638A0 /* BannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
-		2CD328C325EC6C80000638A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CD328D725EC7341000638A0 /* ModalLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLib.swift; sourceTree = "<group>"; };
 		388362C2340A9A532FB86709 /* Pods_WhisperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhisperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44405CDF533739D9316B96CF /* Pods-Whisper-WhisperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.debug.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -429,6 +429,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CD17F3F25EDCAC400A91CDA /* Bid */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bid;
+			sourceTree = "<group>";
+		};
 		2CD325FC25EC52CE000638A0 = {
 			isa = PBXGroup;
 			children = (
@@ -464,9 +471,9 @@
 				2CD327A125EC636E000638A0 /* Controller */,
 				2CD3274225EC632B000638A0 /* Utils */,
 				2CD3268925EC596C000638A0 /* Whisper.entitlements */,
+				2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */,
 				2CD3261125EC52CF000638A0 /* Assets.xcassets */,
 				2CD3261625EC52CF000638A0 /* Info.plist */,
-				2CD328C325EC6C80000638A0 /* GoogleService-Info.plist */,
 				2CD3264D25EC5508000638A0 /* push-Certificates.p12 */,
 				2CD3268225EC5611000638A0 /* aps.cer */,
 			);
@@ -509,7 +516,6 @@
 				2CD3269E25EC61DD000638A0 /* Room */,
 				2CD3269A25EC61DD000638A0 /* Pod */,
 				2CD326A325EC61DD000638A0 /* FlashCards */,
-				2CD326CB25EC61DD000638A0 /* Analytics */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -609,23 +615,16 @@
 			isa = PBXGroup;
 			children = (
 				2CD326C325EC61DD000638A0 /* UserAuthed.swift */,
+				2CD326C825EC61DD000638A0 /* Authed+DataSource.swift */,
 				2CD326C225EC61DD000638A0 /* Authed+Social.swift */,
 				2CD326C425EC61DD000638A0 /* Authed+Mutate.swift */,
 				2CD326C525EC61DD000638A0 /* Authed+Alerts.swift */,
 				2CD326C625EC61DD000638A0 /* Authed+Renderable.swift */,
 				2CD326C725EC61DD000638A0 /* UserAuthed+Onboard.swift */,
-				2CD326C825EC61DD000638A0 /* Authed+DataSource.swift */,
 				2CD326C925EC61DD000638A0 /* Authed+Payment.swift */,
 				2CD326CA25EC61DD000638A0 /* Authed+Twitter.swift */,
 			);
 			path = UserAuthed;
-			sourceTree = "<group>";
-		};
-		2CD326CB25EC61DD000638A0 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Analytics;
 			sourceTree = "<group>";
 		};
 		2CD3271125EC626A000638A0 /* Protocol */ = {
@@ -758,6 +757,7 @@
 			children = (
 				2CD327BF25EC636E000638A0 /* AgoraClient.swift */,
 				2CD3280525EC636F000638A0 /* Login */,
+				2CD17F3F25EDCAC400A91CDA /* Bid */,
 				2CD327A325EC636E000638A0 /* Home */,
 				2CD327D025EC636E000638A0 /* AudioRoomParent */,
 				2CD327EC25EC636E000638A0 /* AudioRoom */,
@@ -1123,7 +1123,7 @@
 			files = (
 				2CD3261525EC52CF000638A0 /* LaunchScreen.storyboard in Resources */,
 				2CD326E625EC61DD000638A0 /* README.md in Resources */,
-				2CD328C425EC6C80000638A0 /* GoogleService-Info.plist in Resources */,
+				2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */,
 				2CD3261225EC52CF000638A0 /* Assets.xcassets in Resources */,
 				2CD3261025EC52CE000638A0 /* Main.storyboard in Resources */,
 			);
@@ -1605,7 +1605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.byteme.meme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1628,7 +1628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.byteme.meme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

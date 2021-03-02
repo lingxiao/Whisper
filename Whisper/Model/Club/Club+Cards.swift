@@ -21,7 +21,7 @@ extension Club {
         // send invite
         if let user = deck.creator {
             if user.isMe() == false && invite {
-                setAlert(for: user.uuid, kind: .taggedDeckAndInviteToGroup, meta: self.uuid)
+                //setAlert(for: user.uuid, kind: .taggedDeckAndInviteToGroup, meta: self.uuid)
             }
         }
         

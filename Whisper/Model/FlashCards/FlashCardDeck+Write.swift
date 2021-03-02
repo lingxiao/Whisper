@@ -169,7 +169,7 @@ extension FlashCardDeck {
         
         // set alert
         if self.createdBy != UserAuthed.shared.uuid {
-            setAlert(for: UserAuthed.shared.uuid, kind: .seeingDeck, meta: club.uuid)
+            //setAlert(for: UserAuthed.shared.uuid, kind: .seeingDeck, meta: club.uuid)
         }
         
         // increment counter

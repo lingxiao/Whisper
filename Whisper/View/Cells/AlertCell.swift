@@ -155,7 +155,7 @@ class AlertCell: UITableViewCell {
         self.label = v
         
         if let alert = self.alert {
-            if alert.kind == .inviteToGroup || alert.kind == .taggedDeckAndInviteToGroup {
+            if alert.kind == .inviteToGroup { //|| alert.kind == .taggedDeckAndInviteToGroup {
                 if let grp = ClubList.shared.clubs[alert.meta] {
                     if let _ = grp.members[UserAuthed.shared.uuid] {
                     } else {
@@ -206,15 +206,9 @@ class AlertCell: UITableViewCell {
                 str = ""
             case .inviteToGroup:
                 str = "Accept"
-            case .taggedDeckAndInviteToGroup:
-                str = "Join"
-            case .taggedDeck:
-                str = ""
-            case .seeingDeck:
-                str = ""
             case .joinGroup:
                 str = ""
-            case .none:
+            default:
                 str = ""
             }
             

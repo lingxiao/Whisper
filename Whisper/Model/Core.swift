@@ -549,14 +549,15 @@ func deckAudienceIsHere( for aud: DeckAudience? ) -> Bool {
 //MARK:- alerts
 
 enum AlertKind {
+
     case none
     case follow
     case alertMe
-    case taggedDeck
-    case taggedDeckAndInviteToGroup
     case inviteToGroup
     case joinGroup
-    case seeingDeck
+    
+    case paymentFailed
+    case paymentSuccess
 }
 
 struct AlertBlob {
@@ -584,14 +585,12 @@ func fromAlert( _ alert: AlertKind ) -> String {
         return "alertMe"
     case .inviteToGroup:
         return "inviteToGroup"
-    case .taggedDeck:
-        return "taggedDeck"
-    case .taggedDeckAndInviteToGroup:
-        return "taggedDeckAndInviteToGroup"
-    case .seeingDeck:
-        return "seeingDeck"
     case .joinGroup:
         return "joinGroup"
+    case .paymentFailed:
+        return "paymentFailed"
+    case .paymentSuccess:
+        return "paymentSuccess"
     default:
         return ""
     }
@@ -607,14 +606,12 @@ func toAlert( _ str : String ) -> AlertKind {
         return .alertMe
     case "inviteToGroup":
         return .inviteToGroup
-    case "taggedDeck":
-        return .taggedDeck
-    case "taggedDeckAndInviteToGroup":
-        return .taggedDeckAndInviteToGroup
-    case "seeingDeck":
-        return .seeingDeck
     case "joinGroup":
         return .joinGroup
+    case "paymentFailed":
+        return .paymentFailed
+    case "paymentSuccess":
+        return .paymentSuccess
     default:
         return .none
     }
@@ -649,13 +646,13 @@ func decodeAlert( _ blob : FirestoreData?, _ then: @escaping(AlertBlob?) -> Void
     
     guard let data = blob else { return then(nil) }
     
-    let id   = unsafeCastString(data["alertID"])
-    let time = unsafeCastInt(data["timeStamp"])
-    let seen = unsafeCastBool(data["seen"])
+    let id     = unsafeCastString(data["alertID"])
+    let time   = unsafeCastInt(data["timeStamp"])
+    let seen   = unsafeCastBool(data["seen"])
     let source = unsafeCastString(data["source"])
     let kind   = toAlert(unsafeCastString(data["kind"]))
     let meta   = unsafeCastString(data["meta"])
-    
+
     if id == "" || source == "" { return then(nil) }
     
     UserList.shared.pull(for: source){(_,_,src) in
@@ -673,14 +670,12 @@ func decodeAlert( _ blob : FirestoreData?, _ then: @escaping(AlertBlob?) -> Void
                 str = "\(src.get_H1()) wants to be alerted when you are live. Tap the bell button to be alerted when \(src.get_H1()) is live as well."
             case .inviteToGroup:
                 str = "\(src.get_H1()) has invited you to join a private channel. Tap the button to accept."
-            case .taggedDeckAndInviteToGroup:
-                str = "\(src.get_H1()) has tagged a collection you created and invited you to join their channel, tap the button to join channel."
-            case .taggedDeck:
-                str = "\(src.get_H1()) has tagged a collection you created."
-            case .seeingDeck:
-                str = "\(src.get_H1()) is using a collection you created."
             case .joinGroup:
                 str = "\(src.get_H1()) just joined your channel, you can now ping this person into the room when you hold future events."
+            case .paymentFailed:
+                str = "Payment failed: \(meta)"
+            case .paymentSuccess:
+                str = "Payment succeeded: \(meta)"
             default:
                 break;
             }
