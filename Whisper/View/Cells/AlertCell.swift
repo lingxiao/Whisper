@@ -149,7 +149,7 @@ class AlertCell: UITableViewCell {
                 wd = f.width - R - 20 - 25 - 60
                 have_btn = true
             }
-        }            
+        }
         
         let v = UITextView(frame: CGRect(x: R+20, y: 0, width: wd, height: f.height))
         v.font = UIFont(name: FontName.regular, size: AppFontSize.footer)
