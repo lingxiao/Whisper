@@ -66,7 +66,7 @@ class AuthDelegate {
     func onAuthStateChange(withWindow window: UIWindow?) {
         
         self.window = window
-        ///signOut()
+        signOut()
         ///unlinkTwitter()
         Auth.auth().addStateDidChangeListener { (auth, user) in
              if let user = Auth.auth().currentUser {

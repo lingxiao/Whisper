@@ -103,6 +103,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
+            
             // Hack: until they sign back in,do not make these bespoke account redo onboarding
             if ["RWEhYwXou2RnnUmpdZxEKtLL2YK2", "yVTS2RLlJpS8BvoOvs3vLZh5lqB2"].contains(UserAuthed.shared.uuid){
                 self.didShowOnBoard = true
@@ -136,7 +137,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     }
     
     
-    // @todo: remove this call back, and just do 3second timeout
+    // @todo: remove this call back, and just do 3second timeoutyou
     // either get the data or do not and show reload button.
     private func loopReload(for n: Int, _ then: @escaping() -> Void ){
      
@@ -191,8 +192,15 @@ extension HomeController {
         vc.delegate = self
         view.addSubview(vc.view)
         self.newsFeed = vc
-
         
+        layoutFooter( dx: dx )
+    }
+    
+    func layoutFooter( dx: CGFloat ){
+        
+        let f = view.frame
+        let bkColor = UIColor.white
+
         // footer
         if self.footer !== nil {
             self.footer?.removeFromSuperview()
@@ -297,7 +305,8 @@ extension HomeController {
         self.view.addSubview(h2)
         self.emptyLabel = h2
         self.view.bringSubviewToFront(h2)
-        
+     
+        layoutFooter(dx: 0)
     }
     
     // show splash view
