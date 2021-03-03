@@ -31,10 +31,11 @@ extension UserAuthed {
         }
     }
 
+
     // @use: fetch alerts from last 30 days
     func awaitAlerts(){
             
-        if self.uuid == "" { return }        
+        if self.uuid == "" { return }
         
         UserAuthed.alertCol()?
             .whereField("target", isEqualTo: self.uuid)
@@ -45,24 +46,17 @@ extension UserAuthed {
                 guard let docs = querySnapshot?.documents else { return }
                 
                 for doc in docs {
-                    
                     guard let data = doc.data() as? FirestoreData else {  continue }
-                        
                     decodeAlert(data){ blob in
-                        
                         guard let blob = blob else { return }
-                        if blob.kind != .follow {
-                            if self.alerts[blob.ID] == nil {
-                                self.alerts[blob.ID] = blob
-                                if blob.seen == false {
-                                    postFreshAlerts()
-                                }
-                            }
+                        let curr = Array(self.alerts.values).filter{ $0.source == blob.source && $0.kind == blob.kind }
+                        if curr.count == 0 {
+                            self.alerts[blob.ID] = blob
+                            if !blob.seen { postFreshAlerts() }
                         }
                     }
                 }
             }
     }
 }
-
 

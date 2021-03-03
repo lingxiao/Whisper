@@ -120,20 +120,36 @@ class AlertCell: UITableViewCell {
         if let alert = self.alert {
             v.alpha = alert.seen ? 0.50 : 1.0
         }
-
         
         // mount
         self.addSubview(v)
         self.img = v
         
         layoutName(for: R+10, btn: btn)
-
     }
     
     private func layoutName( for R: CGFloat, btn: Bool ){
 
         let f = self.frame
-        let wd = f.width - R - 20 - 25 - 60
+        var wd : CGFloat = f.width - R - 20
+        var have_btn: Bool = false
+
+        if let alert = self.alert {
+            if alert.kind == .inviteToGroup {
+                if let grp = ClubList.shared.clubs[alert.meta] {
+                    if grp.members[UserAuthed.shared.uuid] == nil  {
+                        have_btn = true
+                        wd = f.width - R - 20 - 25 - 60
+                    }
+                } else {
+                    wd = f.width - R - 20 - 25 - 60
+                    have_btn = true
+                }
+            } else {
+                wd = f.width - R - 20 - 25 - 60
+                have_btn = true
+            }
+        }            
         
         let v = UITextView(frame: CGRect(x: R+20, y: 0, width: wd, height: f.height))
         v.font = UIFont(name: FontName.regular, size: AppFontSize.footer)
@@ -154,21 +170,11 @@ class AlertCell: UITableViewCell {
         addSubview(v)
         self.label = v
         
-        if let alert = self.alert {
-            if alert.kind == .inviteToGroup { //|| alert.kind == .taggedDeckAndInviteToGroup {
-                if let grp = ClubList.shared.clubs[alert.meta] {
-                    if let _ = grp.members[UserAuthed.shared.uuid] {
-                    } else {
-                        layoutBtn()
-                    }
-                } else {
-                    layoutBtn()
-                }
-            } else {
-                layoutBtn()
-            }
+        if have_btn {
+            layoutBtn()
         }
-    }        
+        
+    }
     
     private func layoutBtn(){
         
@@ -201,7 +207,7 @@ class AlertCell: UITableViewCell {
             var str = ""
             switch alert.kind {
             case .follow:
-                str = "Accept"
+                str = "" // "Accept"
             case .alertMe:
                 str = ""
             case .inviteToGroup:

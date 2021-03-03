@@ -662,16 +662,17 @@ func decodeAlert( _ blob : FirestoreData?, _ then: @escaping(AlertBlob?) -> Void
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) {
             
             var str = ""
+            let name = src.get_H1()
             
             switch kind {
             case .follow:
-                str = "\(src.get_H1()) will now be alerted when you enter a room."
+                str = "\(name) joined \(APP_NAME). Tap here to go to \(name)'s profile"
             case .alertMe:
-                str = "\(src.get_H1()) wants to be alerted when you are live. Tap the bell button to be alerted when \(src.get_H1()) is live as well."
+                str = "\(name) wants to be alerted when you are live. Tap the bell button to be alerted when \(name) is live as well."
             case .inviteToGroup:
-                str = "\(src.get_H1()) has invited you to join a private channel. Tap the button to accept."
+                str = "\(name) has invited you to join a private channel. Tap the button to accept."
             case .joinGroup:
-                str = "\(src.get_H1()) just joined your channel, you can now ping this person into the room when you hold future events."
+                str = "\(name) just joined your channel, you can now ping this person into the room when you hold future events."
             case .paymentFailed:
                 str = "Payment failed: \(meta)"
             case .paymentSuccess:
