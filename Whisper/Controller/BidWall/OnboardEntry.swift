@@ -11,7 +11,7 @@ import UIKit
 import SwiftEntryKit
 
 
-private let bkColor = Color.secondary
+private let bkColor = Color.primary
 
 private let TEXT_1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit posuere lacus, vel pharetra libero volutpat a. Quisque enim arcu, gravida quis libero a, vulputate porttitor eros. Praesent nec felis nec justo sollicitudin volutpat ac sed turpis. Fusce ut velit eu orci pretium scelerisque nec vel nulla. Praesent lacinia massa non nulla ullamcorper, non vulputate mauris aliquet. Sed sit amet volutpat odio. Donec eget orci sit amet urna lacinia commodo. Sed eget augue non ligula pharetra aliquet at vitae velit. Curabitur luctus felis sodales, porttitor neque elementum, blandit purus. Integer luctus tristique nisi sed suscipit. Nunc rutrum interdum tellus."
 
@@ -121,7 +121,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         let ht2 = f.height - dy - ht - 50 - 20
         let v = UIView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: ht2))
-        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 1.0, cornerRadius: 25, radius: 2, edge: AIEdge.All, shadowSpace: 15)
+        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 5)
         v.backgroundColor = UIColor.white
         view.addSubview(v)
         let pf = v.frame
@@ -135,7 +135,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         v.addSubview(h2)
         
         // explain
-        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: AppFontSize.H1))
+        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+20, width: pf.width-40, height: AppFontSize.H1))
         h3.textAlignment = .left
         h3.text = TEXT_1
         h3.font = UIFont(name: FontName.light, size: AppFontSize.body2)
