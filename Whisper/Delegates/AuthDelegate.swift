@@ -38,7 +38,7 @@ class AuthDelegate {
     private func signOut(){
         try! Auth.auth().signOut()
     }
-    
+ 
     private func unlinkTwitter(){
         Auth.auth().currentUser?.unlink(fromProvider: "twitter.com")
         UserAuthed.shared.unlinkTwitter()
