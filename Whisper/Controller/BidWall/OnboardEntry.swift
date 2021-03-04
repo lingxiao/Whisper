@@ -42,12 +42,12 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 
     
     @objc func handleGoBack(_ button: TinderButton ){
-        let vc = NumberPadController()
+        /*let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
         vc.config(with: "Enter referral code", showHeader: true, isHome: true)
         vc.onboardDelegate = self
         view.addSubview(vc.view)
-        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
+        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)*/
     }
     
     /*
