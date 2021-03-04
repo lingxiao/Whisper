@@ -103,7 +103,6 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-
             // Hack: until they sign back in,do not make these bespoke account redo onboarding
             if ["RWEhYwXou2RnnUmpdZxEKtLL2YK2"].contains(UserAuthed.shared.uuid){
                 self.didShowOnBoard = true
