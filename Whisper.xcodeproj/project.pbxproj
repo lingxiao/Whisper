@@ -10,6 +10,7 @@
 		05C497E8043C40E91BD70E5B /* Pods_Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA420C1A2B3389D4FE14172D /* Pods_Whisper.framework */; };
 		29AF0AF3D4F4CAAC16B4A984 /* Pods_Whisper_WhisperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91A2AEBBFA7B6FA82EBDDD6 /* Pods_Whisper_WhisperUITests.framework */; };
 		2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */; };
+		2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */; };
 		2CD3260925EC52CE000638A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260825EC52CE000638A0 /* AppDelegate.swift */; };
 		2CD3260B25EC52CE000638A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */; };
 		2CD3261025EC52CE000638A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD3260E25EC52CE000638A0 /* Main.storyboard */; };
@@ -207,6 +208,7 @@
 /* Begin PBXFileReference section */
 		2952496FA50DEAEBEF5F0695 /* Pods-Whisper-WhisperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.release.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEntry.swift; sourceTree = "<group>"; };
 		2CD3260525EC52CE000638A0 /* Whisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whisper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD3260825EC52CE000638A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../New Group/AppDelegate.swift"; sourceTree = "<group>"; };
 		2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../New Group/SceneDelegate.swift"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 		2CD17F3F25EDCAC400A91CDA /* BidWall */ = {
 			isa = PBXGroup;
 			children = (
+				2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */,
 			);
 			path = BidWall;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				2CD3274C25EC632B000638A0 /* ImageLoader.swift in Sources */,
 				2CD3282025EC636F000638A0 /* InviteUserController.swift in Sources */,
 				2CD3285025EC636F000638A0 /* OnboardCommunController.swift in Sources */,
+				2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */,
 				2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */,
 				2CD3275225EC632B000638A0 /* AskPermissions.swift in Sources */,
 				2CD326F125EC61DD000638A0 /* Authed+Renderable.swift in Sources */,

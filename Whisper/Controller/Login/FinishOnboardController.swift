@@ -73,7 +73,7 @@ class FinishOnboardController: UIViewController, NumberPadControllerDelegateOnbo
             // have onboarded,do not do it again
             AuthDelegate.shared.doNotOnboard()
             
-            // wait for db to sync, then determine if additonal onboarding steps needed
+            // wait for db to sync, then determine if additional onboarding steps needed
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
                 SwiftEntryKit.dismiss()
                 if let org = club?.getOrg() {
@@ -218,68 +218,3 @@ extension FinishOnboardController: UIImagePickerControllerDelegate, UINavigation
 }
 
 
-/*
- func _populate(){
-     
-     let f = view.frame
-     
-     guard let me = UserList.shared.yieldMyself() else { return }
-     
-     var dy = CGFloat(50) + headerHeight + statusHeight
-     let R  = f.width/2
-
-     // place image
-     let profileImg = UIImageView(frame: CGRect(x:0,y:dy,width:R,height:R))
-     let _ = profileImg.round()
-     profileImg.backgroundColor = Color.grayQuaternary
-     profileImg.center.x = self.view.center.x
-     self.view.addSubview(profileImg)
-     self.img = profileImg
-     
-     // tap icon or profile image url
-     if let url = UserAuthed.shared.fetchThumbURL() {
-         ImageLoader.shared.injectImage(from: url, to: profileImg){ _ in return }
-     } else {
-         let r = AppFontSize.H2
-         let add_sign = UILabel(frame: CGRect(x: 0, y: dy + R/2-r/2, width:r, height: r))
-         add_sign.text = "+"
-         add_sign.font = UIFont(name: FontName.bold, size: AppFontSize.H2)
-         add_sign.textColor = Color.primary_dark
-         view.addSubview(add_sign)
-         add_sign.center.x = self.view.center.x
-         self.add_sign = add_sign
-         view.bringSubviewToFront(add_sign)
-     }
-     
-     // events
-     profileImg.isUserInteractionEnabled = true
-     let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapImage(_:)))
-     profileImg.addGestureRecognizer(tap)
-
-     dy += R/2 + 20
-     
-     let t1 = placeInput(logo: "", placeHolder: "Name", val: me.get_H1(), dy: dy)
-     self.name = t1
-
-     dy = dy + textHt + 5
-
-     // place bio
-     //placeBio(dy: dy)
-     
-     // button
-     let ht  = AppFontSize.body + 30
-     let btn = TinderTextButton()
-     btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width/2, height:ht)
-     btn.config(
-         with: "Sync with sponsor",
-         color: Color.primary_dark,
-         font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
-     )
-     btn.addTarget(self, action: #selector(handleGoBack), for: .touchUpInside)
-     view.addSubview(btn)
-     btn.center.x = view.center.x
- }
-
-
- 
- */

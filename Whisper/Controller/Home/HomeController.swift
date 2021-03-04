@@ -109,7 +109,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 return
             } else {
                 // if I have not been onboarded yet, then go onboard
-                if AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
+                if true { //AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
                     self.didShowOnBoard = true
                     self.goOnboard()
                 }
@@ -121,7 +121,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     
     // @use: complete onboarding view
     private func goOnboard(){
-        let vc = FinishOnboardController()
+        let vc = OnboardEntry() // FinishOnboardController()
         vc.view.frame = UIScreen.main.bounds
         vc.config()
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
