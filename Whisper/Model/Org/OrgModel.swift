@@ -225,6 +225,7 @@ extension OrgModel {
             Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
             return then(uuid)
         }
+        
     }
     
     // @internal: create a campus and add admins to it
@@ -253,6 +254,3 @@ extension OrgModel {
     
 
 }
-
-/*
-}*/
