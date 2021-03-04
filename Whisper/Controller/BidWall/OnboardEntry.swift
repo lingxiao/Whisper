@@ -11,7 +11,11 @@ import UIKit
 import SwiftEntryKit
 
 
-private let bkColor = Color.primary
+private let bkColor = Color.secondary
+
+private let TEXT_1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit posuere lacus, vel pharetra libero volutpat a. Quisque enim arcu, gravida quis libero a, vulputate porttitor eros. Praesent nec felis nec justo sollicitudin volutpat ac sed turpis. Fusce ut velit eu orci pretium scelerisque nec vel nulla. Praesent lacinia massa non nulla ullamcorper, non vulputate mauris aliquet. Sed sit amet volutpat odio. Donec eget orci sit amet urna lacinia commodo. Sed eget augue non ligula pharetra aliquet at vitae velit. Curabitur luctus felis sodales, porttitor neque elementum, blandit purus. Integer luctus tristique nisi sed suscipit. Nunc rutrum interdum tellus."
+
+private let TEXT_2 = "Praesent sodales quam id bibendum interdum. Sed euismod pretium porta. Vestibulum vel mi luctus, porttitor nulla eu, condimentum massa. Aenean sollicitudin maximus est at molestie. Praesent accumsan aliquet accumsan. Etiam fermentum ligula non magna semper, sit amet auctor quam tincidunt. Ut ut sodales massa, ac viverra enim. In quis bibendum ex."
 
 class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     
@@ -20,9 +24,9 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     var statusHeight: CGFloat = 20
     
     // views
-    var img    : UIImageView?
-    var name   : UITextField?
-    var bio    : UITextView?
+    var text : UITextView?
+    var btn  : TinderTextButton?
+    var pos  : Int = 0
     
     override func viewDidLoad() {
         
@@ -41,6 +45,12 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 
     
     @objc func handleGoBack(_ button: TinderButton ){
+        
+        if pos == 0 {
+            self.text?.text = TEXT_2
+        } else {
+            print(">> next")
+        }
         /*let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
         vc.config(with: "Enter referral code", showHeader: true, isHome: true)
@@ -95,8 +105,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         dy += headerHeight + 25
 
-        let h1 = UITextView()
-        h1.frame = CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.footer)
+        let h1 = UITextView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.footer))
         h1.textAlignment = .left
         h1.textContainer.lineBreakMode = .byWordWrapping
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
@@ -107,7 +116,33 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         view.addSubview(h1)
 
         let ht1 = h1.sizeThatFits(h1.bounds.size).height
-
+        
+        dy += ht1 + 25
+        
+        let ht2 = f.height - dy - ht - 50 - 20
+        let v = UIView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: ht2))
+        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 1.0, cornerRadius: 25, radius: 2, edge: AIEdge.All, shadowSpace: 15)
+        v.backgroundColor = UIColor.white
+        view.addSubview(v)
+        let pf = v.frame
+        
+        // title
+        let h2 = UITextView(frame: CGRect(x: 20, y: 10, width: pf.width-40, height: AppFontSize.H1))
+        h2.textAlignment = .left
+        h2.text = "How it works"
+        h2.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
+        h2.textColor = Color.primary_dark
+        v.addSubview(h2)
+        
+        // explain
+        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: AppFontSize.H1))
+        h3.textAlignment = .left
+        h3.text = TEXT_1
+        h3.font = UIFont(name: FontName.light, size: AppFontSize.body2)
+        h3.textColor = Color.primary_dark
+        h3.sizeToFit()
+        v.addSubview(h3)
+        self.text = h3
         
         // button
         let btn = TinderTextButton()
@@ -120,12 +155,20 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         btn.addTarget(self, action: #selector(handleGoBack), for: .touchUpInside)
         view.addSubview(btn)
         btn.center.x = view.center.x
-        
+        self.btn = btn
     }
+    
     
     
 
 }
+
+
+
+
+
+
+
 
 
 /*

@@ -112,7 +112,7 @@ class AppHeader : UIView {
         // [BEGIN] name
         let label = VerticalAlignLabel()
         label.frame = CGRect(x: 20, y: 0, width: W, height: f.height)
-        label.textAlignment = .center // .left
+        label.textAlignment = .center
         label.verticalAlignment = .middle
         label.backgroundColor = UIColor.clear
         
