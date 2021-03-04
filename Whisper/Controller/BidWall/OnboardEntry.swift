@@ -11,7 +11,7 @@ import UIKit
 import SwiftEntryKit
 
 
-private let NAME_PH = "First and last"
+private let bkColor = Color.primary
 
 class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     
@@ -33,9 +33,8 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             statusHeight = UIApplication.shared.statusBarFrame.height
         }
         super.viewDidLoad()
-        view.backgroundColor = Color.primary
-        placeNavHeader()
-        populate()
+        view.backgroundColor = bkColor
+        layout()
     }
     
     func config(){ return }
@@ -81,35 +80,40 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 //            }
         }
     }
-}
-
-
-
-//MARK:- view
-
-extension OnboardEntry {
     
-    func populate(){
+    func layout(){
         
         let f = view.frame
+        var dy: CGFloat = statusHeight
+        let ht  = AppFontSize.body + 30
 
-        let rect = CGRect(x: 30, y: 30, width: f.width-60, height: AppFontSize.H2 + 20)
-        let font = UIFont(name: FontName.bold, size: AppFontSize.H2)!
+        let h = AppHeader(frame: CGRect( x: 0, y: dy, width: f.width, height: headerHeight ))
+        h.config(showSideButtons: false, title: "Welcome to \(APP_NAME)", leftAlign: true)
+        h.backgroundColor = UIColor.clear
+        self.view.addSubview(h)
+        self.view.bringSubviewToFront(h)
+        
+        dy += headerHeight + 25
 
-//        let h1 = appTextField(placeholder: NAME_PH, font: font, frame: rect, color: UIColor.black, placeHolderColor: Color.grayPrimary)
-//        h1.text = ""
-//        h1.textAlignment = .center
-//        h1.delegate = self
-//        h1.becomeFirstResponder()
-//        h1.center = self.view.center
-//        view.addSubview(h1)
+        let h1 = UITextView()
+        h1.frame = CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.footer)
+        h1.textAlignment = .left
+        h1.textContainer.lineBreakMode = .byWordWrapping
+        h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
+        h1.textColor = Color.primary_dark
+        h1.backgroundColor = bkColor
+        h1.text = "The simplest way to sustainably grow and finance communities"
+        h1.sizeToFit()
+        view.addSubview(h1)
+
+        let ht1 = h1.sizeThatFits(h1.bounds.size).height
+
         
         // button
-        let ht  = AppFontSize.body + 30
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width/2, height:ht)
         btn.config(
-            with: "Hello world",
+            with: "Tell me more",
             color: Color.primary_dark,
             font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         )
@@ -120,15 +124,7 @@ extension OnboardEntry {
     }
     
     
-    func placeNavHeader(){
-        let f = view.frame
-        let frame = CGRect( x: 0, y: statusHeight, width: f.width, height: headerHeight )
-        let h = AppHeader(frame: frame)
-        h.config(showSideButtons: false, left: "", right: "", title: "Welcome to \(APP_NAME)", mode: .light, small: true)
-        h.backgroundColor = UIColor.clear
-        self.view.addSubview(h)
-        self.view.bringSubviewToFront(h)
-    }
+
 }
 
 

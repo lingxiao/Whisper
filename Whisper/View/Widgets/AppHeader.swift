@@ -53,7 +53,8 @@ class AppHeader : UIView {
         right : String = "",
         title : String = "",
         mode  : StyleMode = .dark,
-        small : Bool = false
+        small : Bool = false,
+        leftAlign: Bool = false
     ){
         
         self.left  = left
@@ -67,7 +68,7 @@ class AppHeader : UIView {
         if showSideButtons {
              placeheader()
         } else {
-            placeHeaderSparse( small )
+            placeHeaderSparse( small, leftAlign )
         }
     }
     
@@ -77,12 +78,12 @@ class AppHeader : UIView {
     }
 
     
-    private func placeHeaderSparse( _ small: Bool){
+    private func placeHeaderSparse( _ small: Bool, _ leftAlign : Bool ){
 
         let f = self.frame
         let label = UILabel()
         label.frame = CGRect(x: 20, y: 0, width: f.width-40, height: f.height)
-        label.textAlignment = .center
+        label.textAlignment = leftAlign ? .left : .center
         label.textColor = accent
         label.backgroundColor = UIColor.clear
 
