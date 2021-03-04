@@ -58,6 +58,43 @@ enum StyleMode {
 }
 
 
+//MARK: - user authed state
+
+enum UserAuthedState {
+    case locked
+    case hereToBid
+    case hereToSell
+    case unlocked
+}
+
+func fromUserAuthedState( _ st: UserAuthedState ) -> String {
+    switch ( st ){
+    case .locked:
+        return "locked"
+    case .hereToBid:
+        return "hereToBid"
+    case .hereToSell:
+        return "hereToSell"
+    case .unlocked:
+        return "unlocked"
+    }
+}
+
+
+func toUserAuthedState( _ st: String ) -> UserAuthedState {
+    switch ( st ){
+    case "locked":
+        return .locked
+    case "hereToBid":
+        return .hereToBid
+    case "hereToSell":
+        return .hereToSell
+    case "unlocked":
+        return .unlocked
+    default:
+        return .locked
+    }
+}
 
 //MARK: - room state
 
