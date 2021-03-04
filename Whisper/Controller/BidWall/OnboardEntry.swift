@@ -13,6 +13,9 @@ import SwiftEntryKit
 
 private let bkColor = Color.primary
 
+private let TITLE_1 = "How it works"
+private let TITLE_2 = "How does payment work"
+
 private let TEXT_1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit posuere lacus, vel pharetra libero volutpat a. Quisque enim arcu, gravida quis libero a, vulputate porttitor eros. Praesent nec felis nec justo sollicitudin volutpat ac sed turpis. Fusce ut velit eu orci pretium scelerisque nec vel nulla. Praesent lacinia massa non nulla ullamcorper, non vulputate mauris aliquet. Sed sit amet volutpat odio. Donec eget orci sit amet urna lacinia commodo. Sed eget augue non ligula pharetra aliquet at vitae velit. Curabitur luctus felis sodales, porttitor neque elementum, blandit purus. Integer luctus tristique nisi sed suscipit. Nunc rutrum interdum tellus."
 
 private let TEXT_2 = "Praesent sodales quam id bibendum interdum. Sed euismod pretium porta. Vestibulum vel mi luctus, porttitor nulla eu, condimentum massa. Aenean sollicitudin maximus est at molestie. Praesent accumsan aliquet accumsan. Etiam fermentum ligula non magna semper, sit amet auctor quam tincidunt. Ut ut sodales massa, ac viverra enim. In quis bibendum ex."
@@ -24,6 +27,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     var statusHeight: CGFloat = 20
     
     // views
+    var head : UITextView?
     var text : UITextView?
     var btn  : TinderTextButton?
     var pos  : Int = 0
@@ -47,8 +51,12 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     @objc func handleGoBack(_ button: TinderButton ){
         
         if pos == 0 {
+            self.head?.text = TITLE_2
             self.text?.text = TEXT_2
+            self.btn?.textLabel?.text = "Start"
+            self.pos = 1
         } else {
+            self.pos = 2
             print(">> next")
         }
         /*let vc = NumberPadController()
@@ -121,21 +129,22 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         let ht2 = f.height - dy - ht - 50 - 20
         let v = UIView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: ht2))
-        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 5)
+        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 2)
         v.backgroundColor = UIColor.white
         view.addSubview(v)
         let pf = v.frame
         
         // title
-        let h2 = UITextView(frame: CGRect(x: 20, y: 10, width: pf.width-40, height: AppFontSize.H1))
+        let h2 = UITextView(frame: CGRect(x: 20, y: 20, width: pf.width-40, height: AppFontSize.H1))
         h2.textAlignment = .left
-        h2.text = "How it works"
+        h2.text = TITLE_1
         h2.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         h2.textColor = Color.primary_dark
         v.addSubview(h2)
+        self.head = h2
         
         // explain
-        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+20, width: pf.width-40, height: AppFontSize.H1))
+        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: AppFontSize.H1))
         h3.textAlignment = .left
         h3.text = TEXT_1
         h3.font = UIFont(name: FontName.light, size: AppFontSize.body2)
@@ -146,7 +155,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         // button
         let btn = TinderTextButton()
-        btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width/2, height:ht)
+        btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
         btn.config(
             with: "Tell me more",
             color: Color.primary_dark,
@@ -165,74 +174,3 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 
 
 
-
-
-
-
-
-
-/*
- func _populate(){
-     
-     let f = view.frame
-     
-     guard let me = UserList.shared.yieldMyself() else { return }
-     
-     var dy = CGFloat(50) + headerHeight + statusHeight
-     let R  = f.width/2
-
-     // place image
-     let profileImg = UIImageView(frame: CGRect(x:0,y:dy,width:R,height:R))
-     let _ = profileImg.round()
-     profileImg.backgroundColor = Color.grayQuaternary
-     profileImg.center.x = self.view.center.x
-     self.view.addSubview(profileImg)
-     self.img = profileImg
-     
-     // tap icon or profile image url
-     if let url = UserAuthed.shared.fetchThumbURL() {
-         ImageLoader.shared.injectImage(from: url, to: profileImg){ _ in return }
-     } else {
-         let r = AppFontSize.H2
-         let add_sign = UILabel(frame: CGRect(x: 0, y: dy + R/2-r/2, width:r, height: r))
-         add_sign.text = "+"
-         add_sign.font = UIFont(name: FontName.bold, size: AppFontSize.H2)
-         add_sign.textColor = Color.primary_dark
-         view.addSubview(add_sign)
-         add_sign.center.x = self.view.center.x
-         self.add_sign = add_sign
-         view.bringSubviewToFront(add_sign)
-     }
-     
-     // events
-     profileImg.isUserInteractionEnabled = true
-     let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapImage(_:)))
-     profileImg.addGestureRecognizer(tap)
-
-     dy += R/2 + 20
-     
-     let t1 = placeInput(logo: "", placeHolder: "Name", val: me.get_H1(), dy: dy)
-     self.name = t1
-
-     dy = dy + textHt + 5
-
-     // place bio
-     //placeBio(dy: dy)
-     
-     // button
-     let ht  = AppFontSize.body + 30
-     let btn = TinderTextButton()
-     btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width/2, height:ht)
-     btn.config(
-         with: "Sync with sponsor",
-         color: Color.primary_dark,
-         font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
-     )
-     btn.addTarget(self, action: #selector(handleGoBack), for: .touchUpInside)
-     view.addSubview(btn)
-     btn.center.x = view.center.x
- }
-
-
- 
- */
