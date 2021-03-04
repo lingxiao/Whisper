@@ -429,11 +429,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2CD17F3F25EDCAC400A91CDA /* Bid */ = {
+		2CB7F5D625F17A68006D2597 /* BidWall */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Bid;
+			path = BidWall;
+			sourceTree = "<group>";
+		};
+		2CD17F3F25EDCAC400A91CDA /* BidWall */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BidWall;
 			sourceTree = "<group>";
 		};
 		2CD325FC25EC52CE000638A0 = {
@@ -757,7 +764,7 @@
 			children = (
 				2CD327BF25EC636E000638A0 /* AgoraClient.swift */,
 				2CD3280525EC636F000638A0 /* Login */,
-				2CD17F3F25EDCAC400A91CDA /* Bid */,
+				2CD17F3F25EDCAC400A91CDA /* BidWall */,
 				2CD327A325EC636E000638A0 /* Home */,
 				2CD327D025EC636E000638A0 /* AudioRoomParent */,
 				2CD327EC25EC636E000638A0 /* AudioRoom */,
@@ -968,6 +975,7 @@
 		2CD3280525EC636F000638A0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				2CB7F5D625F17A68006D2597 /* BidWall */,
 				2CD3280825EC636F000638A0 /* SignInController.swift */,
 				2CD3280925EC636F000638A0 /* IconController.swift */,
 				2CD3280A25EC636F000638A0 /* SplashPages.swift */,
