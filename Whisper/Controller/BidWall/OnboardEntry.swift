@@ -26,6 +26,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     // views
     var head : UITextView?
     var text : UITextView?
+    var card : UIView?
     var btn  : TinderTextButton?
     var pos  : Int = 0
     
@@ -48,14 +49,22 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     @objc func handleGoBack(_ button: TinderButton ){
         
         if pos == 0 {
+
             self.head?.text = TITLE_2
             self.text?.text = UserAuthed.shared.onboard_message_2
             self.btn?.textLabel?.text = "Start"
             self.pos = 1
+
         } else {
+
             self.pos = 2
-            print(">> next")
+            self.card?.alpha = 0.0
+                        
+            func fn(){ self.card?.alpha = 0.0 }
+            runAnimation( with: fn, for: 0.35 ){ return }
+
         }
+
         /*let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
         vc.config(with: "Enter referral code", showHeader: true, isHome: true)
@@ -131,6 +140,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         v.backgroundColor = UIColor.white
         view.addSubview(v)
         let pf = v.frame
+        self.card = v
         
         // title
         let h2 = UITextView(frame: CGRect(x: 20, y: 20, width: pf.width-40, height: AppFontSize.H1))
