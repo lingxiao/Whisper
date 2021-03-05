@@ -14,7 +14,7 @@ import SwiftEntryKit
 private let bkColor = Color.primary
 
 private let TEXT_1 = "Write down a 'why' so prospective members understand the purpose of this community."
-private let TEXT_2 = "Validate your identity by verifying your deposit and payment information. The same criteria will be applied to all your prospective members. Strong KYC (know your customer) protects the community from scammers."
+private let TEXT_2 = "Validate your identity by verifying your deposit and payment information. The same criteria will be applied to all your future pledges. Strong KYC (know your customer) protects the community from scammers."
 private let TEXT_3 = "Define a base weekly rate to screen out everyone who is not committed to your cause."
 
 
@@ -22,18 +22,8 @@ private let TEXT_3 = "Define a base weekly rate to screen out everyone who is no
 class StartCommunity: UIViewController {
     
     var headerHeight: CGFloat = 80
-    var textHt: CGFloat = 40
     var statusHeight: CGFloat = 20
     
-    // views
-    var head : UITextView?
-    var text : UITextView?
-    var card : UIView?
-    var btn  : TinderTextButton?
-    var vl   : UIView?
-    var vr   : UIView?
-    var h1   : UITextView?
-    var pos  : Int = 0
     
     override func viewDidLoad() {
         
@@ -62,22 +52,6 @@ class StartCommunity: UIViewController {
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)*/
     }
     
-    @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
-        func fn(){ self.vr?.alpha = 0.5 }
-        func gn(){ self.vr?.alpha = 1.0 }
-        runAnimation( with: fn, for: 0.15 ){
-            runAnimation( with: gn, for: 0.15 ){ return }
-        }
-    }
-
-    @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
-        func fn(){ self.vl?.alpha = 0.5 }
-        func gn(){ self.vl?.alpha = 1.0 }
-        runAnimation( with: fn, for: 0.15 ){
-            runAnimation( with: gn, for: 0.15 ){ return }
-        }
-    }
-    
 
     func layout(){
         
@@ -99,9 +73,10 @@ class StartCommunity: UIViewController {
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
         h1.textColor = Color.primary_dark
         h1.backgroundColor = bkColor
-        h1.text = "We are going to:"
+        h1.text = "We are going to"
         h1.sizeToFit()
         view.addSubview(h1)
+        h1.isUserInteractionEnabled = false
 
         let ht1 = h1.sizeThatFits(h1.bounds.size).height
         dy += ht1 + 25
@@ -118,15 +93,12 @@ class StartCommunity: UIViewController {
         // button
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
-        btn.config(
-            with: "Ok let's go",
-            color: Color.primary_dark,
-            font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
-        )
+        btn.config(with: "Ok let's go", color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
+        btn.backgroundColor = Color.redDark
         btn.addTarget(self, action: #selector(handleTapNext), for: .touchUpInside)
         view.addSubview(btn)
         btn.center.x = view.center.x
-        self.btn = btn
+
                 
     }
     
