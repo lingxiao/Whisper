@@ -11,7 +11,7 @@ import UIKit
 import SwiftEntryKit
 
 
-private let bkColor = Color.primary
+private let bkColor = UIColor.clear //Color.primary
 
 private let TITLE_1 = "How we work"
 private let TITLE_2 = "How payment work"
@@ -39,7 +39,8 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             statusHeight = UIApplication.shared.statusBarFrame.height
         }
         super.viewDidLoad()
-        view.backgroundColor = bkColor
+        //view.backgroundColor = bkColor
+        primaryGradient(on: self.view)
         layout()
     }
     
@@ -60,7 +61,10 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             self.pos = 2
             self.card?.alpha = 0.0
                         
-            func fn(){ self.card?.alpha = 0.0 }
+            func fn(){
+                self.card?.alpha = 0.0
+                self.btn?.alpha = 0.0
+            }
             runAnimation( with: fn, for: 0.35 ){ return }
 
         }
