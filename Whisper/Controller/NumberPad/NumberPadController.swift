@@ -20,6 +20,8 @@ protocol NumberPadControllerDelegateOnboard {
     func onDidSyncWithSponsor(at code: String, with club: Club? ) -> Void
 }
 
+private let button_pad = CGFloat(25)
+
 class NumberPadController : UIViewController {
     
     var delegate: NumberPadControllerDelegate?
@@ -34,6 +36,12 @@ class NumberPadController : UIViewController {
     var headerHeight: CGFloat = 70
     var statusHeight : CGFloat = 10.0
     var showHeader: Bool = true
+    
+    // computed layout values
+    private var button_R   = CGFloat(80)
+    private var button_pad = CGFloat(25)
+    private let side_pad   = CGFloat(35)
+    private var button_bottom_offset: CGFloat = 0
 
     // view
     var header: AppHeader?
@@ -52,6 +60,12 @@ class NumberPadController : UIViewController {
         } else {
             statusHeight = UIApplication.shared.statusBarFrame.height
         }
+        
+        let f = view.frame
+        let R_w = (f.width - 2*button_pad - 2*side_pad)/3
+        let R_h = (f.height - headerHeight - statusHeight - 40 - 50 - 20)/4
+        self.button_R = min(R_w,R_h)
+        self.button_pad = (f.width - 2*side_pad - 3*button_R)/2
     }
 
     public func config( with str: String = "Join private group", showHeader: Bool = true, isHome: Bool = false ){
@@ -179,23 +193,21 @@ extension NumberPadController {
     
     func layoutKeyPad( _ showHeader: Bool ){
            
-        let f = view.frame
-        var R = (f.height - headerHeight - statusHeight - 40 - 20 - 20 - 50 - 10)/5 - 10
-        R = R > 90 ? CGFloat(90) : R
-
         // add number pad buttons
         var dy = showHeader ?  headerHeight + statusHeight + 40 : 40
         layoutText(dy: dy)
         dy += headerHeight + 50
         
-        addRow(a: "1", b: "2", c: "3", dy: dy, R: R)
-        dy += R + 20
-        addRow(a: "4", b: "5", c: "6", dy: dy, R: R)
-        dy += R + 20
-        addRow(a: "7", b: "8", c: "9", dy: dy, R: R)
-        dy += R + 20
-        addRow(a: "", b: "0", c: "", dy: dy, R: R, addRmv: true)
-        dy += R + 20
+        addRow(a: "1", b: "2", c: "3", dy: dy, R: button_R)
+        dy += button_R + 20
+        addRow(a: "4", b: "5", c: "6", dy: dy, R: button_R)
+        dy += button_R + 20
+        addRow(a: "7", b: "8", c: "9", dy: dy, R: button_R)
+        dy += button_R + 20
+        addRow(a: "", b: "0", c: "", dy: dy, R: button_R, addRmv: true)
+        dy += button_R + 20
+
+        self.button_bottom_offset = dy
         
     }
     
@@ -210,12 +222,12 @@ extension NumberPadController {
         v.text = self.number
         self.textInput = v
         view.addSubview(v)
-    }
+   }
     
    private func addRow( a: String, b: String, c: String, dy: CGFloat, R: CGFloat, addRmv: Bool = false ){
 
-        let f = view.frame
-        var dx = (f.width - (  R + 20 + R + 20 + R )) / 2
+        //let f = view.frame
+        var dx = side_pad
         let odx = dx
 
         let r = R*0.30
@@ -232,7 +244,7 @@ extension NumberPadController {
             view.addSubview(one)
         }
         
-        dx += R + 20
+        dx += R + button_pad
 
         let two = TinderTextButton()
         two.code = b
@@ -245,7 +257,7 @@ extension NumberPadController {
             view.addSubview(two)
         }
         
-        dx += R + 20
+        dx += R + button_pad
         
         let three = TinderTextButton()
         three.code = c
@@ -276,6 +288,7 @@ extension NumberPadController {
             go.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
 
         }
+    
     }
     
     private func layoutRoom( for club: Club? ){
@@ -308,11 +321,10 @@ extension NumberPadController {
     
     private func placeIndicator( type: NVActivityIndicatorType ){
         let f  = view.frame
-        let R  = CGFloat(30)
-        let dx = f.width - 40 - R
-        let dy = (self.showHeader ?  headerHeight + statusHeight + 40 : 40) + (headerHeight-R)/2
-        let frame = CGRect( x: dx, y: dy, width: R, height: R )
-        let v = NVActivityIndicatorView(frame: frame, type: .ballTrianglePath , color: Color.grayPrimary, padding: 0)
+        let R  = CGFloat(50)
+        let dy = self.button_bottom_offset + 10
+        let frame = CGRect( x: (f.width-R)/2, y: dy, width: R, height: R )
+        let v = NVActivityIndicatorView(frame: frame, type: .ballPulse , color: Color.grayPrimary, padding: 0)
         self.view.addSubview(v)
         self.view.bringSubviewToFront(v)
         v.startAnimating()

@@ -270,7 +270,6 @@ extension OnboardEntry {
         view.addSubview(vl)
         self.vl = vl
         
-        
         let tl = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
         tl.textAlignment = .center
         tl.textContainer.lineBreakMode = .byWordWrapping
@@ -282,7 +281,7 @@ extension OnboardEntry {
 
         vl.addSubview(tl)
 
-        let vr = UIView(frame: CGRect(x: wd+15, y: dy, width: wd2, height: ht))
+        let vr = UIView(frame: CGRect(x: wd+15, y: dy, width: wd, height: ht))
         vr.backgroundColor = Color.black
         vr.roundCorners(corners: [.bottomRight,.topRight], radius: 5)
         vr.alpha = 0.0
