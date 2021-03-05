@@ -132,6 +132,8 @@ extension UserAuthed {
                 guard let data = document.data() as FirestoreData? else { return }
                 let url = unsafeCastString(data["installURL"])
                 self.installURL = URL(string:url)
+                self.onboard_message_1 = unsafeCastString(data["onboard_message_1"])
+                self.onboard_message_2 = unsafeCastString(data["onboard_message_2"])
         }
     }
     

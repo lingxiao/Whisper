@@ -65,10 +65,6 @@ class UserAuthed {
     var mediumURL: URL?
     var fullURL  : URL?
     
-    // admin url
-    var adminURL: URL?
-    var installURL: URL?
-
     // notification token
     var notification_token: String = ""
     var did_link_twitter: Bool = false
@@ -87,6 +83,13 @@ class UserAuthed {
     
     // current org
     var current_org_id: String = ""
+    
+    // admin resource
+    var adminURL: URL?
+    var installURL: URL?
+    var onboard_message_1: String = ""
+    var onboard_message_2: String = ""
+
     
     init(){}
     
