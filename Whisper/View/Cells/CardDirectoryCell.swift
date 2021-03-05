@@ -12,6 +12,13 @@ import NVActivityIndicatorView
 import Player
 
 
+
+//MARK:- protocol + type
+protocol DeckCoverViewDelegate {
+    func didTap(on deck: FlashCardDeck? ) -> Void
+}
+
+
 //MARK:- Cell-
 
 private let textHt : CGFloat = 10 + AppFontSize.body2 + AppFontSize.footer
@@ -232,7 +239,6 @@ fileprivate class DeckCoverView : UIView {
 
 
 }
-
 
 
 

@@ -11,6 +11,8 @@
 		29AF0AF3D4F4CAAC16B4A984 /* Pods_Whisper_WhisperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91A2AEBBFA7B6FA82EBDDD6 /* Pods_Whisper_WhisperUITests.framework */; };
 		2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */; };
 		2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */; };
+		2CB7F5FE25F1E16D006D2597 /* CardDirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */; };
+		2CB7F60325F1E198006D2597 /* PlayListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F60225F1E198006D2597 /* PlayListHeader.swift */; };
 		2CD3260925EC52CE000638A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260825EC52CE000638A0 /* AppDelegate.swift */; };
 		2CD3260B25EC52CE000638A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */; };
 		2CD3261025EC52CE000638A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD3260E25EC52CE000638A0 /* Main.storyboard */; };
@@ -134,16 +136,6 @@
 		2CD3282625EC636F000638A0 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327BD25EC636E000638A0 /* AlertController.swift */; };
 		2CD3282725EC636F000638A0 /* AgoraClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327BF25EC636E000638A0 /* AgoraClient.swift */; };
 		2CD3282825EC636F000638A0 /* NumberPadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327C225EC636E000638A0 /* NumberPadController.swift */; };
-		2CD3282925EC636F000638A0 /* FlashCardController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327C625EC636E000638A0 /* FlashCardController+Events.swift */; };
-		2CD3282A25EC636F000638A0 /* FlashCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327C725EC636E000638A0 /* FlashCardController.swift */; };
-		2CD3282B25EC636F000638A0 /* NewCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327C925EC636E000638A0 /* NewCardController.swift */; };
-		2CD3282C25EC636F000638A0 /* FlashCardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CA25EC636E000638A0 /* FlashCardHeader.swift */; };
-		2CD3282D25EC636F000638A0 /* FlashCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CB25EC636E000638A0 /* FlashCardCell.swift */; };
-		2CD3282E25EC636F000638A0 /* ConfirmTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CC25EC636E000638A0 /* ConfirmTag.swift */; };
-		2CD3282F25EC636F000638A0 /* FlashCardSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CD25EC636E000638A0 /* FlashCardSetting.swift */; };
-		2CD3283025EC636F000638A0 /* DeckAudienceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CE25EC636E000638A0 /* DeckAudienceController.swift */; };
-		2CD3283125EC636F000638A0 /* FlashCardLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327CF25EC636E000638A0 /* FlashCardLeft.swift */; };
-		2CD3283225EC636F000638A0 /* ExploreParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327D125EC636E000638A0 /* ExploreParent.swift */; };
 		2CD3283325EC636F000638A0 /* AudioRoomParentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327D225EC636E000638A0 /* AudioRoomParentController.swift */; };
 		2CD3283425EC636F000638A0 /* AnalyticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327D425EC636E000638A0 /* AnalyticCell.swift */; };
 		2CD3283525EC636F000638A0 /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327D525EC636E000638A0 /* AnalyticsController.swift */; };
@@ -153,8 +145,6 @@
 		2CD3283925EC636F000638A0 /* ContactBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327DA25EC636E000638A0 /* ContactBookCell.swift */; };
 		2CD3283A25EC636F000638A0 /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327DF25EC636E000638A0 /* UserListController.swift */; };
 		2CD3283B25EC636F000638A0 /* UserList+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327E125EC636E000638A0 /* UserList+Table.swift */; };
-		2CD3283C25EC636F000638A0 /* PlayListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327E525EC636E000638A0 /* PlayListHeader.swift */; };
-		2CD3283D25EC636F000638A0 /* PlayListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327E625EC636E000638A0 /* PlayListController.swift */; };
 		2CD3283E25EC636F000638A0 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327E825EC636E000638A0 /* EditProfileController.swift */; };
 		2CD3283F25EC636F000638A0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327E925EC636E000638A0 /* ProfileController.swift */; };
 		2CD3284025EC636F000638A0 /* Profile+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327EA25EC636E000638A0 /* Profile+Table.swift */; };
@@ -169,10 +159,6 @@
 		2CD3284925EC636F000638A0 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327F725EC636E000638A0 /* ChatRoom.swift */; };
 		2CD3284A25EC636F000638A0 /* BreakoutDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327FA25EC636F000638A0 /* BreakoutDirectory.swift */; };
 		2CD3284B25EC636F000638A0 /* BreakoutRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327FB25EC636F000638A0 /* BreakoutRoomCell.swift */; };
-		2CD3284C25EC636F000638A0 /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327FF25EC636F000638A0 /* NewDeckView.swift */; };
-		2CD3284D25EC636F000638A0 /* CardDirectoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280025EC636F000638A0 /* CardDirectoryController.swift */; };
-		2CD3284E25EC636F000638A0 /* NewDeckViewSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280125EC636F000638A0 /* NewDeckViewSimple.swift */; };
-		2CD3284F25EC636F000638A0 /* CardDirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280225EC636F000638A0 /* CardDirectoryCell.swift */; };
 		2CD3285025EC636F000638A0 /* OnboardCommunController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280625EC636F000638A0 /* OnboardCommunController.swift */; };
 		2CD3285125EC636F000638A0 /* FinishOnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280725EC636F000638A0 /* FinishOnboardController.swift */; };
 		2CD3285225EC636F000638A0 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280825EC636F000638A0 /* SignInController.swift */; };
@@ -209,6 +195,8 @@
 		2952496FA50DEAEBEF5F0695 /* Pods-Whisper-WhisperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.release.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEntry.swift; sourceTree = "<group>"; };
+		2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDirectoryCell.swift; sourceTree = "<group>"; };
+		2CB7F60225F1E198006D2597 /* PlayListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListHeader.swift; sourceTree = "<group>"; };
 		2CD3260525EC52CE000638A0 /* Whisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whisper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD3260825EC52CE000638A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "../New Group/AppDelegate.swift"; sourceTree = "<group>"; };
 		2CD3260A25EC52CE000638A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "../New Group/SceneDelegate.swift"; sourceTree = "<group>"; };
@@ -341,17 +329,7 @@
 		2CD327BD25EC636E000638A0 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		2CD327BF25EC636E000638A0 /* AgoraClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AgoraClient.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AgoraClient.swift; sourceTree = "<absolute>"; };
 		2CD327C225EC636E000638A0 /* NumberPadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadController.swift; sourceTree = "<group>"; };
-		2CD327C625EC636E000638A0 /* FlashCardController+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlashCardController+Events.swift"; sourceTree = "<group>"; };
-		2CD327C725EC636E000638A0 /* FlashCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardController.swift; sourceTree = "<group>"; };
-		2CD327C925EC636E000638A0 /* NewCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardController.swift; sourceTree = "<group>"; };
-		2CD327CA25EC636E000638A0 /* FlashCardHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardHeader.swift; sourceTree = "<group>"; };
-		2CD327CB25EC636E000638A0 /* FlashCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardCell.swift; sourceTree = "<group>"; };
-		2CD327CC25EC636E000638A0 /* ConfirmTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmTag.swift; sourceTree = "<group>"; };
-		2CD327CD25EC636E000638A0 /* FlashCardSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardSetting.swift; sourceTree = "<group>"; };
-		2CD327CE25EC636E000638A0 /* DeckAudienceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckAudienceController.swift; sourceTree = "<group>"; };
-		2CD327CF25EC636E000638A0 /* FlashCardLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardLeft.swift; sourceTree = "<group>"; };
-		2CD327D125EC636E000638A0 /* ExploreParent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreParent.swift; sourceTree = "<group>"; };
-		2CD327D225EC636E000638A0 /* AudioRoomParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRoomParentController.swift; sourceTree = "<group>"; };
+		2CD327D225EC636E000638A0 /* AudioRoomParentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioRoomParentController.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoom/AudioRoomParentController.swift; sourceTree = "<absolute>"; };
 		2CD327D425EC636E000638A0 /* AnalyticCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticCell.swift; sourceTree = "<group>"; };
 		2CD327D525EC636E000638A0 /* AnalyticsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		2CD327D725EC636E000638A0 /* InviteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteController.swift; sourceTree = "<group>"; };
@@ -360,8 +338,6 @@
 		2CD327DA25EC636E000638A0 /* ContactBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactBookCell.swift; sourceTree = "<group>"; };
 		2CD327DF25EC636E000638A0 /* UserListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
 		2CD327E125EC636E000638A0 /* UserList+Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserList+Table.swift"; path = "/Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/UserList/UserList+Table.swift"; sourceTree = "<absolute>"; };
-		2CD327E525EC636E000638A0 /* PlayListHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListHeader.swift; sourceTree = "<group>"; };
-		2CD327E625EC636E000638A0 /* PlayListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListController.swift; sourceTree = "<group>"; };
 		2CD327E825EC636E000638A0 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		2CD327E925EC636E000638A0 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		2CD327EA25EC636E000638A0 /* Profile+Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Table.swift"; sourceTree = "<group>"; };
@@ -374,12 +350,8 @@
 		2CD327F425EC636E000638A0 /* AudioRoom+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioRoom+Events.swift"; sourceTree = "<group>"; };
 		2CD327F625EC636E000638A0 /* ChatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatButton.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoom/Views/ChatButton.swift; sourceTree = "<absolute>"; };
 		2CD327F725EC636E000638A0 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatRoom.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoom/Views/ChatRoom.swift; sourceTree = "<absolute>"; };
-		2CD327FA25EC636F000638A0 /* BreakoutDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakoutDirectory.swift; sourceTree = "<group>"; };
-		2CD327FB25EC636F000638A0 /* BreakoutRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakoutRoomCell.swift; sourceTree = "<group>"; };
-		2CD327FF25EC636F000638A0 /* NewDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
-		2CD3280025EC636F000638A0 /* CardDirectoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDirectoryController.swift; sourceTree = "<group>"; };
-		2CD3280125EC636F000638A0 /* NewDeckViewSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDeckViewSimple.swift; sourceTree = "<group>"; };
-		2CD3280225EC636F000638A0 /* CardDirectoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDirectoryCell.swift; sourceTree = "<group>"; };
+		2CD327FA25EC636F000638A0 /* BreakoutDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreakoutDirectory.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoomParent/BreakoutDirectory.swift; sourceTree = "<absolute>"; };
+		2CD327FB25EC636F000638A0 /* BreakoutRoomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreakoutRoomCell.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Controller/AudioRoomParent/BreakoutRoomCell.swift; sourceTree = "<absolute>"; };
 		2CD3280625EC636F000638A0 /* OnboardCommunController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardCommunController.swift; sourceTree = "<group>"; };
 		2CD3280725EC636F000638A0 /* FinishOnboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishOnboardController.swift; sourceTree = "<group>"; };
 		2CD3280825EC636F000638A0 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
@@ -713,6 +685,8 @@
 				2CD3276125EC6358000638A0 /* SongCell.swift */,
 				2CD3276225EC6358000638A0 /* UserRowCell.swift */,
 				2CD3287825EC661B000638A0 /* BannerCell.swift */,
+				2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */,
+				2CB7F60225F1E198006D2597 /* PlayListHeader.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -765,7 +739,6 @@
 				2CD327D025EC636E000638A0 /* AudioRoomParent */,
 				2CD327EC25EC636E000638A0 /* AudioRoom */,
 				2CD3280D25EC636F000638A0 /* RoomGrid */,
-				2CD327F925EC636E000638A0 /* BreakoutRoomController */,
 				2CD327E725EC636E000638A0 /* ProfileController */,
 				2CD327D625EC636E000638A0 /* InviteController */,
 				2CD327B225EC636E000638A0 /* InviteUserController */,
@@ -773,10 +746,7 @@
 				2CD327BC25EC636E000638A0 /* AlertController */,
 				2CD327C125EC636E000638A0 /* NumberPad */,
 				2CD327DE25EC636E000638A0 /* UserList */,
-				2CD327C525EC636E000638A0 /* FlashCard */,
 				2CD327D325EC636E000638A0 /* AnalyticView */,
-				2CD327E425EC636E000638A0 /* PodController */,
-				2CD327FE25EC636F000638A0 /* FlashCardDirectory */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -844,35 +814,12 @@
 			path = NumberPad;
 			sourceTree = "<group>";
 		};
-		2CD327C525EC636E000638A0 /* FlashCard */ = {
-			isa = PBXGroup;
-			children = (
-				2CD327C625EC636E000638A0 /* FlashCardController+Events.swift */,
-				2CD327C725EC636E000638A0 /* FlashCardController.swift */,
-				2CD327C825EC636E000638A0 /* Views */,
-			);
-			path = FlashCard;
-			sourceTree = "<group>";
-		};
-		2CD327C825EC636E000638A0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2CD327C925EC636E000638A0 /* NewCardController.swift */,
-				2CD327CA25EC636E000638A0 /* FlashCardHeader.swift */,
-				2CD327CB25EC636E000638A0 /* FlashCardCell.swift */,
-				2CD327CC25EC636E000638A0 /* ConfirmTag.swift */,
-				2CD327CD25EC636E000638A0 /* FlashCardSetting.swift */,
-				2CD327CE25EC636E000638A0 /* DeckAudienceController.swift */,
-				2CD327CF25EC636E000638A0 /* FlashCardLeft.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		2CD327D025EC636E000638A0 /* AudioRoomParent */ = {
 			isa = PBXGroup;
 			children = (
-				2CD327D125EC636E000638A0 /* ExploreParent.swift */,
 				2CD327D225EC636E000638A0 /* AudioRoomParentController.swift */,
+				2CD327FA25EC636F000638A0 /* BreakoutDirectory.swift */,
+				2CD327FB25EC636F000638A0 /* BreakoutRoomCell.swift */,
 			);
 			path = AudioRoomParent;
 			sourceTree = "<group>";
@@ -906,15 +853,6 @@
 			path = UserList;
 			sourceTree = "<group>";
 		};
-		2CD327E425EC636E000638A0 /* PodController */ = {
-			isa = PBXGroup;
-			children = (
-				2CD327E525EC636E000638A0 /* PlayListHeader.swift */,
-				2CD327E625EC636E000638A0 /* PlayListController.swift */,
-			);
-			path = PodController;
-			sourceTree = "<group>";
-		};
 		2CD327E725EC636E000638A0 /* ProfileController */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,26 +884,6 @@
 				2CD327F725EC636E000638A0 /* ChatRoom.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2CD327F925EC636E000638A0 /* BreakoutRoomController */ = {
-			isa = PBXGroup;
-			children = (
-				2CD327FA25EC636F000638A0 /* BreakoutDirectory.swift */,
-				2CD327FB25EC636F000638A0 /* BreakoutRoomCell.swift */,
-			);
-			path = BreakoutRoomController;
-			sourceTree = "<group>";
-		};
-		2CD327FE25EC636F000638A0 /* FlashCardDirectory */ = {
-			isa = PBXGroup;
-			children = (
-				2CD327FF25EC636F000638A0 /* NewDeckView.swift */,
-				2CD3280025EC636F000638A0 /* CardDirectoryController.swift */,
-				2CD3280125EC636F000638A0 /* NewDeckViewSimple.swift */,
-				2CD3280225EC636F000638A0 /* CardDirectoryCell.swift */,
-			);
-			path = FlashCardDirectory;
 			sourceTree = "<group>";
 		};
 		2CD3280525EC636F000638A0 /* Login */ = {
@@ -1264,7 +1182,6 @@
 				2CD326E025EC61DD000638A0 /* WhisperGraph.swift in Sources */,
 				2CD326DF25EC61DD000638A0 /* WhisperEdge.swift in Sources */,
 				2CD3282125EC636F000638A0 /* InviteUser+Events.swift in Sources */,
-				2CD3284E25EC636F000638A0 /* NewDeckViewSimple.swift in Sources */,
 				2CD3283825EC636F000638A0 /* PhoneBookController.swift in Sources */,
 				2CD326E225EC61DD000638A0 /* User.swift in Sources */,
 				2CD3284525EC636F000638A0 /* EditClub.swift in Sources */,
@@ -1280,8 +1197,8 @@
 				2CD3284725EC636F000638A0 /* AudioRoom+Events.swift in Sources */,
 				2CD326D625EC61DD000638A0 /* Room+Data.swift in Sources */,
 				2CD3281825EC636F000638A0 /* HomeFooter.swift in Sources */,
-				2CD3284F25EC636F000638A0 /* CardDirectoryCell.swift in Sources */,
 				2CD326F025EC61DD000638A0 /* Authed+Alerts.swift in Sources */,
+				2CB7F60325F1E198006D2597 /* PlayListHeader.swift in Sources */,
 				2CD326D125EC61DD000638A0 /* PodPlayList.swift in Sources */,
 				2CD3274E25EC632B000638A0 /* TimeUtils.swift in Sources */,
 				2CD3284B25EC636F000638A0 /* BreakoutRoomCell.swift in Sources */,
@@ -1297,24 +1214,20 @@
 				2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */,
 				2CD3275225EC632B000638A0 /* AskPermissions.swift in Sources */,
 				2CD326F125EC61DD000638A0 /* Authed+Renderable.swift in Sources */,
-				2CD3282D25EC636F000638A0 /* FlashCardCell.swift in Sources */,
 				2CD3278825EC6358000638A0 /* InputStringModal.swift in Sources */,
 				2CD326EE25EC61DD000638A0 /* UserAuthed.swift in Sources */,
 				2CD3278925EC6358000638A0 /* ConfirmBreakoutRoomModal.swift in Sources */,
 				2CD3273625EC6281000638A0 /* UIImage+Style.swift in Sources */,
 				2CD3273025EC6281000638A0 /* TableCell+Events.swift in Sources */,
 				2CD326DD25EC61DD000638A0 /* OrgModel.swift in Sources */,
-				2CD3284C25EC636F000638A0 /* NewDeckView.swift in Sources */,
 				2CD326ED25EC61DD000638A0 /* Authed+Social.swift in Sources */,
 				2CD326EC25EC61DD000638A0 /* ClubList.swift in Sources */,
-				2CD3282F25EC636F000638A0 /* FlashCardSetting.swift in Sources */,
 				2CD3274B25EC632B000638A0 /* ImageCache.swift in Sources */,
 				2CD328D825EC7341000638A0 /* ModalLib.swift in Sources */,
 				2CD3285625EC636F000638A0 /* RoomHeaderCell.swift in Sources */,
 				2CD3284025EC636F000638A0 /* Profile+Table.swift in Sources */,
 				2CD3279725EC6358000638A0 /* AwaitWidget.swift in Sources */,
 				2CD326E825EC61DD000638A0 /* UserList.swift in Sources */,
-				2CD3283025EC636F000638A0 /* DeckAudienceController.swift in Sources */,
 				2CD3281525EC636F000638A0 /* ClubHomDirCell.swift in Sources */,
 				2CD3283425EC636F000638A0 /* AnalyticCell.swift in Sources */,
 				2CD326E325EC61DD000638A0 /* User+Renderable.swift in Sources */,
@@ -1344,9 +1257,7 @@
 				2CD3281725EC636F000638A0 /* Home+Events.swift in Sources */,
 				2CD3284825EC636F000638A0 /* ChatButton.swift in Sources */,
 				2CD326D825EC61DD000638A0 /* FlashCard.swift in Sources */,
-				2CD3282C25EC636F000638A0 /* FlashCardHeader.swift in Sources */,
 				2CD326E725EC61DD000638A0 /* UserList+filter.swift in Sources */,
-				2CD3282E25EC636F000638A0 /* ConfirmTag.swift in Sources */,
 				2CD326F625EC61DD000638A0 /* Analytics.swift in Sources */,
 				2CD3279625EC6358000638A0 /* AppHeader.swift in Sources */,
 				2CD3275025EC632B000638A0 /* Unsafe.swift in Sources */,
@@ -1354,21 +1265,15 @@
 				2CD3285425EC636F000638A0 /* SplashPages.swift in Sources */,
 				2CD3273725EC6281000638A0 /* UILabel.swift in Sources */,
 				2CD3283F25EC636F000638A0 /* ProfileController.swift in Sources */,
-				2CD3282A25EC636F000638A0 /* FlashCardController.swift in Sources */,
 				2CD3281C25EC636F000638A0 /* HomeHeader.swift in Sources */,
 				2CD3281A25EC636F000638A0 /* ResumeView.swift in Sources */,
 				2CD3272E25EC6281000638A0 /* UIButton+Style.swift in Sources */,
 				2CD3271725EC626A000638A0 /* ViewDelegate.swift in Sources */,
 				2CD3284225EC636F000638A0 /* AudioButtonStack.swift in Sources */,
-				2CD3283D25EC636F000638A0 /* PlayListController.swift in Sources */,
 				2CD3274D25EC632B000638A0 /* UtilityFunctions.swift in Sources */,
-				2CD3283225EC636F000638A0 /* ExploreParent.swift in Sources */,
 				2CD3281E25EC636F000638A0 /* OrgListController.swift in Sources */,
-				2CD3282925EC636F000638A0 /* FlashCardController+Events.swift in Sources */,
-				2CD3282B25EC636F000638A0 /* NewCardController.swift in Sources */,
 				2CD3277F25EC6358000638A0 /* HeaderH1Cell.swift in Sources */,
 				2CD3283E25EC636F000638A0 /* EditProfileController.swift in Sources */,
-				2CD3283125EC636F000638A0 /* FlashCardLeft.swift in Sources */,
 				2CD3282725EC636F000638A0 /* AgoraClient.swift in Sources */,
 				2CD3278325EC6358000638A0 /* PadCell.swift in Sources */,
 				2CD3260925EC52CE000638A0 /* AppDelegate.swift in Sources */,
@@ -1411,7 +1316,6 @@
 				2CD326F225EC61DD000638A0 /* UserAuthed+Onboard.swift in Sources */,
 				2CD3274F25EC632B000638A0 /* Reactive.swift in Sources */,
 				2CD3279C25EC6358000638A0 /* TagView.swift in Sources */,
-				2CD3283C25EC636F000638A0 /* PlayListHeader.swift in Sources */,
 				2CD326D525EC61DD000638A0 /* Room+Chat.swift in Sources */,
 				2CD3285225EC636F000638A0 /* SignInController.swift in Sources */,
 				2CD3283325EC636F000638A0 /* AudioRoomParentController.swift in Sources */,
@@ -1421,9 +1325,9 @@
 				2CD3279A25EC6358000638A0 /* TinderButton.swift in Sources */,
 				2CD326F525EC61DD000638A0 /* Authed+Twitter.swift in Sources */,
 				2CD3283B25EC636F000638A0 /* UserList+Table.swift in Sources */,
-				2CD3284D25EC636F000638A0 /* CardDirectoryController.swift in Sources */,
 				2CD3278425EC6358000638A0 /* SocialCell.swift in Sources */,
 				2CD326D425EC61DD000638A0 /* Room.swift in Sources */,
+				2CB7F5FE25F1E16D006D2597 /* CardDirectoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

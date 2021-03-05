@@ -32,7 +32,7 @@ typealias BreakoutDirectoryData = [(BreakoutDirectoryCell, [Room])]
 class BreakoutDirectory: UIViewController {
         
     // delegate + parent
-    var delegate: ExploreParentProtocol?
+    //var delegate: ExploreParentProtocol?
     
     // style
     let headerHeight: CGFloat = 50
@@ -129,9 +129,9 @@ class BreakoutDirectory: UIViewController {
         }*/
     }
     
-    func didTap(on deck: FlashCardDeck? ){
+    /*func didTap(on deck: FlashCardDeck? ){
         delegate?.onHandleTapDeck(on: deck)
-    }
+    }*/
     
     @objc func handleTapAdd( _ button: TinderButton ){
         let f = view.frame

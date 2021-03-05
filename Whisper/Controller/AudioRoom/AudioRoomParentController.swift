@@ -14,7 +14,6 @@ import UIKit
 
 enum AudioRoomParentCellKind {
     case audioRoom
-    case explore
     case breakoutRoom
 }
 
@@ -232,7 +231,6 @@ class AudioRoomParentCell: UICollectionViewCell, AudioRoomParentDelegate {
     var widget: ClubWidgets?
     
     var roomVC: AudioRoomController?
-    var exploreVC: ExploreParentController?
     var breakoutVC: BreakoutDirectory?
     var delegate: AudioRoomParentDelegate?
     
@@ -260,13 +258,6 @@ class AudioRoomParentCell: UICollectionViewCell, AudioRoomParentDelegate {
             vc.config(with: room, club: club)
             addSubview(vc.view)
             self.roomVC = vc
-        case .explore:
-            let vc = ExploreParentController()
-            vc.view.frame = UIScreen.main.bounds
-            vc.config(with: club, room: room)
-            vc.delegate = self
-            addSubview(vc.view)
-            self.exploreVC = vc
         case .breakoutRoom:
             let vc = BreakoutDirectory()
             vc.view.frame = UIScreen.main.bounds
