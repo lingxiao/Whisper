@@ -18,11 +18,26 @@ private let TEXT_2 = "link payment to prevent scammers"
 private let TEXT_3 = "define a weekly base rate"
 private let TEXT_4 = "provide some social media links"
 
+private let PRICE_A = 1.5
+private let PRICE_B = 2.5
 
 class StartCommunity: UIViewController, AppHeaderDelegate {
     
     var headerHeight: CGFloat = 80
     var statusHeight: CGFloat = 20
+    
+    // view
+    var pagination: UITextView?
+    var header: UITextView?
+    var prompt: UITextView?
+    var price_l: PriceView?
+    var price_c: PriceView?
+    var price_r: PriceView?
+    var image: UIImageView?
+    var name : UITextView?
+    var purpose: UITextView?
+    
+    var selected_price: Double = PRICE_B
         
     override func viewDidLoad() {
         
@@ -53,6 +68,42 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
     }
     
+}
+
+//MARK: - UGE-
+
+extension StartCommunity {
+    
+    @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
+        self.selected_price = PRICE_A
+        self.price_l?.select()
+        self.price_c?.unselect()
+        self.price_r?.unselect()
+    }
+    
+    @objc func handleTapCenter(_ sender: UITapGestureRecognizer? = nil) {
+        self.selected_price = PRICE_B
+        self.price_l?.unselect()
+        self.price_c?.select()
+        self.price_r?.unselect()
+    }
+    
+
+    @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
+        self.selected_price = PRICE_A
+        self.price_l?.unselect()
+        self.price_c?.unselect()
+        self.price_r?.select()
+    }
+    
+    
+}
+
+
+//MARK:- view-
+
+extension StartCommunity {
+
     func layout(){
         
         let f = view.frame
@@ -60,39 +111,60 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         let ht  = AppFontSize.body + 30
 
         let h = AppHeader(frame: CGRect( x: 0, y: dy, width: f.width, height: headerHeight ))
-        h.config(showSideButtons: true, left: "", right: "back", title: "Get ready", mode: .light, small: true, leftAlign: true)
+        h.config(showSideButtons: true, left: "", right: "back", title: "Start a community", mode: .light, small: true, leftAlign: true)
         h.backgroundColor = UIColor.clear
         self.view.addSubview(h)
         self.view.bringSubviewToFront(h)
         h.delegate = self
         
-        dy += headerHeight + 25
-
-        let h1 = UITextView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.footer))
-        h1.textAlignment = .left
+        dy += headerHeight + 10
+        
+        // header
+        let h1 = UITextView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.H1+20))
+        h1.textAlignment = .center
         h1.textContainer.lineBreakMode = .byWordWrapping
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
         h1.textColor = Color.primary_dark
         h1.backgroundColor = bkColor
-        h1.text = "We are going to"
-        h1.sizeToFit()
+        h1.text = "Select your price"
         view.addSubview(h1)
         h1.isUserInteractionEnabled = false
-
-        let ht1 = h1.sizeThatFits(h1.bounds.size).height
-        dy += ht1 + 25
+        self.header = h1
         
-        let ht2 = layoutOne(str: TEXT_1, dy: dy)
-        dy += ht2 + 10
+        dy += AppFontSize.H1 + 30
         
-        let ht3 = layoutOne(str: TEXT_2, dy: dy)
-        dy += ht3 + 10
+        // pagination
+        let ho = UITextView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.H2))
+        ho.textAlignment = .center
+        ho.textContainer.lineBreakMode = .byTruncatingTail
+        ho.font = UIFont(name: FontName.light, size: AppFontSize.footerLight)
+        ho.textColor = Color.primary_dark
+        ho.backgroundColor = bkColor
+        ho.text = "1/3"
+        view.addSubview(ho)
+        ho.isUserInteractionEnabled = false
+        self.pagination = ho
 
-        let ht4 = layoutOne(str: TEXT_3, dy: dy)
-        dy += ht4 + 10
-
-        let ht5 = layoutOne(str: TEXT_4, dy: dy)
-        dy += ht5 + 10
+        dy += AppFontSize.H2 + 15
+        
+        // prompt
+        let h2 = UITextView(frame: CGRect(x: 20, y: dy, width: f.width-40, height: AppFontSize.footerBold))
+        h2.textAlignment = .center
+        h1.textContainer.lineBreakMode = .byWordWrapping
+        h2.text = "Select a weekly rate, members only pay if you both show up"
+        h2.font = UIFont(name: FontName.light, size: AppFontSize.footerBold)
+        h2.textColor = Color.primary_dark
+        h2.sizeToFit()
+        h2.backgroundColor = bkColor
+        h2.isUserInteractionEnabled = false
+        view.addSubview(h2)
+        h2.center.x = view.center.x
+        self.prompt = h1
+            
+        // layout price
+        dy += AppFontSize.footerBold + 40
+        layoutPrices(dy: dy)
+        
 
         // button
         let btn = TinderTextButton()
@@ -102,9 +174,55 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         btn.addTarget(self, action: #selector(handleTapNext), for: .touchUpInside)
         view.addSubview(btn)
         btn.center.x = view.center.x
-
-                
     }
+    
+    private func layoutPrices( dy : CGFloat ){
+        
+        let f = view.frame
+        let wd = (f.width - 30)/3
+        let ht = f.height/4 // - dy - AppFontSize.body + 30 + 50
+        var dx  = CGFloat(15)
+         
+        //left
+        let vl = PriceView(frame: CGRect(x: dx, y: dy, width: wd, height: ht))
+        vl.config(str: "$\(PRICE_A)0 per week")
+        vl.roundCorners(corners: [.topLeft,.bottomLeft], radius: 5)
+        view.addSubview(vl)
+        dx += wd
+        
+        // cennter
+        let vc = PriceView(frame: CGRect(x: dx, y: dy, width: wd, height: ht))
+        vc.config(str: "$\(PRICE_B)0 per week")
+        view.addSubview(vc)
+        vc.select()
+        dx += wd
+        
+        // right
+        let vr = PriceView(frame: CGRect(x: dx, y: dy, width: wd, height: ht))
+        vr.config(str: "Set your own price")
+        vr.roundCorners(corners: [.bottomRight,.topRight], radius: 5)
+        view.addSubview(vr)
+
+        
+        vl.center.y = view.center.y
+        vc.center.y = view.center.y
+        vr.center.y = view.center.y
+
+
+        self.price_l = vl
+        self.price_c = vc
+        self.price_r = vr
+
+        // responders
+        let tapl = UITapGestureRecognizer(target: self, action: #selector(handleTapLeft))
+        vl.addGestureRecognizer(tapl)
+        let tapc = UITapGestureRecognizer(target: self, action: #selector(handleTapCenter))
+        vc.addGestureRecognizer(tapc)
+        let tapr = UITapGestureRecognizer(target: self, action: #selector(handleTapRight))
+        vr.addGestureRecognizer(tapr)
+
+    }
+
     
     private func layoutOne( str: String, dy: CGFloat )  -> CGFloat {
 
@@ -137,4 +255,55 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         
     }
     
+}
+
+
+//MARK:- price view -
+
+class PriceView : UIView {
+    
+    var t : UITextView?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+        
+    func select(){
+        self.backgroundColor = Color.black
+        t?.textColor = Color.white
+    }
+    
+    func unselect(){
+        self.backgroundColor = Color.grayQuaternary
+        t?.textColor = Color.black
+    }
+
+    
+    func config( str: String ){
+        
+        let f = self.frame
+        let wd = f.width
+        let ht = f.height
+        let wd2 = wd - 10
+        let ht2 = AppFontSize.H3*3
+        let dy2 = (ht-ht2)/2
+        
+        self.backgroundColor = Color.grayQuaternary
+        
+        let tr = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
+        tr.textAlignment = .center
+        tr.textContainer.lineBreakMode = .byWordWrapping
+        tr.text = str
+        tr.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
+        tr.textColor = Color.black
+        tr.isUserInteractionEnabled = false
+        tr.backgroundColor = UIColor.clear
+        self.addSubview(tr)
+        self.t = tr
+    }
 }
