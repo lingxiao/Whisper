@@ -98,9 +98,11 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             runAnimation( with: gn, for: 0.15 ){ return }
         }
         
-        let vc = FinishOnboardController()
+        let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
-        vc.config()
+        vc.config(with: "Enter referral code", showHeader: true, isHome: true)
+        vc.onboardDelegate = self
+        view.addSubview(vc.view)
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
 
