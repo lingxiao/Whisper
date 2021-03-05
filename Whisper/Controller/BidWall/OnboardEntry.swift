@@ -89,6 +89,10 @@ class OnboardEntry: UIViewController {
         runAnimation( with: fn, for: 0.15 ){
             runAnimation( with: gn, for: 0.15 ){ return }
         }
+        let vc = StartCommunity()
+        vc.view.frame = UIScreen.main.bounds
+        vc.config()
+        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
@@ -97,13 +101,12 @@ class OnboardEntry: UIViewController {
         runAnimation( with: fn, for: 0.15 ){
             runAnimation( with: gn, for: 0.15 ){ return }
         }
-        
         let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
         vc.config(with: "Enter referral code", showHeader: true, isHome: false)
         vc.delegate = self
         vc.onboardDelegate = self
-        view.addSubview(vc.view)
+        //view.addSubview(vc.view)
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
     
