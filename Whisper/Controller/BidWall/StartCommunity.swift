@@ -54,7 +54,10 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     var btn: TinderTextButton?
     var price_btn: TinderTextButton?
     
+    // values
     var selected_price: Double = PRICE_B
+    var why: String = ""
+    var name: String = ""
     private var state : StartCommunityState = .price
         
     override func viewDidLoad() {
@@ -173,6 +176,7 @@ extension StartCommunity {
 extension StartCommunity : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let str = textField.text
         print("enger: ", textField.text)
         purpose?.resignFirstResponder()
         name?.resignFirstResponder()
@@ -196,7 +200,7 @@ extension StartCommunity {
         self.price_r?.removeFromSuperview()
         self.price_btn?.removeFromSuperview()
         self.price?.removeFromSuperview()
-        layoutWhyInput(dy:explain_dy+20)
+        layoutWhyInput(dy:explain_dy+10)
     }
     
     // view transition: why => name
@@ -373,7 +377,8 @@ extension StartCommunity {
         let font = UIFont(name: FontName.bold, size: AppFontSize.body2)!
         let frame = CGRect(x: 30, y: dy, width: tw, height: AppFontSize.body2*5+20)
         let h1 = appTextField(placeholder: "What is the purpose of this community", font: font, frame: frame, color: UIColor.black)
-        h1.backgroundColor = bkColor
+        h1.backgroundColor = bkColor // UIColor.white
+        //h1.applyShadowWithCornerRadius(color: Color.primary.darker(by: 15), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 2)
         h1.textAlignment = .left
         h1.keyboardType = .default
         h1.text = ""
