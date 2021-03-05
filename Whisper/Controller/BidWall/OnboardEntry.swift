@@ -119,7 +119,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
         h1.textColor = Color.primary_dark
         h1.backgroundColor = bkColor
-        h1.text = "The simplest way to sustainably grow and finance communities"
+        h1.text = "The simplest way to sustainably grow and finance niche communities"
         h1.sizeToFit()
         view.addSubview(h1)
 
@@ -140,16 +140,20 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         h2.text = TITLE_1
         h2.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         h2.textColor = Color.primary_dark
+        h2.backgroundColor = UIColor.white
+        h2.isUserInteractionEnabled = false
         v.addSubview(h2)
         self.head = h2
         
         // explain
-        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: AppFontSize.H1))
+        let ht3 = ht2 - 20 - AppFontSize.H1 - 40
+        let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: ht3))
         h3.textAlignment = .left
         h3.text = TEXT_1
         h3.font = UIFont(name: FontName.light, size: AppFontSize.body2)
         h3.textColor = Color.primary_dark
-        h3.sizeToFit()
+        h3.backgroundColor = UIColor.white
+        h3.isUserInteractionEnabled = false
         v.addSubview(h3)
         self.text = h3
         
