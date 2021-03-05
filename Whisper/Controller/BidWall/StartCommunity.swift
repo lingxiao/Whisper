@@ -47,9 +47,9 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     var price_c: PriceView?
     var price_r: PriceView?
     var image: UIImageView?
-    var name : UITextInput?
+    var name : UITextField?
     var price: UITextField?
-    var purpose: UITextView?
+    var purpose: UITextField?
     var btn: TinderTextButton?
     var price_btn: TinderTextButton?
     
@@ -81,16 +81,16 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
 
 extension StartCommunity {
         
-    
+    //@Use: transition betweeen different views
     @objc func handleTapNext(_ button: TinderButton ){
         switch self.state {
         case .price:
-            break;
+            transToWhy()
         case .inputPrice:
-            break;
-        case .inputName:
-            break;
+            transToWhy()
         case .inputWhy:
+            transToName()
+        case .inputName:
             break;
         case .inputMascot:
             break;
@@ -104,6 +104,7 @@ extension StartCommunity {
             break;
         }
     }
+    
         
     // select left price
     @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
@@ -127,7 +128,6 @@ extension StartCommunity {
         self.price_l?.unselect()
         self.price_c?.unselect()
         self.price_r?.select()
-        
         self.price_l?.removeFromSuperview()
         self.price_c?.removeFromSuperview()
         self.price_r?.removeFromSuperview()
@@ -169,6 +169,9 @@ extension StartCommunity {
 extension StartCommunity : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("enger: ", textField.text)
+        purpose?.resignFirstResponder()
+        name?.resignFirstResponder()
         return true
     }
 }
@@ -177,7 +180,34 @@ extension StartCommunity : UITextFieldDelegate {
 //MARK:- view-
 
 extension StartCommunity {
+    
+    // view transition: price => why
+    private func transToWhy(){
+        self.state = .inputWhy
+        self.pagination?.text = "2/8"
+        self.header?.text = "The Why"
+        self.prompt?.text = "Tell pledges why they should join this community."
+        self.price_l?.removeFromSuperview()
+        self.price_c?.removeFromSuperview()
+        self.price_r?.removeFromSuperview()
+        self.price_btn?.removeFromSuperview()
+        self.price?.removeFromSuperview()
+        layoutWhyInput(dy:explain_dy+20)
+    }
+    
+    // view transition: why => name
+    private func transToName(){
+        self.state = .inputName
+        self.pagination?.text = "3/8"
+        self.header?.text = "The Name"
+        self.prompt?.text = "Short and sweet"
+        purpose?.resignFirstResponder()
+        purpose?.removeFromSuperview()
+        layoutNameInput(dy:explain_dy+20)
+    }
 
+    
+    // initaial view state
     func layout(){
         
         let f = view.frame
@@ -200,7 +230,7 @@ extension StartCommunity {
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1)
         h1.textColor = Color.primary_dark
         h1.backgroundColor = bkColor
-        h1.text = "Select your price"
+        h1.text = "The Price"
         view.addSubview(h1)
         h1.isUserInteractionEnabled = false
         self.header = h1
@@ -219,8 +249,7 @@ extension StartCommunity {
         h2.isUserInteractionEnabled = false
         view.addSubview(h2)
         h2.center.x = view.center.x
-        self.prompt = h1
-        
+        self.prompt = h2
             
         // layout price
         dy += AppFontSize.footerBold + 40
@@ -259,7 +288,7 @@ extension StartCommunity {
         
         let f = view.frame
         let wd = (f.width - 30)/3
-        let ht = f.height/4 // - dy - AppFontSize.body + 30 + 50
+        let ht = f.height/4
         var dx  = CGFloat(15)
          
         //left
@@ -331,7 +360,43 @@ extension StartCommunity {
 
     }
 
+    // purpose input
+    func layoutWhyInput( dy: CGFloat ){
+        
+        let f = view.frame
+        let tw = f.width-60
+        
+        let font = UIFont(name: FontName.bold, size: AppFontSize.body2)!
+        let frame = CGRect(x: 30, y: dy, width: tw, height: AppFontSize.body2*5+20)
+        let h1 = appTextField(placeholder: "What is the purpose of this community", font: font, frame: frame, color: UIColor.black)
+        h1.backgroundColor = bkColor
+        h1.textAlignment = .left
+        h1.keyboardType = .default
+        h1.text = ""
+        h1.delegate = self
+        h1.becomeFirstResponder()
+        view.addSubview(h1)
+        self.purpose = h1
+
+    }
     
+    // name input
+    func layoutNameInput( dy: CGFloat ){
+        let f = view.frame
+        let tw = f.width-60
+        let font = UIFont(name: FontName.bold, size: AppFontSize.H2)!
+        let frame = CGRect(x: 30, y: dy, width: tw, height: AppFontSize.H2+20)
+        let h1 = appTextField(placeholder: "Name", font: font, frame: frame, color: UIColor.black)
+        h1.backgroundColor = bkColor
+        h1.textAlignment = .center
+        h1.keyboardType = .default
+        h1.text = ""
+        h1.delegate = self
+        h1.becomeFirstResponder()
+        view.addSubview(h1)
+        self.name = h1
+
+    }
 }
 
 
