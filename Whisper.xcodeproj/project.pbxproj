@@ -643,6 +643,7 @@
 		2CD3271B25EC6281000638A0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2CD3272425EC6281000638A0 /* UIViewController+Events.swift */,
 				2CD3271C25EC6281000638A0 /* UICollectionCell+Shape.swift */,
 				2CD3271D25EC6281000638A0 /* Array+remove.swift */,
 				2CD3271E25EC6281000638A0 /* UIView+Dim.swift */,
@@ -651,7 +652,6 @@
 				2CD3272125EC6281000638A0 /* String+SubStr.swift */,
 				2CD3272225EC6281000638A0 /* TableCell+Events.swift */,
 				2CD3272325EC6281000638A0 /* Dispatch+Background.swift */,
-				2CD3272425EC6281000638A0 /* UIViewController+Events.swift */,
 				2CD3272525EC6281000638A0 /* Date+Pretty.swift */,
 				2CD3272625EC6281000638A0 /* UINavigationController+style.swift */,
 				2CD3272725EC6281000638A0 /* Number+Pretty.swift */,

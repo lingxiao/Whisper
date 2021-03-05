@@ -28,6 +28,8 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     var text : UITextView?
     var card : UIView?
     var btn  : TinderTextButton?
+    var vl   : UIView?
+    var vr   : UIView?
     var pos  : Int = 0
     
     override func viewDidLoad() {
@@ -47,7 +49,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     func config(){ return }
 
     
-    @objc func handleGoBack(_ button: TinderButton ){
+    @objc func handleTapNext(_ button: TinderButton ){
         
         if pos == 0 {
 
@@ -64,6 +66,8 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             func fn(){
                 self.card?.alpha = 0.0
                 self.btn?.alpha = 0.0
+                self.vl?.alpha = 1.0
+                self.vr?.alpha = 1.0
             }
             runAnimation( with: fn, for: 0.35 ){ return }
 
@@ -138,13 +142,17 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         dy += ht1 + 25
         
+        // text card
         let ht2 = f.height - dy - ht - 50 - 20
         let v = UIView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: ht2))
-        v.applyShadowWithCornerRadius(color: bkColor.darker(by: 35), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 2)
+        v.applyShadowWithCornerRadius(color: Color.primary.darker(by: 15), opacity: 0.5, cornerRadius: 25, radius: 2, edge: AIEdge.Bottom_Right, shadowSpace: 2)
         v.backgroundColor = UIColor.white
         view.addSubview(v)
         let pf = v.frame
         self.card = v
+        
+        //layout alt. view
+        layoutOptions(dy: dy+20)
         
         // title
         let h2 = UITextView(frame: CGRect(x: 20, y: 20, width: pf.width-40, height: AppFontSize.H1))
@@ -177,13 +185,52 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             color: Color.primary_dark,
             font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         )
-        btn.addTarget(self, action: #selector(handleGoBack), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleTapNext), for: .touchUpInside)
         view.addSubview(btn)
         btn.center.x = view.center.x
         self.btn = btn
     }
     
-    
+    private func layoutOptions( dy: CGFloat ){
+        
+        let f = view.frame
+        let wd = (f.width - 30)/2
+        let ht = f.height/4
+        
+        let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
+        vl.backgroundColor = Color.grayQuaternary
+        vl.roundCorners(corners: [.topLeft,.bottomLeft], radius: 5)
+        vl.alpha = 0.0
+        view.addSubview(vl)
+
+        let tl = UITextView(frame: CGRect(x: 5, y: 5, width: wd-10, height: ht-10))
+        tl.textAlignment = .center
+        tl.textContainer.lineBreakMode = .byWordWrapping
+        tl.text = "Pledge a community"
+        tl.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
+        tl.textColor = Color.black
+        tl.isUserInteractionEnabled = false
+        tl.sizeToFit()
+        //tl.center.y = vl.center.y
+
+        vl.addSubview(tl)
+        self.vl = vl
+        
+        let vr = UIView(frame: CGRect(x: 15+wd, y: dy, width: wd, height: ht))
+        vr.backgroundColor = Color.black
+        vr.roundCorners(corners: [.bottomRight,.topRight], radius: 5)
+        vr.alpha = 0.0
+        view.addSubview(vr)
+        self.vr = vr
+
+        //        tr.textAlignment = .center
+//        tr.textContainer.lineBreakMode = .byWordWrapping
+//        tr.text = "Start a new community"
+//        tr.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
+//        tr.textColor = Color.white
+        //        tr.isUserInteractionEnabled = false
+        
+    }
     
 
 }
