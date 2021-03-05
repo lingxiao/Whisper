@@ -260,7 +260,7 @@ extension OnboardEntry {
         h1.isUserInteractionEnabled = false
         view.addSubview(h1)
         self.h1 = h1
-
+        
         dy += AppFontSize.H1
         
         let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
