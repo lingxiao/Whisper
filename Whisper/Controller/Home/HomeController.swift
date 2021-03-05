@@ -195,6 +195,7 @@ extension HomeController {
         layoutFooter( dx: dx )
     }
     
+    
     func layoutFooter( dx: CGFloat ){
         
         let f = view.frame
