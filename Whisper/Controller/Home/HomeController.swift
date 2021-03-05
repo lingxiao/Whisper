@@ -109,7 +109,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 return
             } else {
                 // if I have not been onboarded yet, then go onboard
-                if AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
+                if true { //AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
                     self.didShowOnBoard = true
                     self.goOnboard()
                 }
@@ -195,7 +195,7 @@ extension HomeController {
         layoutFooter( dx: dx )
     }
     
-    
+
     func layoutFooter( dx: CGFloat ){
         
         let f = view.frame
