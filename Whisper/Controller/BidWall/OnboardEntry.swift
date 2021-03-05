@@ -16,9 +16,6 @@ private let bkColor = Color.primary
 private let TITLE_1 = "How we work"
 private let TITLE_2 = "How payment work"
 
-private let TEXT_1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit posuere lacus, vel pharetra libero volutpat a. Quisque enim arcu, gravida quis libero a, vulputate porttitor eros. Praesent nec felis nec justo sollicitudin volutpat ac sed turpis. Fusce ut velit eu orci pretium scelerisque nec vel nulla. Praesent lacinia massa non nulla ullamcorper, non vulputate mauris aliquet. Sed sit amet volutpat odio. Donec eget orci sit amet urna lacinia commodo. Sed eget augue non ligula pharetra aliquet at vitae velit. Curabitur luctus felis sodales, porttitor neque elementum, blandit purus. Integer luctus tristique nisi sed suscipit. Nunc rutrum interdum tellus."
-
-private let TEXT_2 = "Praesent sodales quam id bibendum interdum. Sed euismod pretium porta. Vestibulum vel mi luctus, porttitor nulla eu, condimentum massa. Aenean sollicitudin maximus est at molestie. Praesent accumsan aliquet accumsan. Etiam fermentum ligula non magna semper, sit amet auctor quam tincidunt. Ut ut sodales massa, ac viverra enim. In quis bibendum ex."
 
 class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     
@@ -52,7 +49,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         if pos == 0 {
             self.head?.text = TITLE_2
-            self.text?.text = TEXT_2
+            self.text?.text = UserAuthed.shared.onboard_message_2
             self.btn?.textLabel?.text = "Start"
             self.pos = 1
         } else {
@@ -98,6 +95,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 //            }
         }
     }
+    
     
     func layout(){
         
@@ -149,7 +147,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         let ht3 = ht2 - 20 - AppFontSize.H1 - 40
         let h3 = UITextView(frame: CGRect(x: 20, y: AppFontSize.H1+30, width: pf.width-40, height: ht3))
         h3.textAlignment = .left
-        h3.text = TEXT_1 // UserAuthed.shared.onboard_message_1
+        h3.text = UserAuthed.shared.onboard_message_1
         h3.font = UIFont(name: FontName.light, size: AppFontSize.body2)
         h3.textColor = Color.primary_dark
         h3.backgroundColor = UIColor.white
