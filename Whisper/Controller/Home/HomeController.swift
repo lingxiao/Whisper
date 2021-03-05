@@ -123,7 +123,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     private func goOnboard(){
         let vc = StartCommunity() //OnboardEntry() // FinishOnboardController()
         vc.view.frame = UIScreen.main.bounds
-        vc.config()
+        vc.config( with: .price )
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
     

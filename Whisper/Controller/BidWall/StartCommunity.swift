@@ -21,7 +21,7 @@ private let TEXT_4 = "provide some social media links"
 private let PRICE_A = 1.5
 private let PRICE_B = 2.5
 
-private enum StartCommunityState {
+enum StartCommunityState {
     case price
     case inputPrice
     case inputName
@@ -38,6 +38,7 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     var headerHeight: CGFloat = 80
     var statusHeight: CGFloat = 20
     var explain_dy: CGFloat = 20
+    var btnStr : String = "Next"
     
     // view
     var pagination: UITextView?
@@ -66,10 +67,13 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         }
         super.viewDidLoad()
         view.backgroundColor = bkColor
-        layout()
     }
     
-    func config(){ return }
+    func config( with st: StartCommunityState = .price, btnStr: String = "Next" ){
+        self.state = st
+        self.btnStr = btnStr
+        layout()
+    }
     
     func onHandleDismiss() {
         AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
@@ -276,7 +280,7 @@ extension StartCommunity {
         // button
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
-        btn.config(with: "Next", color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
+        btn.config(with: self.btnStr, color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
         btn.backgroundColor = Color.black.lighter(by: 10)
         btn.addTarget(self, action: #selector(handleTapNext), for: .touchUpInside)
         view.addSubview(btn)
