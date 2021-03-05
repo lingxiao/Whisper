@@ -171,7 +171,6 @@ extension NumberPadController {
         let rect = CGRect(x:0,y:statusHeight,width:f.width,height:headerHeight)
         let header = AppHeader(frame: rect)
         header.config( showSideButtons: true, left: "", right: isHome ? "" : "back", title: str, mode: .light )
-        //header.config(showSideButtons: false, left: "", right: "", title: str, mode: .light, small: true)
         view.addSubview(header)
         header.backgroundColor = Color.primary
         header.delegate = self
