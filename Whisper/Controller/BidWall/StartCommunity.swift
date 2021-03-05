@@ -138,19 +138,27 @@ extension StartCommunity {
     
     @objc func handleTapSetPrice(_ sender: UITapGestureRecognizer? = nil) {
 
-        let p = Double(self.price?.text ?? "\(PRICE_B)") ?? PRICE_B
-        self.selected_price = p
+        let p = Double(self.price?.text ?? "\(PRICE_B)")
+        self.selected_price = p ?? PRICE_B
         
         self.state = .price
         self.price?.resignFirstResponder()
         self.price?.removeFromSuperview()
         self.price_btn?.removeFromSuperview()
         layoutPrices(dy: self.explain_dy)
-        self.price_l?.unselect()
-        self.price_c?.unselect()
-        self.price_r?.select()
-        self.price_r?.setText(to: "$\(p)0 per week")
 
+        self.price_l?.unselect()
+        
+        
+        if let p = p {
+            self.price_r?.setText(to: "$\(p) per week")
+            self.price_c?.unselect()
+            self.price_r?.select()
+        } else {
+            self.price_r?.setText(to: "Set your own price")
+            self.price_c?.select()
+            self.price_r?.unselect()
+        }
     }
 
     
