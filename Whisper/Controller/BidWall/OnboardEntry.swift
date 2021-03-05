@@ -84,7 +84,6 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     }
     
     @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
-        print(">> right")
         func fn(){ self.vr?.alpha = 0.5 }
         func gn(){ self.vr?.alpha = 1.0 }
         runAnimation( with: fn, for: 0.15 ){
@@ -93,12 +92,16 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     }
 
     @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
-        print(">> left")
         func fn(){ self.vl?.alpha = 0.5 }
         func gn(){ self.vl?.alpha = 1.0 }
         runAnimation( with: fn, for: 0.15 ){
             runAnimation( with: gn, for: 0.15 ){ return }
         }
+        
+        let vc = FinishOnboardController()
+        vc.view.frame = UIScreen.main.bounds
+        vc.config()
+        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
 
     
@@ -241,7 +244,8 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         vl.alpha = 0.0
         view.addSubview(vl)
         self.vl = vl
-
+        
+        
         let tl = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
         tl.textAlignment = .center
         tl.textContainer.lineBreakMode = .byWordWrapping
