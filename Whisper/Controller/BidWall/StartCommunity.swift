@@ -36,6 +36,7 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     var image: UIImageView?
     var name : UITextView?
     var purpose: UITextView?
+    var btn: TinderTextButton?
     
     var selected_price: Double = PRICE_B
         
@@ -133,25 +134,11 @@ extension StartCommunity {
         
         dy += AppFontSize.H1 + 30
         
-        // pagination
-        let ho = UITextView(frame: CGRect(x: 15, y: dy, width: f.width-30, height: AppFontSize.H2))
-        ho.textAlignment = .center
-        ho.textContainer.lineBreakMode = .byTruncatingTail
-        ho.font = UIFont(name: FontName.light, size: AppFontSize.footerLight)
-        ho.textColor = Color.primary_dark
-        ho.backgroundColor = bkColor
-        ho.text = "1/3"
-        view.addSubview(ho)
-        ho.isUserInteractionEnabled = false
-        self.pagination = ho
-
-        dy += AppFontSize.H2 + 15
-        
         // prompt
         let h2 = UITextView(frame: CGRect(x: 20, y: dy, width: f.width-40, height: AppFontSize.footerBold))
         h2.textAlignment = .center
         h1.textContainer.lineBreakMode = .byWordWrapping
-        h2.text = "Select a weekly rate, members only pay if you both show up"
+        h2.text = "Select a weekly rate, remember community members only pay if you both show up"
         h2.font = UIFont(name: FontName.light, size: AppFontSize.footerBold)
         h2.textColor = Color.primary_dark
         h2.sizeToFit()
@@ -165,15 +152,30 @@ extension StartCommunity {
         dy += AppFontSize.footerBold + 40
         layoutPrices(dy: dy)
         
+        dy += f.height/4 + 20
+        
+        // pagination
+        let pdy = f.height - ht - 50 - AppFontSize.H2
+        let ho = UITextView(frame: CGRect(x: 15, y: pdy, width: f.width-30, height: AppFontSize.H2))
+        ho.textAlignment = .center
+        ho.textContainer.lineBreakMode = .byTruncatingTail
+        ho.font = UIFont(name: FontName.light, size: AppFontSize.footerLight)
+        ho.textColor = Color.primary_dark
+        ho.backgroundColor = bkColor
+        ho.text = "1/3"
+        view.addSubview(ho)
+        ho.isUserInteractionEnabled = false
+        self.pagination = ho
 
         // button
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
-        btn.config(with: "Ok let's go", color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
-        btn.backgroundColor = Color.redDark
+        btn.config(with: "Next", color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
+        btn.backgroundColor = Color.black.lighter(by: 10)
         btn.addTarget(self, action: #selector(handleTapNext), for: .touchUpInside)
         view.addSubview(btn)
         btn.center.x = view.center.x
+        self.btn = btn
     }
     
     private func layoutPrices( dy : CGFloat ){
