@@ -13,10 +13,10 @@ import SwiftEntryKit
 
 private let bkColor = Color.primary
 
-private let TEXT_1 = "Write down a statement of purpose so that prospective pledges understand the values of this community, and what they are pledging to."
-private let TEXT_2 = "Validate your identity by linking deposit and payment information. The same criteria will be applied to all your future pledges. Strong KYC (know your customer) protects the community from scammers."
-private let TEXT_3 = "Define a weekly base rate to screen out everyone who is not committed to your cause."
-private let TEXT_4 = "Provide some social media links so people can know a little more about you."
+private let TEXT_1 = "write down a why"
+private let TEXT_2 = "link payment to prevent scammers"
+private let TEXT_3 = "define a weekly base rate"
+private let TEXT_4 = "provide some social media links"
 
 
 class StartCommunity: UIViewController, AppHeaderDelegate {
@@ -123,13 +123,15 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
         let h2 = UITextView(frame: CGRect(x: dx, y: dy, width: f.width-20-dx, height: AppFontSize.footer))
         h2.textAlignment = .left
         h2.textContainer.lineBreakMode = .byWordWrapping
-        h2.font = UIFont(name: FontName.bold, size: AppFontSize.body2)
+        h2.font = UIFont(name: FontName.light, size: AppFontSize.H2)
         h2.textColor = Color.primary_dark
         h2.backgroundColor = bkColor
         h2.text = str
         h2.sizeToFit()
         view.addSubview(h2)
         let ht2 = h2.sizeThatFits(h2.bounds.size).height
+        
+        btn.center.y = h2.center.y
 
         return ht2
         
