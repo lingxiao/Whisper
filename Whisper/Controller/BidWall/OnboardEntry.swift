@@ -30,6 +30,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     var btn  : TinderTextButton?
     var vl   : UIView?
     var vr   : UIView?
+    var h1   : UITextView?
     var pos  : Int = 0
     
     override func viewDidLoad() {
@@ -68,6 +69,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
                 self.btn?.alpha = 0.0
                 self.vl?.alpha = 1.0
                 self.vr?.alpha = 1.0
+                self.h1?.alpha = 1.0
             }
             runAnimation( with: fn, for: 0.35 ){ return }
 
@@ -83,10 +85,20 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
     
     @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
         print(">> right")
+        func fn(){ self.vr?.alpha = 0.5 }
+        func gn(){ self.vr?.alpha = 1.0 }
+        runAnimation( with: fn, for: 0.15 ){
+            runAnimation( with: gn, for: 0.15 ){ return }
+        }
     }
 
     @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
         print(">> left")
+        func fn(){ self.vl?.alpha = 0.5 }
+        func gn(){ self.vl?.alpha = 1.0 }
+        runAnimation( with: fn, for: 0.15 ){
+            runAnimation( with: gn, for: 0.15 ){ return }
+        }
     }
 
     
@@ -200,14 +212,28 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         self.btn = btn
     }
     
-    private func layoutOptions( dy: CGFloat ){
+    private func layoutOptions( dy _dy : CGFloat ){
         
         let f = view.frame
+        var dy = _dy
         let wd = (f.width - 30)/2
         let ht = f.height/4
         let wd2 = wd - 10
         let ht2 = AppFontSize.H3*3
         let dy2 = (ht-ht2)/2
+        
+        let h1 = UITextView(frame: CGRect(x: 20, y: dy, width: f.width-40, height: AppFontSize.H1))
+        h1.alpha = 0.0
+        h1.textAlignment = .center
+        h1.text = "Select an option to continue"
+        h1.font = UIFont(name: FontName.light, size: AppFontSize.footerBold)
+        h1.textColor = Color.primary_dark
+        h1.backgroundColor = UIColor.clear
+        h1.isUserInteractionEnabled = false
+        view.addSubview(h1)
+        self.h1 = h1
+
+        dy += AppFontSize.H1
         
         let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
         vl.backgroundColor = Color.grayQuaternary
