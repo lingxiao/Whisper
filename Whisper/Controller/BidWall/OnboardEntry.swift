@@ -196,39 +196,45 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         let f = view.frame
         let wd = (f.width - 30)/2
         let ht = f.height/4
+        let wd2 = wd - 10
+        let ht2 = AppFontSize.H3*3
+        let dy2 = (ht-ht2)/2
         
         let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
         vl.backgroundColor = Color.grayQuaternary
         vl.roundCorners(corners: [.topLeft,.bottomLeft], radius: 5)
         vl.alpha = 0.0
         view.addSubview(vl)
+        self.vl = vl
 
-        let tl = UITextView(frame: CGRect(x: 5, y: 5, width: wd-10, height: ht-10))
+        let tl = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
         tl.textAlignment = .center
         tl.textContainer.lineBreakMode = .byWordWrapping
         tl.text = "Pledge a community"
         tl.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         tl.textColor = Color.black
+        tl.backgroundColor = UIColor.clear
         tl.isUserInteractionEnabled = false
-        tl.sizeToFit()
-        //tl.center.y = vl.center.y
 
         vl.addSubview(tl)
-        self.vl = vl
-        
-        let vr = UIView(frame: CGRect(x: 15+wd, y: dy, width: wd, height: ht))
+
+        let vr = UIView(frame: CGRect(x: wd+15, y: dy, width: wd2, height: ht))
         vr.backgroundColor = Color.black
         vr.roundCorners(corners: [.bottomRight,.topRight], radius: 5)
         vr.alpha = 0.0
         view.addSubview(vr)
         self.vr = vr
-
-        //        tr.textAlignment = .center
-//        tr.textContainer.lineBreakMode = .byWordWrapping
-//        tr.text = "Start a new community"
-//        tr.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
-//        tr.textColor = Color.white
-        //        tr.isUserInteractionEnabled = false
+        
+        // text
+        let tr = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
+        tr.textAlignment = .center
+        tr.textContainer.lineBreakMode = .byWordWrapping
+        tr.text = "Start a new community"
+        tr.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
+        tr.textColor = Color.white
+        tr.isUserInteractionEnabled = false
+        
+        vr.addSubview(tr)
         
     }
     
