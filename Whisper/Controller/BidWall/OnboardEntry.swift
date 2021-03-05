@@ -81,6 +81,15 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)*/
     }
     
+    @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
+        print(">> right")
+    }
+
+    @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
+        print(">> left")
+    }
+
+    
     /*
      @use: after syncing with sponsor, either go to home page or to additional onboarding steps
      */
@@ -199,7 +208,6 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         let wd2 = wd - 10
         let ht2 = AppFontSize.H3*3
         let dy2 = (ht-ht2)/2
-        let r : CGFloat = 40
         
         let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
         vl.backgroundColor = Color.grayQuaternary
@@ -237,15 +245,14 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         tr.backgroundColor = UIColor.clear
         vr.addSubview(tr)
         
-        /*
-        let rb = TinderButton()
-        rb.frame = CGRect(x: (wd-r)/2, y: ht-r-5, width: r, height: r)
-        rb.changeImage(to: "star", alpha: 1.0, scale: 2/4, color: Color.black)
-        vl.addSubview(rb)
-        */
-        
+
+        let tapl = UITapGestureRecognizer(target: self, action: #selector(handleTapLeft))
+        vl.addGestureRecognizer(tapl)
+
+        let tapr = UITapGestureRecognizer(target: self, action: #selector(handleTapRight))
+        vr.addGestureRecognizer(tapr)
+
     }
-    
 
 }
 
