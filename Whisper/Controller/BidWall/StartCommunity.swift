@@ -13,13 +13,13 @@ import SwiftEntryKit
 
 private let bkColor = Color.primary
 
-private let TEXT_1 = "Write down a 'why' so prospective members understand the purpose of this community."
-private let TEXT_2 = "Validate your identity by verifying your deposit and payment information. The same criteria will be applied to all your future pledges. Strong KYC (know your customer) protects the community from scammers."
-private let TEXT_3 = "Define a base weekly rate to screen out everyone who is not committed to your cause."
+private let TEXT_1 = "Write down a statement of purpose so that prospective pledges understand the values of this community, and what they are pledging to."
+private let TEXT_2 = "Validate your identity by linking deposit and payment information. The same criteria will be applied to all your future pledges. Strong KYC (know your customer) protects the community from scammers."
+private let TEXT_3 = "Define a weekly base rate to screen out everyone who is not committed to your cause."
+private let TEXT_4 = "Provide some social media links so people can know a little more about you."
 
 
-
-class StartCommunity: UIViewController {
+class StartCommunity: UIViewController, AppHeaderDelegate {
     
     var headerHeight: CGFloat = 80
     var statusHeight: CGFloat = 20
@@ -42,8 +42,6 @@ class StartCommunity: UIViewController {
 
     
     @objc func handleTapNext(_ button: TinderButton ){
-
-
         /*let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
         vc.config(with: "Enter referral code", showHeader: true, isHome: true)
@@ -52,7 +50,10 @@ class StartCommunity: UIViewController {
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)*/
     }
     
-
+    func onHandleDismiss() {
+        AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
+    }
+    
     func layout(){
         
         let f = view.frame
@@ -64,6 +65,7 @@ class StartCommunity: UIViewController {
         h.backgroundColor = UIColor.clear
         self.view.addSubview(h)
         self.view.bringSubviewToFront(h)
+        h.delegate = self
         
         dy += headerHeight + 25
 
@@ -90,6 +92,9 @@ class StartCommunity: UIViewController {
         let ht4 = layoutOne(str: TEXT_3, dy: dy)
         dy += ht4 + 10
 
+        let ht5 = layoutOne(str: TEXT_4, dy: dy)
+        dy += ht5 + 10
+
         // button
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
@@ -105,7 +110,7 @@ class StartCommunity: UIViewController {
     private func layoutOne( str: String, dy: CGFloat )  -> CGFloat {
 
         let f = view.frame
-        var dx = CGFloat(30)
+        var dx = CGFloat(20)
         let r  = AppFontSize.H2
         
         let btn = TinderButton()
