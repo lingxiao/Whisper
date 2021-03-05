@@ -17,7 +17,7 @@ private let TITLE_1 = "How we work"
 private let TITLE_2 = "How payment work"
 
 
-class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
+class OnboardEntry: UIViewController {
     
     var headerHeight: CGFloat = 80
     var textHt: CGFloat = 40
@@ -100,15 +100,28 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         
         let vc = NumberPadController()
         vc.view.frame = UIScreen.main.bounds
-        vc.config(with: "Enter referral code", showHeader: true, isHome: true)
+        vc.config(with: "Enter referral code", showHeader: true, isHome: false)
+        vc.delegate = self
         vc.onboardDelegate = self
         view.addSubview(vc.view)
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
+    
+}
+
+//MARK:- responders-
+
+extension OnboardEntry : NumberPadControllerDelegate, NumberPadControllerDelegateOnboard {
+
+    func onHandleHideNumberPad( with club: Club? ){
+        AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
+    }
 
     
     /*
-     @use: after syncing with sponsor, either go to home page or to additional onboarding steps
+     @use: after syncing with sponsor,either:
+        1. go to sponsor support page or:
+        2. go to sponsor's home page if it has been unlocked
      */
     func onDidSyncWithSponsor( at code: String, with club: Club? ){
 
@@ -121,8 +134,13 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
             AuthDelegate.shared.doNotOnboard()
             
 //            // wait for db to sync, then determine if additional onboarding steps needed
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
-//                SwiftEntryKit.dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
+                
+                SwiftEntryKit.dismiss()
+                
+                AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
+                
+
 //                if let org = club?.getOrg() {
 //                    if org.bespokeOnboard && ClubList.shared.fetchTags(for: org).count > 0 {
 //                        let vc = OnboardCommunController()
@@ -135,11 +153,16 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
 //                } else {
 //                    AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
 //                }
-//            }
+            }
         }
     }
     
-    
+}
+
+//MARK:- view -
+
+extension OnboardEntry {
+
     func layout(){
         
         let f = view.frame
