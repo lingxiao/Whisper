@@ -11,11 +11,11 @@ import UIKit
 import SwiftEntryKit
 
 
-private let bkColor = UIColor.clear //Color.primary
+private let bkColor = Color.primary
 
-private let TEXT_1 = "1. Write down a why so prospective members understand the purpose of this community."
-private let TEXT_2 = "2. Verify you're real by validating your deposit and payment information. Strong KYC (know your customer) protects the community from scammers."
-private let TEXT_3 = "3. Define a starting weekly rate to screen out everyone who is not committed to your cause."
+private let TEXT_1 = "Write down a 'why' so prospective members understand the purpose of this community."
+private let TEXT_2 = "Validate your identity by verifying your deposit and payment information. The same criteria will be applied to all your prospective members. Strong KYC (know your customer) protects the community from scammers."
+private let TEXT_3 = "Define a base weekly rate to screen out everyone who is not committed to your cause."
 
 
 
@@ -44,8 +44,7 @@ class StartCommunity: UIViewController {
             statusHeight = UIApplication.shared.statusBarFrame.height
         }
         super.viewDidLoad()
-        //view.backgroundColor = bkColor
-        primaryGradient(on: self.view)
+        view.backgroundColor = bkColor
         layout()
     }
     
@@ -120,7 +119,7 @@ class StartCommunity: UIViewController {
         let btn = TinderTextButton()
         btn.frame = CGRect(x:0, y:f.height - ht - 50 ,width:f.width*0.40, height:ht)
         btn.config(
-            with: "Tell me more",
+            with: "Ok let's go",
             color: Color.primary_dark,
             font: UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         )
@@ -131,16 +130,16 @@ class StartCommunity: UIViewController {
                 
     }
     
-    private func layoutOne( str: String, dy _dy: CGFloat )  -> CGFloat {
+    private func layoutOne( str: String, dy: CGFloat )  -> CGFloat {
 
         let f = view.frame
-        var dy = _dy
-        var dx = CGFloat(15)
+        var dx = CGFloat(30)
         let r  = AppFontSize.H2
         
         let btn = TinderButton()
-        btn.frame = CGRect(x:dx, y:dy ,width:r, height:r)
-        btn.changeImage(to: "xmark", alpha: 1.0, scale: 2/3, color: Color.blue1)
+        btn.frame = CGRect(x:dx, y:dy + 10 ,width:r, height:r)
+        btn.changeImage(to: "star", alpha: 1.0, scale: 1.0, color: Color.primary_dark)
+        btn.backgroundColor = bkColor
         view.addSubview(btn)
         
         dx += r + 5
