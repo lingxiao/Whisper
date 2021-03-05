@@ -21,10 +21,23 @@ private let TEXT_4 = "provide some social media links"
 private let PRICE_A = 1.5
 private let PRICE_B = 2.5
 
+private enum StartCommunityState {
+    case price
+    case inputPrice
+    case inputName
+    case inputWhy
+    case inputMascot
+    case askFriend
+    case KYC
+    case socialMedia
+    case transing
+}
+
 class StartCommunity: UIViewController, AppHeaderDelegate {
     
     var headerHeight: CGFloat = 80
     var statusHeight: CGFloat = 20
+    var explain_dy: CGFloat = 20
     
     // view
     var pagination: UITextView?
@@ -34,11 +47,14 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     var price_c: PriceView?
     var price_r: PriceView?
     var image: UIImageView?
-    var name : UITextView?
+    var name : UITextInput?
+    var price: UITextField?
     var purpose: UITextView?
     var btn: TinderTextButton?
+    var price_btn: TinderTextButton?
     
     var selected_price: Double = PRICE_B
+    private var state : StartCommunityState = .price
         
     override func viewDidLoad() {
         
@@ -54,16 +70,6 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     }
     
     func config(){ return }
-
-    
-    @objc func handleTapNext(_ button: TinderButton ){
-        /*let vc = NumberPadController()
-        vc.view.frame = UIScreen.main.bounds
-        vc.config(with: "Enter referral code", showHeader: true, isHome: true)
-        vc.onboardDelegate = self
-        view.addSubview(vc.view)
-        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)*/
-    }
     
     func onHandleDismiss() {
         AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
@@ -71,10 +77,35 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     
 }
 
-//MARK: - UGE-
+//MARK: - Button responders -
 
 extension StartCommunity {
+        
     
+    @objc func handleTapNext(_ button: TinderButton ){
+        switch self.state {
+        case .price:
+            break;
+        case .inputPrice:
+            break;
+        case .inputName:
+            break;
+        case .inputWhy:
+            break;
+        case .inputMascot:
+            break;
+        case .askFriend:
+            break;
+        case .KYC:
+            break;
+        case .socialMedia:
+            break;
+        case .transing:
+            break;
+        }
+    }
+        
+    // select left price
     @objc func handleTapLeft(_ sender: UITapGestureRecognizer? = nil) {
         self.selected_price = PRICE_A
         self.price_l?.select()
@@ -82,6 +113,7 @@ extension StartCommunity {
         self.price_r?.unselect()
     }
     
+    // select center price
     @objc func handleTapCenter(_ sender: UITapGestureRecognizer? = nil) {
         self.selected_price = PRICE_B
         self.price_l?.unselect()
@@ -89,15 +121,48 @@ extension StartCommunity {
         self.price_r?.unselect()
     }
     
-
+    // select right price
     @objc func handleTapRight(_ sender: UITapGestureRecognizer? = nil) {
         self.selected_price = PRICE_A
         self.price_l?.unselect()
         self.price_c?.unselect()
         self.price_r?.select()
+        
+        self.price_l?.removeFromSuperview()
+        self.price_c?.removeFromSuperview()
+        self.price_r?.removeFromSuperview()
+        self.layoutPriceInput(dy: self.explain_dy + 40)
+        self.state = .inputPrice
+
     }
     
+    @objc func handleTapSetPrice(_ sender: UITapGestureRecognizer? = nil) {
+
+        let p = Double(self.price?.text ?? "\(PRICE_B)") ?? PRICE_B
+        self.selected_price = p
+        
+        self.state = .price
+        self.price?.resignFirstResponder()
+        self.price?.removeFromSuperview()
+        self.price_btn?.removeFromSuperview()
+        layoutPrices(dy: self.explain_dy)
+        self.price_l?.unselect()
+        self.price_c?.unselect()
+        self.price_r?.select()
+        self.price_r?.setText(to: "$\(p)0 per week")
+
+    }
+
     
+}
+
+//MARK:- textfield:-
+
+extension StartCommunity : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
 }
 
 
@@ -138,7 +203,7 @@ extension StartCommunity {
         let h2 = UITextView(frame: CGRect(x: 20, y: dy, width: f.width-40, height: AppFontSize.footerBold))
         h2.textAlignment = .center
         h1.textContainer.lineBreakMode = .byWordWrapping
-        h2.text = "Select a weekly rate, remember community members only pay if you both show up"
+        h2.text = "Tap on a rectangle to select your weekly rate. Remember community members only pay if you both show up"
         h2.font = UIFont(name: FontName.light, size: AppFontSize.footerBold)
         h2.textColor = Color.primary_dark
         h2.sizeToFit()
@@ -147,9 +212,13 @@ extension StartCommunity {
         view.addSubview(h2)
         h2.center.x = view.center.x
         self.prompt = h1
+        
             
         // layout price
         dy += AppFontSize.footerBold + 40
+        self.explain_dy = dy
+
+        
         layoutPrices(dy: dy)
         
         dy += f.height/4 + 20
@@ -162,7 +231,7 @@ extension StartCommunity {
         ho.font = UIFont(name: FontName.light, size: AppFontSize.footerLight)
         ho.textColor = Color.primary_dark
         ho.backgroundColor = bkColor
-        ho.text = "1/3"
+        ho.text = "1/8"
         view.addSubview(ho)
         ho.isUserInteractionEnabled = false
         self.pagination = ho
@@ -224,38 +293,36 @@ extension StartCommunity {
         vr.addGestureRecognizer(tapr)
 
     }
-
     
-    private func layoutOne( str: String, dy: CGFloat )  -> CGFloat {
-
+    func layoutPriceInput( dy: CGFloat ){
+        
         let f = view.frame
-        var dx = CGFloat(20)
-        let r  = AppFontSize.H2
+        let bw = CGFloat(80)
+        let tw = f.width-80-bw
         
-        let btn = TinderButton()
-        btn.frame = CGRect(x:dx, y:dy + 10 ,width:r, height:r)
-        btn.changeImage(to: "star", alpha: 1.0, scale: 1.0, color: Color.primary_dark)
-        btn.backgroundColor = bkColor
+        let font = UIFont(name: FontName.bold, size: AppFontSize.H2)!
+        let frame = CGRect(x: 30, y: dy, width: tw, height: AppFontSize.H2+20)
+        let h1 = appTextField(placeholder: "Set your price", font: font, frame: frame, color: UIColor.black)
+        h1.backgroundColor = bkColor
+        h1.textAlignment = .left
+        h1.keyboardType = .decimalPad
+        h1.text = ""
+        h1.delegate = self
+        h1.becomeFirstResponder()
+        view.addSubview(h1)
+        self.price = h1
+        
+        let btn = TinderTextButton()
+        btn.frame = CGRect(x: f.width - 20 - bw, y: dy ,width: bw, height:AppFontSize.body2+20)
+        btn.config(with: "Set", color: Color.white, font: UIFont(name: FontName.bold, size: AppFontSize.footerBold))
+        btn.backgroundColor = Color.redDark
+        btn.addTarget(self, action: #selector(handleTapSetPrice), for: .touchUpInside)
         view.addSubview(btn)
-        
-        dx += r + 5
-        
-        let h2 = UITextView(frame: CGRect(x: dx, y: dy, width: f.width-20-dx, height: AppFontSize.footer))
-        h2.textAlignment = .left
-        h2.textContainer.lineBreakMode = .byWordWrapping
-        h2.font = UIFont(name: FontName.light, size: AppFontSize.H2)
-        h2.textColor = Color.primary_dark
-        h2.backgroundColor = bkColor
-        h2.text = str
-        h2.sizeToFit()
-        view.addSubview(h2)
-        let ht2 = h2.sizeThatFits(h2.bounds.size).height
-        
-        btn.center.y = h2.center.y
+        btn.center.y = h1.center.y
+        self.price_btn = btn
 
-        return ht2
-        
     }
+
     
 }
 
@@ -283,6 +350,10 @@ class PriceView : UIView {
     func unselect(){
         self.backgroundColor = Color.grayQuaternary
         t?.textColor = Color.black
+    }
+    
+    func setText( to str: String ){
+        self.t?.text = str
     }
 
     

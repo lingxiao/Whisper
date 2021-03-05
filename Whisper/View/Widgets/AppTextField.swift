@@ -32,7 +32,7 @@ class PaddedTextField: UITextField {
 
 
 // app standard text field
-func appTextField( placeholder: String, font: UIFont, frame: CGRect, color: UIColor, placeHolderColor: UIColor = Color.graySecondary ) -> UITextField {
+func appTextField( placeholder: String, font: UIFont, frame: CGRect, color: UIColor, placeHolderColor: UIColor = Color.grayPrimary ) -> UITextField {
 
     let field : UITextField = UITextField()
     field.frame              = frame
