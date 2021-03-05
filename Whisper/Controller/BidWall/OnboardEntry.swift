@@ -199,6 +199,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         let wd2 = wd - 10
         let ht2 = AppFontSize.H3*3
         let dy2 = (ht-ht2)/2
+        let r : CGFloat = 40
         
         let vl = UIView(frame: CGRect(x: 15, y: dy, width: wd, height: ht))
         vl.backgroundColor = Color.grayQuaternary
@@ -210,7 +211,7 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         let tl = UITextView(frame: CGRect(x: (wd-wd2)/2, y: dy2, width: wd2, height: ht2))
         tl.textAlignment = .center
         tl.textContainer.lineBreakMode = .byWordWrapping
-        tl.text = "Pledge a community"
+        tl.text = "Pledge to a community"
         tl.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         tl.textColor = Color.black
         tl.backgroundColor = UIColor.clear
@@ -233,8 +234,15 @@ class OnboardEntry: UIViewController, NumberPadControllerDelegateOnboard {
         tr.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         tr.textColor = Color.white
         tr.isUserInteractionEnabled = false
-        
+        tr.backgroundColor = UIColor.clear
         vr.addSubview(tr)
+        
+        /*
+        let rb = TinderButton()
+        rb.frame = CGRect(x: (wd-r)/2, y: ht-r-5, width: r, height: r)
+        rb.changeImage(to: "star", alpha: 1.0, scale: 2/4, color: Color.black)
+        vl.addSubview(rb)
+        */
         
     }
     
