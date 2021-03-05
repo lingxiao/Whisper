@@ -23,8 +23,7 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     
     var headerHeight: CGFloat = 80
     var statusHeight: CGFloat = 20
-    
-    
+        
     override func viewDidLoad() {
         
         if #available(iOS 13.0, *) {
