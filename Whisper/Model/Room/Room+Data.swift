@@ -53,12 +53,11 @@ extension Room {
                 }
             }
             
-            let prev_room_mode = self.room_mode
+            /*let prev_room_mode = self.room_mode
             self.room_mode = roomPerm( unsafeCastString(data["permission"]))
-                    
             if prev_room_mode != self.room_mode {
                 self.delegate?.didChangeRoomPerm( perm: self.room_mode )
-            }
+            }*/
             
             if prev_rec != self.isRecording {
                 if self.isRecording {

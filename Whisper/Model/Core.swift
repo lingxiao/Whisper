@@ -179,71 +179,6 @@ func socialLimit( _ val: String? ) -> SocialLimit {
 }
 
 
-//MARK:- room permission
-
-enum ClubType {
-    case home
-    case cohort
-    case ephemeral
-}
-
-func clubType( _ perm: String ) -> ClubType {
-
-    switch (perm){
-    case "home":
-        return .home
-    case "ephemeral":
-        return .ephemeral
-    default:
-        return .cohort
-    }
-}
-
-
-func typeClub( _ perm: ClubType ) -> String {
-    switch(perm){
-    case .home:
-        return "home"
-    case .ephemeral:
-        return "ephemeral"
-    case .cohort:
-        return "cohort"
-    }
-}
-
-//MARK:- room permission
-
-enum RoomPerm {
-    case open
-    case closed
-    case incognito
-}
-
-func roomPerm( _ perm: String ) -> RoomPerm {
-
-    switch (perm){
-    case "open":
-        return .open
-    case "closed":
-        return .closed
-    case "incognito":
-        return .incognito
-    default:
-        return .open
-    }
-}
-
-
-func permRoom( _ perm: RoomPerm ) -> String {
-    switch(perm){
-    case .open:
-        return "open"
-    case .closed:
-        return "closed"
-    case .incognito:
-        return "incognito"
-    }
-}
 
 
 //MARK:- room widgets
@@ -280,7 +215,40 @@ func fromWidgets( _ w: ClubWidgets ) -> String {
 
 
 
-//MARK:- member stat
+//MARK:- room permission
+
+enum ClubType {
+    case home
+    case cohort
+    case ephemeral
+}
+
+func clubType( _ perm: String ) -> ClubType {
+
+    switch (perm){
+    case "home":
+        return .home
+    case "ephemeral":
+        return .ephemeral
+    default:
+        return .cohort
+    }
+}
+
+
+func typeClub( _ perm: ClubType ) -> String {
+    switch(perm){
+    case .home:
+        return "home"
+    case .ephemeral:
+        return "ephemeral"
+    case .cohort:
+        return "cohort"
+    }
+}
+
+
+//MARK:- permission
 
 enum ClubPermission {
     case levelA
@@ -316,6 +284,9 @@ func toClubPermission( _ str: String) -> ClubPermission {
         return .levelC
     }
 }
+
+
+//MARK:- member blob
 
 struct ClubMember {
 
@@ -408,7 +379,7 @@ func decodeClubMember( _ blob : FirestoreData?, _ then: @escaping(ClubMember?) -
 
 
 
-//MARK:- stucts: audience
+//MARK:- stucts: room audience
 
 enum RoomMemberState {
     case notHere

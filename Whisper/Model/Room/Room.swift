@@ -23,7 +23,7 @@ class Room : Sink {
     var createdBy: UserID = ""
     
     var call_state: CallState = .ended
-    var room_mode : RoomPerm  = .open
+    //var room_mode : RoomPerm  = .open
     var isRoot    : Bool = true
     var timeStamp : Int = 0
     var isRecording: Bool = false
@@ -420,7 +420,12 @@ extension Room {
 
     
     // create a new room
-    static func create( by uid: UserID = "", for cid : ClubID = "", with perm : RoomPerm = .open, isRoot: Bool = false, _ then: @escaping(String) -> Void ){
+    static func create(
+        by uid: UserID = "",
+        for cid : ClubID = "",
+        isRoot: Bool = false,
+        _ then: @escaping(String) -> Void )
+    {
 
         let id = UUID().uuidString
 
@@ -428,7 +433,7 @@ extension Room {
             "ID"        : id,
             "clubID"    : cid,
             "createdBy" : uid,
-            "permission": permRoom(perm),
+            //"permission": permRoom(perm),
             "state"     : stateCall(.ended),
             "isRoot"    : isRoot,
             "timeStamp" : now(),

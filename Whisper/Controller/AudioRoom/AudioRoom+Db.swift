@@ -145,9 +145,6 @@ extension AudioRoomController: ClubDelegate {
         grid?.refresh()
     }
     
-    func didChangeRoomPerm(perm: RoomPerm) {
-        return
-    }
     
 }
 

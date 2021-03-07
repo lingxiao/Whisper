@@ -61,7 +61,7 @@ protocol AuthedUserDelegate {
 protocol RoomDelegate {
 
     // room states
-    func didChangeRoomPerm( perm: RoomPerm ) -> Void
+    //func didChangeRoomPerm( perm: RoomPerm ) -> Void
 
     // room states
     func didLiveHostAudio () -> Void
