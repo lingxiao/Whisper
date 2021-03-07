@@ -185,6 +185,8 @@ func socialLimit( _ val: String? ) -> SocialLimit {
 struct OrgBid {
     var uuid     : String
     var user     : User
+    var userID   : String
+    var orgID    : String
     var timeStamp: Int
     var latest   : Int
     var bidInCents: Int
@@ -202,14 +204,16 @@ func decodeOrgBid( _ blob : FirestoreData?, _ then: @escaping(OrgBid?) -> Void )
     
     guard let data = blob else { return then(nil) }
     
-    guard let uuid = data["userID"] as? String else { return then(nil) }
-    if uuid == "" { return then(nil) }
+    guard let userID = data["userID"] as? String else { return then(nil) }
+    if userID == "" { return then(nil) }
     
-    UserList.shared.pull(for: uuid){ (_,_,user) in
+    UserList.shared.pull(for: userID){ (_,_,user) in
         guard let user = user else { return then(nil) }
         let mem = OrgBid(
-            uuid      : uuid,
+            uuid      : unsafeCastString(data["ID"]),
             user      : user,
+            userID    : userID,
+            orgID     : unsafeCastString(data["orgID"]),
             timeStamp : unsafeCastInt(data["timestamp"]),
             latest    : unsafeCastInt(data["latest"]),
             bidInCents: unsafeCastIntToZero(data["bidInCents"]),
