@@ -223,6 +223,9 @@ extension OrgModel {
             "childs"         : []
         ]
         
+        // create club and create the home room
+        // on the client web side, when a bid has been completed,
+        // create the home room where all bidders are moved into the room as .levelB members
         OrgModel.rootRef(for: uuid)?.setData(blob){ e in
             Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
             return then(uuid)
