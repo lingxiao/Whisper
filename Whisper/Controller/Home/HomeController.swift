@@ -121,9 +121,9 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     
     // @use: complete onboarding view
     private func goOnboard(){
-        let vc = StartCommunity() //OnboardEntry() // FinishOnboardController()
+        let vc = FinishOnboardController() //StartCommunity() //OnboardEntry()
         vc.view.frame = UIScreen.main.bounds
-        vc.config( with: .price )
+        vc.config() // with: .price )
         AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
     }
     

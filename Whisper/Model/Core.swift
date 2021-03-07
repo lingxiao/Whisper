@@ -354,8 +354,8 @@ struct ClubMember {
     var permission   : ClubPermission
 
     // payment
-    var monthlyPayment: Int
-    var didPayThisMonth: Bool
+    //var monthlyPayment: Int
+    //var didPayThisMonth: Bool
 
     // stats
     var num_down    : Int
@@ -379,8 +379,8 @@ func makeMemberStub(_ uid: UserID ) -> FirestoreData {
         "timeStamp"  : now(),
         "latest"     : now(),
             
-        "monthlyPayment" : 0,
-        "didPayThisMonth": false,
+        //"monthlyPayment" : 0,
+        //"didPayThisMonth": false,
         
         "iamFollowing" : false,
         "isFollowingMe": false,
@@ -414,10 +414,6 @@ func decodeClubMember( _ blob : FirestoreData?, _ then: @escaping(ClubMember?) -
             iamFollowing: unsafeCastBool(data["iamFollowing"]),
             isFollowingMe:  unsafeCastBool(data["isFollowingMe"]),
             permission: toClubPermission(unsafeCastString(data["permission"])),
-
-            monthlyPayment: unsafeCastInt(data["monthlyPayment"]),
-            didPayThisMonth: unsafeCastBool(data["didPayThisMonth"]),
-
             num_down: unsafeCastInt(data["num_down"]),
             num_up: unsafeCastInt(data["num_up"]),
             num_speak: unsafeCastInt(data["num_speak"]),

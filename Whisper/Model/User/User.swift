@@ -96,7 +96,7 @@ class User : Sink, Equatable  {
     func await(){
         if self.uuid == "" { return }
         awaitRemote()
-    }    
+    }
     
     // @use: await all vertices incident on me
     // cache the results in the graph
@@ -134,19 +134,8 @@ extension User {
         
         if self.uuid == "" { return }
         
-        let viewRef  = UserAuthed.viewRef(for: self.uuid)
-        let rootRef  = UserAuthed.rootRef(for: self.uuid)
-        //let sponsRef = UserAuthed.sponsorRef(for: self.uuid)
-        //let statisticsRef = UserAuthed.statisticsRef(for: self.uuid)
-        
-        rootRef?.addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else { return }
-            guard let data = document.data() as FirestoreData? else { return }
-            self.isPrivUser = unsafeCastBool(data["isPrivUser"])
-        }
-        
         // parse view
-        viewRef?.addSnapshotListener { documentSnapshot, error in
+        UserAuthed.rootRef(for: self.uuid)?.addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else { return }
             guard let data = document.data() as FirestoreData? else { return }
             self.parseView(data)
@@ -159,21 +148,6 @@ extension User {
             guard let data = document.data() as FirestoreData? else { return }
             if let qs = data["queries"] as? [String] { self.queries = qs }
         }
-        /*// parse sponsors
-        sponsRef?.addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else { return }
-            guard let data = document.data() as FirestoreData? else { return }
-            self.parseSponsor(data)
-        }
-        // parse social
-        statisticsRef?.addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else { return }
-            guard let data = document.data() as FirestoreData? else { return }
-            // social stat
-            self.numFollowers = unsafeCastIntToZero(data["numFollowers"])
-            self.numFollowing = unsafeCastIntToZero(data["numFollowing"])
-            self.numViews     = unsafeCastIntToZero(data["numViews"])
-        }*/
     }
 
 
@@ -188,6 +162,7 @@ extension User {
         self.email     = unsafeCastString(data["email"])
         self.website   = unsafeCastString(data["website"])
         self.pushToken = data["pushNotificationToken"] as? String
+        self.isPrivUser = unsafeCastBool(data["isPrivUser"])
 
         let small = unsafeCastString(data["profileImageSmall"])
         let prevThumb = self.thumbURL
@@ -209,6 +184,33 @@ extension User {
         // cache thumbnail immediately
         self.cacheImage()
         
+        let blob_view : FirestoreData = [
+              "name"   : self.name
+            , "email"  : self.email
+            , "phone"  : self.phone
+            , "bio"    : self.bio
+            , "numEdits": 0
+            
+            // profile images
+            , "profileImageLarge"  : small
+            , "profileImageMedium" : small
+            , "profileImageSmall"  : small
+            
+            // social media plug
+            , "tikTok"   : ""
+            , "instagram": ""
+            , "twitter"  : ""
+            , "youtube"  : ""
+            , "spotify"  : ""
+            , "linkedin" : ""
+            , "website"  : ""
+
+            // push notification
+            , "pushNotificationToken": self.pushToken
+        ]
+        
+        //print( blob_view )
+        //UserAuthed.rootRef(for: self.uuid)?.updateData(blob_view){ e in return }
     }
     
     // parse sponsorship

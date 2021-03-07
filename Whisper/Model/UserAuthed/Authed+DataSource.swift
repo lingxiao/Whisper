@@ -35,7 +35,6 @@ extension UserAuthed {
         
         let root       = UserAuthed.rootRef(for: userID)
         let queryRef   = UserAuthed.queryRef(for: userID)
-        let viewRef    = UserAuthed.viewRef(for: userID)
         let sponsorRef = UserAuthed.sponsorRef(for: userID)
         let onboardRef = UserAuthed.onboardWalkThruRef(for: userID)
 
@@ -43,7 +42,26 @@ extension UserAuthed {
             // parse
             guard let document = documentSnapshot else { return }
             guard let data = document.data() as FirestoreData? else { return }
+
+            // load view elements
+            self.name  = unsafeCastString(data["name"])
+            self.bio   = unsafeCastString(data["bio"])
+            self.email = unsafeCastString(data["email"])
+            self.numEdits = unsafeCastIntToZero(data["numEdits"])
+            self.current_org_id = unsafeCastString(data["current_org_id"])
+                
+            // load profile image URL
+            let small  = unsafeCastString(data["profileImageSmall"])
+            let medium = unsafeCastString(data["profileImageMedium"])
+            let large  = unsafeCastString(data["profileImageLarge"])
+
+            let prevURL    = self.thumbURL
+            self.thumbURL  = small  == "" ? nil : URL(string:small )
+            self.mediumURL = medium == "" ? nil : URL(string:medium)
+            self.fullURL   = large  == "" ? nil : URL(string:large )
             self.isPrivUser = unsafeCastBool(data["isPrivUser"])
+
+            if ( prevURL != self.thumbURL){  self.cacheImage() }
         }
 
         // parse sponsorship information
@@ -74,32 +92,7 @@ extension UserAuthed {
             }
         }
         
-        viewRef?.addSnapshotListener{ documentSnapshot, error in
-            
-            // parse
-            guard let document = documentSnapshot else { return }
-            guard let data = document.data() as FirestoreData? else { return }
-
-            // load view elements
-            self.name  = unsafeCastString(data["name"])
-            self.bio   = unsafeCastString(data["bio"])
-            self.email = unsafeCastString(data["email"])
-            self.numEdits = unsafeCastIntToZero(data["numEdits"])
-            self.current_org_id = unsafeCastString(data["current_org_id"])
-                
-            // load profile image URL
-            let small  = unsafeCastString(data["profileImageSmall"])
-            let medium = unsafeCastString(data["profileImageMedium"])
-            let large  = unsafeCastString(data["profileImageLarge"])
-
-            let prevURL    = self.thumbURL
-            self.thumbURL  = small  == "" ? nil : URL(string:small )
-            self.mediumURL = medium == "" ? nil : URL(string:medium)
-            self.fullURL   = large  == "" ? nil : URL(string:large )
-                
-            if ( prevURL != self.thumbURL){  self.cacheImage() }
-        }
-        
+       
         queryRef?.addSnapshotListener{ documentSnapshot, error in
             guard let document = documentSnapshot else { return }
             guard let data = document.data() as FirestoreData? else { return }

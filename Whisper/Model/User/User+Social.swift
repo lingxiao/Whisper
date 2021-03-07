@@ -97,7 +97,7 @@ extension User {
      @Use: given phone #s and email from address book, check if
            we match this one
      */
-    func matchAdressBook( phone: [String], email: [String]) -> Bool{
+    func matchAdressBook( phone: [String], email: [String]) -> Bool{ 
         
         if ( self.phone == nil || self.email == nil ){ return false }
 
@@ -105,3 +105,41 @@ extension User {
     }
 
 }
+
+//MARK:- Renderable -
+
+extension User: Renderable {
+    
+    func get_H1() -> String {
+        return unsafeCastString(self.name)
+    }
+    
+    func get_H2() -> String {
+        return self.bio
+    }
+    
+    func get_H2_alt() -> String {
+        return ""
+    }
+    
+    func fetchThumbURL() -> URL? {
+        return self.thumbURL
+    }
+    
+    func should_bold_h2() -> Bool {
+        return false
+    }
+    
+
+    func fetchPrice() -> Double {
+        return 0.0
+    }
+    
+    func fetchNumView() -> Int {
+        return 0
+    }
+    
+}
+
+
+

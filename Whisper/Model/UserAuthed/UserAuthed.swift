@@ -162,12 +162,7 @@ extension UserAuthed {
             .fireRef?.collection("users_stripe").document(uid)
         return ref
     }
-    
-    static func viewRef( for uid: UserID? ) -> DocumentReference? {
-        guard let ref = rootRef(for: uid) else { return nil }
-        return ref.collection("stats").document("view")
-    }
-    
+
     static func sponsorRef( for uid: UserID? ) -> DocumentReference? {
         guard let ref = rootRef(for: uid) else { return nil }
         return ref.collection("stats").document("sponsorship")
@@ -254,11 +249,17 @@ extension UserAuthed {
 
                 // create an invite-code I give out to others
                 let emailRoot = email.components(separatedBy: "@")[0]
+                                
+                     
+                // base blob
+                let blob : FirestoreData = [
+                      "userID"          : userID
+                    , "timeStampCreated": now()
+                    , "timeStampLatest" : now()
+                    , "serverSet": false
+                    , "isPrivUser": false
 
-                let blob_view : FirestoreData = [
-
-                      "name"   : emailRoot
-                    , "userID" : userID
+                    , "name"   : emailRoot
                     , "email"  : email
                     , "phone"  : unsafeCastString(phone)
                     , "bio"    : ""
@@ -288,16 +289,6 @@ extension UserAuthed {
                     , "new_account" : true
                     , "userID"      : userID
                     , "sponsor_club": ""
-                ]
-                
-                     
-                // base blob
-                let blob : FirestoreData = [
-                      "userID"          : userID
-                    , "timeStampCreated": now()
-                    , "timeStampLatest" : now()
-                    , "serverSet": false
-                    , "isPrivUser": false
                 ]
                 
                 let blob_onboard: FirestoreData = [
@@ -336,11 +327,6 @@ extension UserAuthed {
 
                         // call completion
                         complete( true, "success")
-                        
-                        // record view
-                        root?.collection("stats")
-                            .document("view")
-                            .setData( blob_view ){ e in return }
                         
                         // record social
                         root?.collection("stats")

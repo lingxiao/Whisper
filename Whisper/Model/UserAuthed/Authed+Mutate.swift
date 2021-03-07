@@ -39,12 +39,12 @@ extension UserAuthed {
         let small  = img.jpegData(compressionQuality: 0.10)
 
         UserAuthed.uploadImage( to: "\(self.uuid)/profileImageSmall.jpg", with: small ){ (succ, url) in
-            guard let ref = UserAuthed.viewRef(for: self.uuid) else { return }
+            guard let ref = UserAuthed.rootRef(for: self.uuid) else { return }
             ref.updateData( ["profileImageSmall":url] ){ e in return }
         }
 
         UserAuthed.uploadImage( to: "\(self.uuid)/profileImageLarge.jpg", with: large ){ (succ, url) in
-            guard let ref = UserAuthed.viewRef(for: self.uuid) else { return }
+            guard let ref = UserAuthed.rootRef(for: self.uuid) else { return }
             ref.updateData( ["profileImageLarge":url] ){ e in return }
         }
         
@@ -59,7 +59,7 @@ extension UserAuthed {
 
         guard let str = str else { return}
         if str == "" { return }
-        guard let ref = UserAuthed.viewRef(for: self.uuid) else { return }
+        guard let ref = UserAuthed.rootRef(for: self.uuid) else { return }
         
         // 3 edits max
         if self.numEdits > MAX_NAME_EDITS { return }
@@ -81,54 +81,54 @@ extension UserAuthed {
     
     func setBio( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["bio":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["bio":str]){e in return }
     }
     
     func setCurrentOrg( to str: String? ){
         guard let str = str else { return }
         if str == "" { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["current_org_id":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["current_org_id":str]){e in return }
     }
     
     func setIG( _ ig: String? ){
         guard let ig = ig else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["instagram":ig]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["instagram":ig]){e in return }
     }
     
     func setTikTok( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["tikTok":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["tikTok":str]){e in return }
     }
     
     func setLinkedIn( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["linkedin":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["linkedin":str]){e in return }
     }
     
     func setWebsite( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["website":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["website":str]){e in return }
     }
     
 
     func setTwitter( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["twitter":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["twitter":str]){e in return }
     }
 
     func setYoutube( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["youtube":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["youtube":str]){e in return }
     }
 
     func setSpotify( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["spotify":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["spotify":str]){e in return }
     }
     
     func setLinkedin( _ str: String? ){
         guard let str = str  else { return }
-        UserAuthed.viewRef(for: self.uuid)?.updateData(["linkedin":str]){e in return }
+        UserAuthed.rootRef(for: self.uuid)?.updateData(["linkedin":str]){e in return }
     }
     
     func didTagDeck1stTime(){
@@ -145,7 +145,7 @@ extension UserAuthed {
         
         self.notification_token = tok
         
-        guard let ref = UserAuthed.viewRef(for: self.uuid) else {
+        guard let ref = UserAuthed.rootRef(for: self.uuid) else {
             return complete(false,"no-ref")
         }
         

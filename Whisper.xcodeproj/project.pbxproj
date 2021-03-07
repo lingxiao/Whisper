@@ -38,7 +38,6 @@
 		2CD326E025EC61DD000638A0 /* WhisperGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B025EC61DD000638A0 /* WhisperGraph.swift */; };
 		2CD326E125EC61DD000638A0 /* User+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B225EC61DD000638A0 /* User+Social.swift */; };
 		2CD326E225EC61DD000638A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B325EC61DD000638A0 /* User.swift */; };
-		2CD326E325EC61DD000638A0 /* User+Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B425EC61DD000638A0 /* User+Renderable.swift */; };
 		2CD326E425EC61DD000638A0 /* PaymentConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B525EC61DD000638A0 /* PaymentConstants.swift */; };
 		2CD326E525EC61DD000638A0 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B625EC61DD000638A0 /* Prelude.swift */; };
 		2CD326E625EC61DD000638A0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CD326B825EC61DD000638A0 /* README.md */; };
@@ -51,7 +50,6 @@
 		2CD326EE25EC61DD000638A0 /* UserAuthed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C325EC61DD000638A0 /* UserAuthed.swift */; };
 		2CD326EF25EC61DD000638A0 /* Authed+Mutate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C425EC61DD000638A0 /* Authed+Mutate.swift */; };
 		2CD326F025EC61DD000638A0 /* Authed+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C525EC61DD000638A0 /* Authed+Alerts.swift */; };
-		2CD326F125EC61DD000638A0 /* Authed+Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C625EC61DD000638A0 /* Authed+Renderable.swift */; };
 		2CD326F225EC61DD000638A0 /* UserAuthed+Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C725EC61DD000638A0 /* UserAuthed+Onboard.swift */; };
 		2CD326F325EC61DD000638A0 /* Authed+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C825EC61DD000638A0 /* Authed+DataSource.swift */; };
 		2CD326F425EC61DD000638A0 /* Authed+Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326C925EC61DD000638A0 /* Authed+Payment.swift */; };
@@ -221,7 +219,6 @@
 		2CD326B025EC61DD000638A0 /* WhisperGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhisperGraph.swift; sourceTree = "<group>"; };
 		2CD326B225EC61DD000638A0 /* User+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Social.swift"; sourceTree = "<group>"; };
 		2CD326B325EC61DD000638A0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2CD326B425EC61DD000638A0 /* User+Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Renderable.swift"; sourceTree = "<group>"; };
 		2CD326B525EC61DD000638A0 /* PaymentConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentConstants.swift; sourceTree = "<group>"; };
 		2CD326B625EC61DD000638A0 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
 		2CD326B825EC61DD000638A0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -234,7 +231,6 @@
 		2CD326C325EC61DD000638A0 /* UserAuthed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAuthed.swift; sourceTree = "<group>"; };
 		2CD326C425EC61DD000638A0 /* Authed+Mutate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authed+Mutate.swift"; sourceTree = "<group>"; };
 		2CD326C525EC61DD000638A0 /* Authed+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authed+Alerts.swift"; sourceTree = "<group>"; };
-		2CD326C625EC61DD000638A0 /* Authed+Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authed+Renderable.swift"; sourceTree = "<group>"; };
 		2CD326C725EC61DD000638A0 /* UserAuthed+Onboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserAuthed+Onboard.swift"; sourceTree = "<group>"; };
 		2CD326C825EC61DD000638A0 /* Authed+DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authed+DataSource.swift"; sourceTree = "<group>"; };
 		2CD326C925EC61DD000638A0 /* Authed+Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Authed+Payment.swift"; sourceTree = "<group>"; };
@@ -529,7 +525,6 @@
 				2CD326BB25EC61DD000638A0 /* UserList.swift */,
 				2CD326B325EC61DD000638A0 /* User.swift */,
 				2CD326B225EC61DD000638A0 /* User+Social.swift */,
-				2CD326B425EC61DD000638A0 /* User+Renderable.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -552,7 +547,6 @@
 				2CD326C225EC61DD000638A0 /* Authed+Social.swift */,
 				2CD326C425EC61DD000638A0 /* Authed+Mutate.swift */,
 				2CD326C525EC61DD000638A0 /* Authed+Alerts.swift */,
-				2CD326C625EC61DD000638A0 /* Authed+Renderable.swift */,
 				2CD326C725EC61DD000638A0 /* UserAuthed+Onboard.swift */,
 				2CD326C925EC61DD000638A0 /* Authed+Payment.swift */,
 				2CD326CA25EC61DD000638A0 /* Authed+Twitter.swift */,
@@ -1167,7 +1161,6 @@
 				2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */,
 				2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */,
 				2CD3275225EC632B000638A0 /* AskPermissions.swift in Sources */,
-				2CD326F125EC61DD000638A0 /* Authed+Renderable.swift in Sources */,
 				2CD3278825EC6358000638A0 /* InputStringModal.swift in Sources */,
 				2CD326EE25EC61DD000638A0 /* UserAuthed.swift in Sources */,
 				2CD3278925EC6358000638A0 /* ConfirmBreakoutRoomModal.swift in Sources */,
@@ -1184,7 +1177,6 @@
 				2CD326E825EC61DD000638A0 /* UserList.swift in Sources */,
 				2CD3281525EC636F000638A0 /* ClubHomDirCell.swift in Sources */,
 				2CD3283425EC636F000638A0 /* AnalyticCell.swift in Sources */,
-				2CD326E325EC61DD000638A0 /* User+Renderable.swift in Sources */,
 				2CD3285825EC636F000638A0 /* RoomGridController.swift in Sources */,
 				2CD3283725EC636F000638A0 /* PhoneBook+Text.swift in Sources */,
 				2CD3272B25EC6281000638A0 /* Array+remove.swift in Sources */,
