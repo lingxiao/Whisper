@@ -260,7 +260,7 @@ extension AudioRoomController : AudioButtonStackDelegate {
         SwiftEntryKit.dismiss()
 
         // check out of all decks
-        FlashCardCache.shared.checkOutOfAllDeck(from:self.club)
+        //FlashCardCache.shared.checkOutOfAllDeck(from:self.club)
         
         guard let room = room else {
             onHandleDismiss()

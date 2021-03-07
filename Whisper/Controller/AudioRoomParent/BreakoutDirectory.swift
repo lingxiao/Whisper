@@ -303,7 +303,8 @@ extension BreakoutDirectory: UITableViewDataSource, UITableViewDelegate {
         case .roomRow:
             let f = view.frame
             let wd = (f.width - 2*15 - 10)/2
-            return wd + CardDirectoryCell.textHeight
+            let textHt : CGFloat = 10 + AppFontSize.body2 + AppFontSize.footer
+            return wd + textHt
         }
     }
    

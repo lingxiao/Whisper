@@ -174,41 +174,41 @@ func getRandomUserValuesFromDummyUser( at user: User? ) -> (String,String) {
 
 //MARK:- dummy deck
 
-
-func yieldDummyDeck( for num: Int ) -> [FlashCardDeck] {
-    
-    var res: [FlashCardDeck] = []
-    
-    var n = num
-    var suffix : Int = 1
-    
-    while n > 0 {
-        let card = FlashCardDeck(at: "class-\(suffix)")
-        switch suffix {
-        case 1:
-            card.name = "3 Dimension: Time/Space"
-        case 2:
-            card.name = "Form and Meaning"
-        case 3:
-            card.name = "Visual Culture"
-        case 4:
-            card.name = "Eye, Mind and Image"
-        case 5:
-            card.name = "Perception"
-        case 6:
-            card.name = "Research Exp Perception"
-        default:
-            break;
-        }
-        res.append(card)
-        n = n - 1
-        suffix += 1
-    }
-    
-    return res
-}
-
-
+//
+//func yieldDummyDeck( for num: Int ) -> [FlashCardDeck] {
+//    
+//    var res: [FlashCardDeck] = []
+//    
+//    var n = num
+//    var suffix : Int = 1
+//    
+//    while n > 0 {
+//        let card = FlashCardDeck(at: "class-\(suffix)")
+//        switch suffix {
+//        case 1:
+//            card.name = "3 Dimension: Time/Space"
+//        case 2:
+//            card.name = "Form and Meaning"
+//        case 3:
+//            card.name = "Visual Culture"
+//        case 4:
+//            card.name = "Eye, Mind and Image"
+//        case 5:
+//            card.name = "Perception"
+//        case 6:
+//            card.name = "Research Exp Perception"
+//        default:
+//            break;
+//        }
+//        res.append(card)
+//        n = n - 1
+//        suffix += 1
+//    }
+//    
+//    return res
+//}
+//
+//
 
 
 

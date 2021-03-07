@@ -496,64 +496,6 @@ func decodeRoomMember( _ blob : FirestoreData?, _ then: @escaping(RoomMember?) -
 }
 
 
-//MARK:- message
-
-struct MessageBlob {
-    var uuid  : String
-    var user  : User
-    var message: String
-    var url  : URL?
-    var timeStamp: Int
-}
-
-//MARK:- Deck audience
-
-struct DeckAudience {
-    var uuid  : String
-    var user  : User
-    var clubID: ClubID
-    var deckID: DeckID
-    var checkin: Int
-    var checkout: Int
-}
-
-func decodeDeckAudience( _ blob : FirestoreData?, _ then: @escaping(DeckAudience?) -> Void ){
-    
-    guard let data = blob else { return then(nil) }
-    
-    guard let uuid = data["userID"] as? String else { return then(nil) }
-    if uuid == "" { return then(nil) }
-    
-    UserList.shared.pull(for: uuid){ (_,_,user) in
-        
-        guard let user = user else { return then(nil) }
-        
-        let mem = DeckAudience(
-            uuid      : unsafeCastString(data["ID"]),
-            user      : user,
-            clubID    : unsafeCastString(data["clubID"]),
-            deckID    : unsafeCastString(data["deckID"]),
-            checkin   : unsafeCastInt(data["in"]),
-            checkout  : unsafeCastInt(data["out"])
-        )
-        
-        return then(mem)
-        
-    }
-
-}
-
-func pp_deckAudienceStartTime( for aud: DeckAudience? ) -> String {
-    guard let aud = aud else { return "" }
-    let str = prettifyTime(at: "\(aud.checkin)")
-    return "Was here \(str)"
-}
-
-func deckAudienceIsHere( for aud: DeckAudience? ) -> Bool {
-    guard let aud = aud else { return false }
-    return aud.checkin == aud.checkout
-}
-
 //MARK:- alerts
 
 enum AlertKind {

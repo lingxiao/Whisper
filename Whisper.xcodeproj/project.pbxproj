@@ -11,7 +11,6 @@
 		29AF0AF3D4F4CAAC16B4A984 /* Pods_Whisper_WhisperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91A2AEBBFA7B6FA82EBDDD6 /* Pods_Whisper_WhisperUITests.framework */; };
 		2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */; };
 		2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */; };
-		2CB7F5FE25F1E16D006D2597 /* CardDirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */; };
 		2CB7F60325F1E198006D2597 /* PlayListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F60225F1E198006D2597 /* PlayListHeader.swift */; };
 		2CB7F60825F1E3F7006D2597 /* StartCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F60725F1E3F7006D2597 /* StartCommunity.swift */; };
 		2CD3260925EC52CE000638A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3260825EC52CE000638A0 /* AppDelegate.swift */; };
@@ -24,7 +23,6 @@
 		2CD3268E25EC5974000638A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD3268D25EC5974000638A0 /* StoreKit.framework */; };
 		2CD326CD25EC61DD000638A0 /* Club+Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269725EC61DD000638A0 /* Club+Social.swift */; };
 		2CD326CE25EC61DD000638A0 /* Club+Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269825EC61DD000638A0 /* Club+Media.swift */; };
-		2CD326CF25EC61DD000638A0 /* Club+Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269925EC61DD000638A0 /* Club+Cards.swift */; };
 		2CD326D025EC61DD000638A0 /* PodMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269B25EC61DD000638A0 /* PodMedia.swift */; };
 		2CD326D125EC61DD000638A0 /* PodPlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269C25EC61DD000638A0 /* PodPlayList.swift */; };
 		2CD326D225EC61DD000638A0 /* DemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3269D25EC61DD000638A0 /* DemoData.swift */; };
@@ -32,11 +30,6 @@
 		2CD326D425EC61DD000638A0 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A025EC61DD000638A0 /* Room.swift */; };
 		2CD326D525EC61DD000638A0 /* Room+Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A125EC61DD000638A0 /* Room+Chat.swift */; };
 		2CD326D625EC61DD000638A0 /* Room+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A225EC61DD000638A0 /* Room+Data.swift */; };
-		2CD326D725EC61DD000638A0 /* FlashCardDeck+Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A425EC61DD000638A0 /* FlashCardDeck+Render.swift */; };
-		2CD326D825EC61DD000638A0 /* FlashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A525EC61DD000638A0 /* FlashCard.swift */; };
-		2CD326D925EC61DD000638A0 /* FlashCardDeck+Write.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A625EC61DD000638A0 /* FlashCardDeck+Write.swift */; };
-		2CD326DA25EC61DD000638A0 /* FlashCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A725EC61DD000638A0 /* FlashCardDeck.swift */; };
-		2CD326DB25EC61DD000638A0 /* FlashCardCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326A825EC61DD000638A0 /* FlashCardCache.swift */; };
 		2CD326DC25EC61DD000638A0 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326AA25EC61DD000638A0 /* TagModel.swift */; };
 		2CD326DD25EC61DD000638A0 /* OrgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326AB25EC61DD000638A0 /* OrgModel.swift */; };
 		2CD326DE25EC61DD000638A0 /* WhisperCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326AC25EC61DD000638A0 /* WhisperCalendar.swift */; };
@@ -90,7 +83,6 @@
 		2CD3275125EC632B000638A0 /* VideoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3274925EC632B000638A0 /* VideoCache.swift */; };
 		2CD3275225EC632B000638A0 /* AskPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3274A25EC632B000638A0 /* AskPermissions.swift */; };
 		2CD3277D25EC6358000638A0 /* PlayListHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3275825EC6358000638A0 /* PlayListHero.swift */; };
-		2CD3277E25EC6358000638A0 /* ClubDiscoveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3275925EC6358000638A0 /* ClubDiscoveryCell.swift */; };
 		2CD3277F25EC6358000638A0 /* HeaderH1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3275A25EC6358000638A0 /* HeaderH1Cell.swift */; };
 		2CD3278025EC6358000638A0 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3275B25EC6358000638A0 /* TextCell.swift */; };
 		2CD3278125EC6358000638A0 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3275C25EC6358000638A0 /* AlertCell.swift */; };
@@ -113,7 +105,6 @@
 		2CD3279825EC6358000638A0 /* PictureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277725EC6358000638A0 /* PictureRow.swift */; };
 		2CD3279925EC6358000638A0 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277825EC6358000638A0 /* AppTextField.swift */; };
 		2CD3279A25EC6358000638A0 /* TinderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277925EC6358000638A0 /* TinderButton.swift */; };
-		2CD3279C25EC6358000638A0 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277B25EC6358000638A0 /* TagView.swift */; };
 		2CD3279D25EC6358000638A0 /* BlankListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3277C25EC6358000638A0 /* BlankListView.swift */; };
 		2CD3281325EC636F000638A0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327A425EC636E000638A0 /* HomeController.swift */; };
 		2CD3281425EC636F000638A0 /* ClubDirectoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327A525EC636E000638A0 /* ClubDirectoryController.swift */; };
@@ -195,7 +186,6 @@
 		2952496FA50DEAEBEF5F0695 /* Pods-Whisper-WhisperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.release.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEntry.swift; sourceTree = "<group>"; };
-		2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDirectoryCell.swift; sourceTree = "<group>"; };
 		2CB7F60225F1E198006D2597 /* PlayListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListHeader.swift; sourceTree = "<group>"; };
 		2CB7F60725F1E3F7006D2597 /* StartCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCommunity.swift; sourceTree = "<group>"; };
 		2CD3260525EC52CE000638A0 /* Whisper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whisper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,7 +207,6 @@
 		2CD3268D25EC5974000638A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2CD3269725EC61DD000638A0 /* Club+Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Club+Social.swift"; sourceTree = "<group>"; };
 		2CD3269825EC61DD000638A0 /* Club+Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Club+Media.swift"; sourceTree = "<group>"; };
-		2CD3269925EC61DD000638A0 /* Club+Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Club+Cards.swift"; sourceTree = "<group>"; };
 		2CD3269B25EC61DD000638A0 /* PodMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodMedia.swift; sourceTree = "<group>"; };
 		2CD3269C25EC61DD000638A0 /* PodPlayList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodPlayList.swift; sourceTree = "<group>"; };
 		2CD3269D25EC61DD000638A0 /* DemoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
@@ -225,11 +214,6 @@
 		2CD326A025EC61DD000638A0 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		2CD326A125EC61DD000638A0 /* Room+Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Room+Chat.swift"; sourceTree = "<group>"; };
 		2CD326A225EC61DD000638A0 /* Room+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Room+Data.swift"; sourceTree = "<group>"; };
-		2CD326A425EC61DD000638A0 /* FlashCardDeck+Render.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlashCardDeck+Render.swift"; sourceTree = "<group>"; };
-		2CD326A525EC61DD000638A0 /* FlashCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCard.swift; sourceTree = "<group>"; };
-		2CD326A625EC61DD000638A0 /* FlashCardDeck+Write.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlashCardDeck+Write.swift"; sourceTree = "<group>"; };
-		2CD326A725EC61DD000638A0 /* FlashCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardDeck.swift; sourceTree = "<group>"; };
-		2CD326A825EC61DD000638A0 /* FlashCardCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardCache.swift; sourceTree = "<group>"; };
 		2CD326AA25EC61DD000638A0 /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		2CD326AB25EC61DD000638A0 /* OrgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgModel.swift; sourceTree = "<group>"; };
 		2CD326AC25EC61DD000638A0 /* WhisperCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhisperCalendar.swift; sourceTree = "<group>"; };
@@ -283,7 +267,6 @@
 		2CD3274925EC632B000638A0 /* VideoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCache.swift; sourceTree = "<group>"; };
 		2CD3274A25EC632B000638A0 /* AskPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskPermissions.swift; sourceTree = "<group>"; };
 		2CD3275825EC6358000638A0 /* PlayListHero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayListHero.swift; sourceTree = "<group>"; };
-		2CD3275925EC6358000638A0 /* ClubDiscoveryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubDiscoveryCell.swift; sourceTree = "<group>"; };
 		2CD3275A25EC6358000638A0 /* HeaderH1Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderH1Cell.swift; sourceTree = "<group>"; };
 		2CD3275B25EC6358000638A0 /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		2CD3275C25EC6358000638A0 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCell.swift; sourceTree = "<group>"; };
@@ -306,7 +289,6 @@
 		2CD3277725EC6358000638A0 /* PictureRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureRow.swift; sourceTree = "<group>"; };
 		2CD3277825EC6358000638A0 /* AppTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		2CD3277925EC6358000638A0 /* TinderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderButton.swift; sourceTree = "<group>"; };
-		2CD3277B25EC6358000638A0 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		2CD3277C25EC6358000638A0 /* BlankListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankListView.swift; sourceTree = "<group>"; };
 		2CD327A425EC636E000638A0 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		2CD327A525EC636E000638A0 /* ClubDirectoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubDirectoryController.swift; sourceTree = "<group>"; };
@@ -490,7 +472,6 @@
 				2CD3269625EC61DD000638A0 /* Club */,
 				2CD3269E25EC61DD000638A0 /* Room */,
 				2CD3269A25EC61DD000638A0 /* Pod */,
-				2CD326A325EC61DD000638A0 /* FlashCards */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -502,7 +483,6 @@
 				2CD3269F25EC61DD000638A0 /* Club.swift */,
 				2CD3269725EC61DD000638A0 /* Club+Social.swift */,
 				2CD3269825EC61DD000638A0 /* Club+Media.swift */,
-				2CD3269925EC61DD000638A0 /* Club+Cards.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -524,18 +504,6 @@
 				2CD326A225EC61DD000638A0 /* Room+Data.swift */,
 			);
 			path = Room;
-			sourceTree = "<group>";
-		};
-		2CD326A325EC61DD000638A0 /* FlashCards */ = {
-			isa = PBXGroup;
-			children = (
-				2CD326A425EC61DD000638A0 /* FlashCardDeck+Render.swift */,
-				2CD326A525EC61DD000638A0 /* FlashCard.swift */,
-				2CD326A625EC61DD000638A0 /* FlashCardDeck+Write.swift */,
-				2CD326A725EC61DD000638A0 /* FlashCardDeck.swift */,
-				2CD326A825EC61DD000638A0 /* FlashCardCache.swift */,
-			);
-			path = FlashCards;
 			sourceTree = "<group>";
 		};
 		2CD326A925EC61DD000638A0 /* Org */ = {
@@ -666,7 +634,6 @@
 			isa = PBXGroup;
 			children = (
 				2CD3275825EC6358000638A0 /* PlayListHero.swift */,
-				2CD3275925EC6358000638A0 /* ClubDiscoveryCell.swift */,
 				2CD3275A25EC6358000638A0 /* HeaderH1Cell.swift */,
 				2CD3275B25EC6358000638A0 /* TextCell.swift */,
 				2CD3275C25EC6358000638A0 /* AlertCell.swift */,
@@ -677,7 +644,6 @@
 				2CD3276125EC6358000638A0 /* SongCell.swift */,
 				2CD3276225EC6358000638A0 /* UserRowCell.swift */,
 				2CD3287825EC661B000638A0 /* BannerCell.swift */,
-				2CB7F5FD25F1E16D006D2597 /* CardDirectoryCell.swift */,
 				2CB7F60225F1E198006D2597 /* PlayListHeader.swift */,
 			);
 			path = Cells;
@@ -715,7 +681,6 @@
 				2CD3277725EC6358000638A0 /* PictureRow.swift */,
 				2CD3277825EC6358000638A0 /* AppTextField.swift */,
 				2CD3277925EC6358000638A0 /* TinderButton.swift */,
-				2CD3277B25EC6358000638A0 /* TagView.swift */,
 				2CD3277C25EC6358000638A0 /* BlankListView.swift */,
 			);
 			path = Widgets;
@@ -1233,13 +1198,11 @@
 				2CD3284A25EC636F000638A0 /* BreakoutDirectory.swift in Sources */,
 				2CD3278C25EC6358000638A0 /* InviteGroupModal.swift in Sources */,
 				2CD3278525EC6358000638A0 /* HeroCell.swift in Sources */,
-				2CD326CF25EC61DD000638A0 /* Club+Cards.swift in Sources */,
 				2CD3281325EC636F000638A0 /* HomeController.swift in Sources */,
 				2CD3285A25EC636F000638A0 /* PodHeaderCell.swift in Sources */,
 				2CD326E525EC61DD000638A0 /* Prelude.swift in Sources */,
 				2CD326EF25EC61DD000638A0 /* Authed+Mutate.swift in Sources */,
 				2CD326D325EC61DD000638A0 /* Club.swift in Sources */,
-				2CD326D925EC61DD000638A0 /* FlashCardDeck+Write.swift in Sources */,
 				2CD3285725EC636F000638A0 /* WidgetRow.swift in Sources */,
 				2CD3281F25EC636F000638A0 /* InviteUser+TextInput.swift in Sources */,
 				2CD3271625EC626A000638A0 /* ModelDelegate.swift in Sources */,
@@ -1248,7 +1211,6 @@
 				2CD3285925EC636F000638A0 /* SpeakerRow.swift in Sources */,
 				2CD3281725EC636F000638A0 /* Home+Events.swift in Sources */,
 				2CD3284825EC636F000638A0 /* ChatButton.swift in Sources */,
-				2CD326D825EC61DD000638A0 /* FlashCard.swift in Sources */,
 				2CD326F625EC61DD000638A0 /* Analytics.swift in Sources */,
 				2CD3279625EC6358000638A0 /* AppHeader.swift in Sources */,
 				2CD3275025EC632B000638A0 /* Unsafe.swift in Sources */,
@@ -1283,16 +1245,12 @@
 				2CD3284625EC636F000638A0 /* AudioRoomController.swift in Sources */,
 				2CD326E125EC61DD000638A0 /* User+Social.swift in Sources */,
 				2CD3279225EC6358000638A0 /* SwitchRoomModal.swift in Sources */,
-				2CD326DA25EC61DD000638A0 /* FlashCardDeck.swift in Sources */,
 				2CD3272D25EC6281000638A0 /* CALayer+Border.swift in Sources */,
 				2CD3285125EC636F000638A0 /* FinishOnboardController.swift in Sources */,
 				2CD326DE25EC61DD000638A0 /* WhisperCalendar.swift in Sources */,
-				2CD326D725EC61DD000638A0 /* FlashCardDeck+Render.swift in Sources */,
 				2CD3281425EC636F000638A0 /* ClubDirectoryController.swift in Sources */,
 				2CD3285325EC636F000638A0 /* IconController.swift in Sources */,
-				2CD326DB25EC61DD000638A0 /* FlashCardCache.swift in Sources */,
 				2CD3287925EC661C000638A0 /* BannerCell.swift in Sources */,
-				2CD3277E25EC6358000638A0 /* ClubDiscoveryCell.swift in Sources */,
 				2CD3272F25EC6281000638A0 /* String+SubStr.swift in Sources */,
 				2CD3273225EC6281000638A0 /* UIViewController+Events.swift in Sources */,
 				2CD3273125EC6281000638A0 /* Dispatch+Background.swift in Sources */,
@@ -1307,7 +1265,6 @@
 				2CD326EA25EC61DD000638A0 /* AddressBook.swift in Sources */,
 				2CD326F225EC61DD000638A0 /* UserAuthed+Onboard.swift in Sources */,
 				2CD3274F25EC632B000638A0 /* Reactive.swift in Sources */,
-				2CD3279C25EC6358000638A0 /* TagView.swift in Sources */,
 				2CD326D525EC61DD000638A0 /* Room+Chat.swift in Sources */,
 				2CD3285225EC636F000638A0 /* SignInController.swift in Sources */,
 				2CD3283325EC636F000638A0 /* AudioRoomParentController.swift in Sources */,
@@ -1319,7 +1276,6 @@
 				2CD3283B25EC636F000638A0 /* UserList+Table.swift in Sources */,
 				2CD3278425EC6358000638A0 /* SocialCell.swift in Sources */,
 				2CD326D425EC61DD000638A0 /* Room.swift in Sources */,
-				2CB7F5FE25F1E16D006D2597 /* CardDirectoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
