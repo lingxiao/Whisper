@@ -215,8 +215,10 @@ extension OrgModel {
             "creatorID"      : host,
             "name"           : name,
             "bio"            : "",
+            "profileImageSmall": "",
             "deleted"        : false,
             "bespokeOnboard" : false,
+            "unlocked"       : false,
             "parent"         : "",
             "childs"         : []
         ]

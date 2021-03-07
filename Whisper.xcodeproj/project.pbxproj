@@ -48,7 +48,6 @@
 		2CD326E425EC61DD000638A0 /* PaymentConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B525EC61DD000638A0 /* PaymentConstants.swift */; };
 		2CD326E525EC61DD000638A0 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326B625EC61DD000638A0 /* Prelude.swift */; };
 		2CD326E625EC61DD000638A0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CD326B825EC61DD000638A0 /* README.md */; };
-		2CD326E725EC61DD000638A0 /* UserList+filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326BA25EC61DD000638A0 /* UserList+filter.swift */; };
 		2CD326E825EC61DD000638A0 /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326BB25EC61DD000638A0 /* UserList.swift */; };
 		2CD326E925EC61DD000638A0 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326BC25EC61DD000638A0 /* Core.swift */; };
 		2CD326EA25EC61DD000638A0 /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD326BE25EC61DD000638A0 /* AddressBook.swift */; };
@@ -242,8 +241,7 @@
 		2CD326B525EC61DD000638A0 /* PaymentConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentConstants.swift; sourceTree = "<group>"; };
 		2CD326B625EC61DD000638A0 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
 		2CD326B825EC61DD000638A0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2CD326BA25EC61DD000638A0 /* UserList+filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserList+filter.swift"; sourceTree = "<group>"; };
-		2CD326BB25EC61DD000638A0 /* UserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
+		2CD326BB25EC61DD000638A0 /* UserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserList.swift; path = /Users/lingxiao/Documents/Whisper/Whisper/Whisper/Model/User/UserList.swift; sourceTree = "<absolute>"; };
 		2CD326BC25EC61DD000638A0 /* Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		2CD326BE25EC61DD000638A0 /* AddressBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		2CD326BF25EC61DD000638A0 /* PushNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotification.swift; sourceTree = "<group>"; };
@@ -487,7 +485,6 @@
 				2CD326BD25EC61DD000638A0 /* API */,
 				2CD326C125EC61DD000638A0 /* UserAuthed */,
 				2CD326B125EC61DD000638A0 /* User */,
-				2CD326B925EC61DD000638A0 /* UserList */,
 				2CD326AE25EC61DD000638A0 /* Graph */,
 				2CD326A925EC61DD000638A0 /* Org */,
 				2CD3269625EC61DD000638A0 /* Club */,
@@ -563,20 +560,12 @@
 		2CD326B125EC61DD000638A0 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				2CD326BB25EC61DD000638A0 /* UserList.swift */,
 				2CD326B325EC61DD000638A0 /* User.swift */,
 				2CD326B225EC61DD000638A0 /* User+Social.swift */,
 				2CD326B425EC61DD000638A0 /* User+Renderable.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		2CD326B925EC61DD000638A0 /* UserList */ = {
-			isa = PBXGroup;
-			children = (
-				2CD326BA25EC61DD000638A0 /* UserList+filter.swift */,
-				2CD326BB25EC61DD000638A0 /* UserList.swift */,
-			);
-			path = UserList;
 			sourceTree = "<group>";
 		};
 		2CD326BD25EC61DD000638A0 /* API */ = {
@@ -1260,7 +1249,6 @@
 				2CD3281725EC636F000638A0 /* Home+Events.swift in Sources */,
 				2CD3284825EC636F000638A0 /* ChatButton.swift in Sources */,
 				2CD326D825EC61DD000638A0 /* FlashCard.swift in Sources */,
-				2CD326E725EC61DD000638A0 /* UserList+filter.swift in Sources */,
 				2CD326F625EC61DD000638A0 /* Analytics.swift in Sources */,
 				2CD3279625EC6358000638A0 /* AppHeader.swift in Sources */,
 				2CD3275025EC632B000638A0 /* Unsafe.swift in Sources */,

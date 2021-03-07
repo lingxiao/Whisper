@@ -56,8 +56,8 @@ class StartCommunity: UIViewController, AppHeaderDelegate {
     
     // values
     var selected_price: Double = PRICE_B
-    var why: String = ""
-    var name: String = ""
+    var swhy : String = ""
+    var sname: String = ""
     private var state : StartCommunityState = .price
         
     override func viewDidLoad() {
