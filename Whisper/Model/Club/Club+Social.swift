@@ -413,13 +413,7 @@ extension Club {
             ref.setData(res){ e in return then() }
         }
         
-        // add to my list of clubs that I follow
-        let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
-        UserAuthed.clubRef(for: myid, at: self.uuid)?.setData(res){ e in return }
-        
-
-        
-        // join home room
+        // join home room if this is not home room
         if self.type != .home {
             for club in ClubList.shared.fetchClubsFor(school: getOrg()) {
                 if club.type == .home {
@@ -447,7 +441,6 @@ extension Club {
             let none =  fromClubPermission( .levelC )
             ref.updateData(["iamFollowing":false, "isFollowingMe":false, "permission": none, "latest": now()]){ e in return then() }
             let res : FirestoreData = ["didJoin": false, "timeStamp": now(), "ID": self.uuid]
-            UserAuthed.clubRef(for: myid, at: self.uuid)?.setData(res){ e in return then() }
         } else {
             return then()
         }
@@ -463,7 +456,6 @@ extension Club {
     func remove( _ user: User? ){
         guard let user = user else { return }
         Club.followerRef(for: self.uuid, at: user.uuid)?.delete()
-        UserAuthed.clubRef(for: user.uuid, at: self.uuid)?.delete()
         self.members[user.uuid] = nil
     }
     

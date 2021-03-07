@@ -340,29 +340,11 @@ func toClubPermission( _ str: String) -> ClubPermission {
 //MARK:- member blob
 
 struct ClubMember {
-
     var uuid: String
     var user: User
-    
-    // time
     var timeStamp: Int
     var latest   : Int
-    
-    // social
-    var iamFollowing : Bool
-    var isFollowingMe: Bool
     var permission   : ClubPermission
-
-    // payment
-    //var monthlyPayment: Int
-    //var didPayThisMonth: Bool
-
-    // stats
-    var num_down    : Int
-    var num_up      : Int
-    var num_speak   : Int
-    var num_session : Int
-
 }
 
 extension ClubMember : Equatable {
@@ -374,22 +356,10 @@ extension ClubMember : Equatable {
 func makeMemberStub(_ uid: UserID ) -> FirestoreData {
     
     let res : FirestoreData = [
-        
         "userID"     : uid,
         "timeStamp"  : now(),
         "latest"     : now(),
-            
-        //"monthlyPayment" : 0,
-        //"didPayThisMonth": false,
-        
-        "iamFollowing" : false,
-        "isFollowingMe": false,
         "permission"   : fromClubPermission(.levelA),
-        
-        "num_down"   : 0,
-        "num_up"     : 0,
-        "num_speak"  : 0,
-        "num_session": 0,
     ]
     
     return res
@@ -404,22 +374,14 @@ func decodeClubMember( _ blob : FirestoreData?, _ then: @escaping(ClubMember?) -
     if uuid == "" { return then(nil) }
     
     UserList.shared.pull(for: uuid){ (_,_,user) in
-        
         guard let user = user else { return then(nil) }
-        
-        let mem = ClubMember(uuid: uuid,
+        let mem = ClubMember(
+            uuid: uuid,
             user: user,
             timeStamp: unsafeCastInt(data["timestamp"]),
             latest: unsafeCastInt(data["latest"]),
-            iamFollowing: unsafeCastBool(data["iamFollowing"]),
-            isFollowingMe:  unsafeCastBool(data["isFollowingMe"]),
-            permission: toClubPermission(unsafeCastString(data["permission"])),
-            num_down: unsafeCastInt(data["num_down"]),
-            num_up: unsafeCastInt(data["num_up"]),
-            num_speak: unsafeCastInt(data["num_speak"]),
-            num_session: unsafeCastInt(data["num_session"])
+            permission: toClubPermission(unsafeCastString(data["permission"]))
         )
-        
         return then(mem)
     }
 }

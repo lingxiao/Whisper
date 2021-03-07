@@ -387,14 +387,7 @@ extension Club : Equatable {
         if uuid == "" { return nil }
         return Club.followerCollectionRef(for: uid)?.document(uuid)
     }
-    
-    static func deckRef( for uid: String?, at id: String? ) -> DocumentReference? {
-        guard let uid = uid else { return nil }
-        guard let id = id else { return nil}
-        if uid == "" || id == "" { return nil }
-        return Club.rootRef(for: uid)?.collection("flash_card_deck").document(id)
-    }
-    
+
     
 }
 

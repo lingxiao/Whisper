@@ -92,7 +92,7 @@ class OrgModel : Sink, Renderable {
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }
         for id in self.clubIDs {
             ClubList.shared.getClub(at:id){ club in
-                club?.join(with: .levelA){ return }
+                club?.join(with: .levelB){ return }
             }
         }
     }

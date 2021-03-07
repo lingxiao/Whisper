@@ -37,11 +37,7 @@ class ClubList : Sink {
     func await(){
         guard AppDelegate.shared.onFire() else { return }
         awaitOrgs()
-        //awaitClubs()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5 ) { [weak self] in
-            //self?.purgeOldData()
-            ///OrgModel._create(name: "helloworld"){ id in return }
-        }
+        //purgeOldData()
     }
     
     // await orgs i'm part of
@@ -61,11 +57,9 @@ class ClubList : Sink {
             }
     }
     
-    
 }
 
 //MARK:- read-
-
 
 
 extension ClubList {
@@ -298,11 +292,13 @@ extension ClubList {
 extension ClubList {
     
     private func purgeOldData(){
-        let myid = "OLMxaVIBfRgRhnyEz5WYJD3Hj5X2"
-        if UserAuthed.shared.uuid == myid {
-            purgeOldMedia()
-            purgeRooms()
-            purgeOldClubs()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5 ) { [weak self] in
+            let myid = "OLMxaVIBfRgRhnyEz5WYJD3Hj5X2"
+            if UserAuthed.shared.uuid == myid {
+                self?.purgeOldMedia()
+                self?.purgeRooms()
+                self?.purgeOldClubs()
+            }
         }
     }
     
