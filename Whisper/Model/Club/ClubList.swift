@@ -37,12 +37,26 @@ class ClubList : Sink {
     func await(){
         guard AppDelegate.shared.onFire() else { return }
         awaitClubs()
-        awaitTags()
-        /*if UserAuthed.shared.uuid == "NRC1ZCZgPMgs5Qf5D9AUohwShbw2"{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5 ) { [weak self] in
-                self?.purgeOldData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5 ) { [weak self] in
+            //self?.purgeOldData()
+        }
+    }
+    
+    // await orgs i'm part of
+    private func awaitOrgs(){
+        UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?
+            .whereField("didJoin", isEqualTo: true)
+            .addSnapshotListener { querySnapshot, error in
+                guard let docs = querySnapshot?.documents else { return }
+                for doc in docs {
+                    guard let data = doc.data() as? FirestoreData else { continue }
+                    guard let id = data["ID"] as? String else { continue }
+                    let deleted = unsafeCastBool(data["deleted"])
+                    if deleted == false {
+                        self.getSchool(at: id){ _ in return }
+                    }
+                }
             }
-        }*/
     }
     
     // @use: await clubs that I have joined
@@ -172,6 +186,8 @@ extension ClubList {
             org.fetchPublicClubs()
             self.schools[id] = org
             then(org)
+            
+            org.join()
         }
     }
 
@@ -322,7 +338,7 @@ extension ClubList {
 extension ClubList {
     
     private func purgeOldData(){
-        let myid = "NRC1ZCZgPMgs5Qf5D9AUohwShbw2"
+        let myid = "OLMxaVIBfRgRhnyEz5WYJD3Hj5X2"
         if UserAuthed.shared.uuid == myid {
             purgeOldMedia()
             purgeRooms()

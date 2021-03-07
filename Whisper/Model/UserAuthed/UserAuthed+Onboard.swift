@@ -42,7 +42,29 @@ extension UserAuthed {
         UserAuthed.onboardWalkThruRef(for: self.uuid)?.updateData(["didSyncContacts":true])
     }
     
-    // @use: given number, sync with user of number
+    // @use: given number, sync with org
+    func syncWithOrg( at code: String?, _ then: @escaping(OrgModel?) -> Void ){
+        
+        guard let code = code else { return then(nil) }
+        
+        OrgModel.query(at: code){ org in
+            
+            guard let org = org else {
+                return then(nil)
+            }
+            
+            // await all followers
+            org.await()
+            
+            // wait a bit for club to fetch all members
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
+//                org.join(with: .levelB){ return }
+//                then( club )
+//            }
+        }
+    }
+    
+    // @use: given club number, sync with club
     func syncWithNumber( at code: String?, _ then: @escaping(Club?) -> Void ){
         
         guard let code = code else { return then(nil) }

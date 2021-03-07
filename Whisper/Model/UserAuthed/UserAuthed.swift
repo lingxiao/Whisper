@@ -182,6 +182,10 @@ extension UserAuthed {
         return rootRef(for: uid)?.collection("clubs")
     }
         
+    static func orgColRef( for uid: UserID? ) -> CollectionReference? {
+        return rootRef(for: uid)?.collection("orgs")
+    }
+    
     static func clubRef( for uid: UserID?, at cid: String? ) -> DocumentReference? {
         guard let cid = cid else { return nil }
         if cid == "" { return nil }

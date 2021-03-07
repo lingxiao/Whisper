@@ -154,7 +154,7 @@ class Club : Sink {
             
         // await root room
         awaitRooms(isRoot: true)
-        awaitRooms(isRoot: false)
+        awaitRooms(isRoot: false)        
     }
     
     // get club analytics
@@ -408,19 +408,5 @@ extension Club : Equatable {
     }
     
     
-}
-
-//MARK:- random number generator
-
-private func randomPhoneNumber() -> String {
-    return randomNums(digits: 10)
-}
-
-private func randomNums(digits:Int) -> String {
-    var number = String()
-    for _ in 1...digits {
-       number += "\(Int.random(in: 1...9))"
-    }
-    return number
 }
 

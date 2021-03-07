@@ -417,6 +417,8 @@ extension Club {
         let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
         UserAuthed.clubRef(for: myid, at: self.uuid)?.setData(res){ e in return }
         
+
+        
         // join home room
         if self.type != .home {
             for club in ClubList.shared.fetchClubsFor(school: getOrg()) {

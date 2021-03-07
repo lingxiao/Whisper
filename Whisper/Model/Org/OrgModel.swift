@@ -25,6 +25,7 @@ class OrgModel : Sink, Renderable {
     var iamOwner: Bool = false
     var bespokeOnboard: Bool = false
     var unlocked: Bool = false
+    var outvite_code: String = ""
 
     var fetched: Bool = false
     var clubIDs: [ClubID] = []
@@ -53,6 +54,7 @@ class OrgModel : Sink, Renderable {
             self.iamOwner  = self.creatorID == UserAuthed.shared.uuid
             self.unlocked  = unsafeCastBool(data["unlocked"])
             self.bespokeOnboard = unsafeCastBool(data["bespokeOnboard"])
+            self.outvite_code = unsafeCastString(data["outvite_code"])
         }
     }
 
@@ -78,8 +80,20 @@ class OrgModel : Sink, Renderable {
                     }
                 }
             }
-        
     }
+    
+    //MARK:- write
+    
+    // @use: join this organization
+    func join(){
+        let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
+        UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }
+    }
+    
+    func leave(){
+        UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).delete(){ e in return }
+    }
+
     
     //MARK:- render
     
@@ -202,35 +216,53 @@ class OrgModel : Sink, Renderable {
 //MARK:- static
 
 extension OrgModel {
+            
+    static func rootRef( for uid : String? ) -> DocumentReference? {
+        guard AppDelegate.shared.onFire() else { return nil }
+        guard let uid = uid else { return nil }
+        if uid == "" { return nil }
+        return AppDelegate.shared.fireRef?.collection("organizations").document( uid )
+    }
+    
+    static func bidCol() -> CollectionReference? {
+        guard AppDelegate.shared.onFire() else { return nil }
+        return AppDelegate.shared.fireRef?.collection("log_org_bids")
+    }
+    
     
     static func create( name: String, _ then: @escaping(String) -> Void ){
         
         // get club id
         let uuid = UUID().uuidString
         let host = UserAuthed.shared.uuid
-
-        // club root data
-        let blob : FirestoreData = [
-            "ID"             : uuid ,
-            "timeStamp"      : now(),
-            "timeStampLatest": now(),
-            "creatorID"      : host,
-            "name"           : name,
-            "bio"            : "",
-            "profileImageSmall": "",
-            "deleted"        : false,
-            "bespokeOnboard" : false,
-            "unlocked"       : false,
-            "parent"         : "",
-            "childs"         : []
-        ]
         
-        // create club and create the home room
-        // on the client web side, when a bid has been completed,
-        // create the home room where all bidders are moved into the room as .levelB members
-        OrgModel.rootRef(for: uuid)?.setData(blob){ e in
-            Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
-            return then(uuid)
+        OrgModel.generateFreshCode(){ code in
+
+            // club root data
+            let blob : FirestoreData = [
+                "ID"             : uuid ,
+                "timeStamp"      : now(),
+                "timeStampLatest": now(),
+                "creatorID"      : host,
+                "name"           : name,
+                "bio"            : "",
+                "profileImageSmall": "",
+                "deleted"        : false,
+                "bespokeOnboard" : false,
+                "unlocked"       : false,
+                "parent"         : "",
+                "childs"         : [],
+                "outvite_code"   : ""
+            ]
+            
+            // create club and create the home room
+            // on the client web side, when a bid has been completed,
+            // create the home room where all bidders are moved into the room as .levelB members
+            OrgModel.rootRef(for: uuid)?.setData(blob){ e in
+                Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
+                return then(uuid)
+            }
+                
         }
         
     }
@@ -251,17 +283,60 @@ extension OrgModel {
             }
         }
     }
+    
+    // @use: get phone number
+    static func generateFreshCode( _ then: @escaping(String) -> Void){
+
+        // punt and say one of these is new random #
+        let c1 = randomPhoneNumber()
+        let c2 = randomPhoneNumber()
+        let c3 = randomPhoneNumber()
+
+        OrgModel.query(at: c1){ org in
+            if let _ = org {
+                OrgModel.query(at: c2){ org in
+                    if let _ = org {
+                        return then(c3)
+                    } else {
+                        return then(c2)
+                    }
+                }
+            } else {
+                return then(c1)
+            }
+        }
+    }
+    
+    // @use: search for club at code
+    static func query( at code: String?, _ then: @escaping(OrgModel?) -> Void ){
         
-    static func rootRef( for uid : String? ) -> DocumentReference? {
-        guard AppDelegate.shared.onFire() else { return nil }
-        guard let uid = uid else { return nil }
-        if uid == "" { return nil }
-        return AppDelegate.shared.fireRef?.collection("organizations").document( uid )
+        guard let code = code else { return then(nil) }
+        
+        AppDelegate.shared.fireRef?
+            .collection("organizations")
+            .whereField("outvite_code", isEqualTo: code)
+            .whereField("deleted", isEqualTo: false)
+            .getDocuments() { (querySnapshot, err) in
+
+                guard let docs = querySnapshot?.documents else {
+                    return then(nil)
+                }
+
+                var res : [ClubID] = []
+
+                for doc in docs {
+                    guard let data = doc.data() as? FirestoreData else { continue }
+                    guard let id = data["ID"] as? String else { continue }
+                    res.append(id)
+                }
+                
+                if res.count == 0 {
+                    return then(nil)
+                } else {
+                    ClubList.shared.getSchool(at: res[0]){ org in then(org) }
+                }
+            }
     }
-    
-    static func bidCol() -> CollectionReference? {
-        guard AppDelegate.shared.onFire() else { return nil }
-        return AppDelegate.shared.fireRef?.collection("log_org_bids")
-    }
-    
+
 }
+

@@ -96,6 +96,22 @@ func validateIFSC(code : String) -> Bool {
 }
 
 
+//MARK:-  Phonenumber create
+
+public func randomPhoneNumber() -> String {
+    return randomNums(digits: 10)
+}
+
+private func randomNums(digits:Int) -> String {
+    var number = String()
+    for _ in 1...digits {
+       number += "\(Int.random(in: 1...9))"
+    }
+    return number
+}
+
+
+
 //MARK:-  Phonenumber uils
 
 func formatPhoneNumber( _ sourcePhoneNumber: String) -> String? {
