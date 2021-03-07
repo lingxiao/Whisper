@@ -15,15 +15,9 @@ import UIKit
 
 //MARK:- club
 
-protocol ClubToClubListDelegate {
-    func didSyncOrgID( from club: Club ) -> Void
-}
-
-
 class Club : Sink {
     
     var delegate: ClubDelegate?
-    var _listDelegate: ClubToClubListDelegate?
     
     // view
     var uid      : String!
@@ -106,12 +100,6 @@ class Club : Sink {
                 self.creator = user
             }
                         
-            // once org id has been synced, fetch the org 
-            // this club is part of
-            if prev_orgid != self.orgID {
-                self._listDelegate?.didSyncOrgID(from: self)
-            }
-            
             
             let prev_del = self.deleted
             self.deleted = unsafeCastBool(data["deleted"])

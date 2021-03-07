@@ -18,14 +18,15 @@ import UIKit
 
 class OrgModel : Sink, Renderable {
     
-    var uid: String = ""
-    var name: String = ""
-    var bio: String = ""
-    var creatorID: String = ""
-    var iamOwner: Bool = false
+    var uid    : String = ""
+    var name   : String = ""
+    var bio    : String = ""
+    var creatorID     : String = ""
+    var iamOwner      : Bool = false
+    var unlocked      : Bool = false
+    var frontdoor_code: String = ""
+    var backdoor_code : String = ""
     var bespokeOnboard: Bool = false
-    var unlocked: Bool = false
-    var outvite_code: String = ""
 
     var fetched: Bool = false
     var clubIDs: [ClubID] = []
@@ -43,23 +44,26 @@ class OrgModel : Sink, Renderable {
     
     //MARK:- data
     
+    // @use: get root data view, and get all clubs
     func await() {
         if self.uuid == "" { return }
         OrgModel.rootRef(for: self.uuid)?.addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else { return }
-            guard let data = document.data() as FirestoreData? else { return }
-            self.name = unsafeCastString(data["name"])
-            self.bio  = unsafeCastString(data["bio"])
-            self.creatorID = unsafeCastString(data["creatorID"])
-            self.iamOwner  = self.creatorID == UserAuthed.shared.uuid
-            self.unlocked  = unsafeCastBool(data["unlocked"])
+            guard let document  = documentSnapshot else { return }
+            guard let data      = document.data() as FirestoreData? else { return }
+            self.name           = unsafeCastString(data["name"])
+            self.bio            = unsafeCastString(data["bio"])
+            self.creatorID      = unsafeCastString(data["creatorID"])
+            self.iamOwner       = self.creatorID == UserAuthed.shared.uuid
+            self.unlocked       = unsafeCastBool(data["unlocked"])
+            self.frontdoor_code = unsafeCastString(data["frontdoor_code"])
+            self.backdoor_code  = unsafeCastString(data["backdoor_code"])
             self.bespokeOnboard = unsafeCastBool(data["bespokeOnboard"])
-            self.outvite_code = unsafeCastString(data["outvite_code"])
         }
+        awaitClubs()
     }
 
-    // get all open clubs
-    func fetchPublicClubs(){
+    // get all clubs in this org
+    private func awaitClubs(){
         if self.uuid == "" { return }
         if self.fetched { return }
         self.fetched = true
@@ -72,26 +76,44 @@ class OrgModel : Sink, Renderable {
                     guard let data = doc.data() as? FirestoreData else { continue }
                     guard let id = data["ID"] as? String else { continue }
                     guard let del = data["deleted"] as? Bool else { continue }
-                    guard let locked = data["locked"] as? Bool else { continue }
+                    guard del == false else { continue }
                     self.clubIDs.append(id)
                     self.clubIDs = Array(Set(self.clubIDs))
-                    if locked == false && del == false {
-                        ClubList.shared.getClub(at: id){ _ in return }
-                    }
+                    ClubList.shared.getClub(at: id){ _ in return }
                 }
             }
     }
     
     //MARK:- write
     
-    // @use: join this organization
-    func join(){
+    // @use: join this organization, subscribe to all clubs
+    public func join(){
         let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }
+        for id in self.clubIDs {
+            ClubList.shared.getClub(at:id){ club in
+                club?.join(with: .levelA){ return }
+            }
+        }
     }
     
-    func leave(){
+    public func leave(){
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).delete(){ e in return }
+    }
+        
+    // scramble backdoor code
+    public func scrambleBackdoorCode(){
+        OrgModel.generateFreshCode(){ code in
+            let res : FirestoreData = ["backdoor_code": code]
+            OrgModel.rootRef(for: self.uuid)?.updateData(res){e in return }
+        }
+    }
+    
+    private func scrambleFrontDoorCode(){
+        OrgModel.generateFreshCode(){ code in
+            let res : FirestoreData = ["frontdoor_code": code]
+            OrgModel.rootRef(for: self.uuid)?.updateData(res){e in return }
+        }
     }
 
     
@@ -229,8 +251,10 @@ extension OrgModel {
         return AppDelegate.shared.fireRef?.collection("log_org_bids")
     }
     
-    
-    static func create( name: String, _ then: @escaping(String) -> Void ){
+    /*
+     @Use: create Org. Note this is for debuggint only
+     */
+    static func _create( name: String, _ then: @escaping(String) -> Void ){
         
         // get club id
         let uuid = UUID().uuidString
@@ -252,17 +276,24 @@ extension OrgModel {
                 "unlocked"       : false,
                 "parent"         : "",
                 "childs"         : [],
-                "outvite_code"   : code,
                 
-                "frontdoor_code" : "",
-                "backdoor_code"  : ""
+                // for now, use the same code for front and back
+                "frontdoor_code" : code,
+                "backdoor_code"  : code
             ]
             
             // create club and create the home room
             // on the client web side, when a bid has been completed,
             // create the home room where all bidders are moved into the room as .levelB members
             OrgModel.rootRef(for: uuid)?.setData(blob){ e in
+                
+                // create home room
                 Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
+
+                // scamble backdoor code
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 ) {
+                    ClubList.shared.getSchool(at: uuid){ org in org?.scrambleBackdoorCode() }
+                }
                 return then(uuid)
             }
                 
@@ -272,7 +303,7 @@ extension OrgModel {
     
     // @internal: create a campus and add admins to it
     static func _createAndJoinAdmins( name: String, with admins: [String] ){
-        OrgModel.create(name: name){ oid in
+        OrgModel._create(name: name){ oid in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 ClubList.shared.getSchool(at: oid){ org in
                     let cbs = ClubList.shared.fetchClubsFor(school: org)
@@ -315,11 +346,11 @@ extension OrgModel {
         
         guard let code = code else { return then(nil) }
             
-        OrgModel.goQueryCode(at:code, field: "frontdoor_code"){ org in
+        OrgModel.goQuery(at:code, field: "frontdoor_code"){ org in
             if let org = org {
                 return then(org)
             } else {
-                OrgModel.goQueryCode(at:code, field: "backdoor_code"){ org in
+                OrgModel.goQuery(at:code, field: "backdoor_code"){ org in
                     return then(org)
                 }
             }
@@ -328,7 +359,7 @@ extension OrgModel {
     }
     
     // query code at specific field
-    private static func goQueryCode( at val: String?, field: String,  _ then: @escaping(OrgModel?) -> Void ){
+    private static func goQuery( at val: String?, field: String,  _ then: @escaping(OrgModel?) -> Void ){
         
         guard let val = val else { return then(nil) }
         

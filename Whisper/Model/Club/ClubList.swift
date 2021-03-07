@@ -36,9 +36,11 @@ class ClubList : Sink {
      */
     func await(){
         guard AppDelegate.shared.onFire() else { return }
-        awaitClubs()
+        awaitOrgs()
+        //awaitClubs()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5 ) { [weak self] in
             //self?.purgeOldData()
+            ///OrgModel._create(name: "helloworld"){ id in return }
         }
     }
     
@@ -52,59 +54,19 @@ class ClubList : Sink {
                     guard let data = doc.data() as? FirestoreData else { continue }
                     guard let id = data["ID"] as? String else { continue }
                     let deleted = unsafeCastBool(data["deleted"])
-                    if deleted == false {
+                    if (!deleted){
                         self.getSchool(at: id){ _ in return }
                     }
                 }
             }
     }
     
-    // @use: await clubs that I have joined
-    private func awaitClubs(){
-        UserAuthed.clubCollectionRef(for: UserAuthed.shared.uuid)?
-            .whereField("didJoin", isEqualTo: true)
-            .addSnapshotListener { querySnapshot, error in
-                guard let docs = querySnapshot?.documents else { return }
-                for doc in docs {
-                    guard let data = doc.data() as? FirestoreData else { continue }
-                    guard let id = data["ID"] as? String else { continue }
-                    let deleted = unsafeCastBool(data["deleted"])
-                    if deleted == false {
-                        self.getClub(at: id){ _ in return }
-                    }
-                }
-            }
-    }
-    
-    // await all hashtags
-    private func awaitTags(){
-        TagModel.colRef()?
-            .addSnapshotListener { querySnapshot, error in
-                guard let docs = querySnapshot?.documents else { return }
-                for doc in docs {
-                    guard let data = doc.data() as? FirestoreData else { continue }
-                    guard let id = data["ID"] as? String else { continue }
-                    if self.tags[id] == nil {
-                        let tag = TagModel(at: id)
-                        tag.await()
-                        self.tags[id] = tag
-                    }
-                }
-            }
-    }
     
 }
 
 //MARK:- read-
 
 
-extension ClubList : ClubToClubListDelegate {
-        
-    // @use: when club is loaded, load the school it belongs in
-    func didSyncOrgID(from club: Club) {
-        getSchool(at: club.orgID){ org in return }
-    }
-}
 
 extension ClubList {
     
@@ -159,7 +121,6 @@ extension ClubList {
         } else {
             Club.get(at: cid){ club in
                 guard let club = club else { return then(nil) }
-                club._listDelegate = self
                 self.clubs[cid] = club
                 then(club)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
@@ -183,7 +144,6 @@ extension ClubList {
         } else {
             let org = OrgModel(at: id)
             org.await()
-            org.fetchPublicClubs()
             self.schools[id] = org
             then(org)
             
