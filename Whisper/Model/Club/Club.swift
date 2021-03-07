@@ -53,9 +53,7 @@ class Club : Sink {
     var members : [UserID:ClubMember] = [:]
     var rooms   : [RoomID:Room] = [:]
     
-    // widgets
-    var widgets: [ClubWidgets] = []
-    
+
     // pods
     var media: [String: PodPlayList] = [:]
     var currentPlayList: PodPlayList?
@@ -114,13 +112,6 @@ class Club : Sink {
                 self._listDelegate?.didSyncOrgID(from: self)
             }
             
-            let prev_ws = self.widgets
-            if let ws = data["widgets"] as? [String] {
-                self.widgets = ws.map{ toWidgets($0) }
-                if prev_ws != self.widgets {
-                    self.delegate?.didChangeWidgets()
-                }
-            }
             
             let prev_del = self.deleted
             self.deleted = unsafeCastBool(data["deleted"])

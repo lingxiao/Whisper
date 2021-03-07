@@ -297,7 +297,7 @@ extension ClubDirectoryController: UITableViewDataSource, UITableViewDelegate {
         table.register(ClubHomeDirCell.self  , forCellReuseIdentifier: ClubHomeDirCell.identifier)
         table.register(ClubCohortCell.self   , forCellReuseIdentifier: ClubCohortCell.identifier)
         table.register(ClubWidgetCell.self, forCellReuseIdentifier: ClubWidgetCell.identifier)
-
+        
         // mount
         self.tableView = table
         self.view.addSubview(table)

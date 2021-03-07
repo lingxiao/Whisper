@@ -37,7 +37,6 @@ class ClubWidgetCell: UITableViewCell, ClubWidgetCellDelegate {
     static var identifier: String = "ClubWidgetCell"
     
     var parent: UIView?
-    var widget: ClubWidgets?
     var delegate: ClubWidgetCellDelegate?
 
     fileprivate var cells : [ClubWidgetCellView] = []

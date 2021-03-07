@@ -61,9 +61,6 @@ protocol AuthedUserDelegate {
 protocol RoomDelegate {
 
     // room states
-    //func didChangeRoomPerm( perm: RoomPerm ) -> Void
-
-    // room states
     func didLiveHostAudio () -> Void
     func didExitLive( from room: Room ) -> Void
 
@@ -97,7 +94,6 @@ protocol RoomVideoDelegate {
 protocol ClubDelegate {
     func didChangeLock( to locked: Bool ) -> Void
     func didAddPlayList() -> Void
-    func didChangeWidgets() -> Void
     func didDeleteClub( at club: Club ) -> Void
 }
 

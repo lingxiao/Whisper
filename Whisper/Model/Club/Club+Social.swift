@@ -484,19 +484,3 @@ extension Club {
     
 }
 
-//MARK:- depricated-
-
-//MARK:- widgets
-
-extension Club {
-    
-    func addWidgets( for ws : [ClubWidgets]) {
-        var res = self.widgets
-        res.append(contentsOf: ws)
-        res = Array(Set(res))
-        let xs = res.map{ fromWidgets($0) }
-        Club.rootRef(for: self.uuid)?.updateData(["widgets":xs]){ e in return }
-    }
-
-}
-

@@ -228,7 +228,6 @@ class AudioRoomParentCell: UICollectionViewCell, AudioRoomParentDelegate {
     static var identifier: String = "AudioRoomParentCell"
     
     var code: Int = 0
-    var widget: ClubWidgets?
     
     var roomVC: AudioRoomController?
     var breakoutVC: BreakoutDirectory?

@@ -31,7 +31,6 @@ class BreakoutRoomCell: UITableViewCell, BreakoutRoomCellDelegate {
     static let textHeight = textHt
     
     var parent: UIView?
-    var widget: ClubWidgets?
     var delegate: BreakoutRoomCellDelegate?
 
     fileprivate var cells : [BreakoutRoomView] = []

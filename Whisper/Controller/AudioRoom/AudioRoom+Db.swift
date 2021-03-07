@@ -126,10 +126,6 @@ extension AudioRoomController: ClubDelegate {
         AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
     }
 
-    func didChangeWidgets(){
-        self.grid?.refresh()
-    }
-
     func didChangeLock( to locked: Bool ){
         stack?.setLock(locked: locked)
         if locked {

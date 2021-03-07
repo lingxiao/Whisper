@@ -180,38 +180,45 @@ func socialLimit( _ val: String? ) -> SocialLimit {
 
 
 
+//MARK:- Bid to join org
 
-//MARK:- room widgets
-
-enum ClubWidgets {
-    case none
-    case flashCards
-    case music
+struct OrgBid {
+    var uuid     : String
+    var user     : User
+    var timeStamp: Int
+    var latest   : Int
+    var bidInCents: Int
+    var canceled  : Bool
 }
 
-func toWidgets( _ str: String ) -> ClubWidgets {
-
-    switch (str){
-    case "flashCards":
-        return .flashCards
-    case "music":
-        return .music
-    default:
-        return .none
+extension OrgBid : Equatable {
+    static func == (lhs: OrgBid, rhs: OrgBid) -> Bool {
+        return lhs.uuid == rhs.uuid
     }
 }
 
-
-func fromWidgets( _ w: ClubWidgets ) -> String {
-    switch(w){
-    case .flashCards:
-        return "flashCards"
-    case .music:
-        return "music"
-    default:
-        return "none"
+// decode org bid and render
+func decodeOrgBid( _ blob : FirestoreData?, _ then: @escaping(OrgBid?) -> Void ){
+    
+    guard let data = blob else { return then(nil) }
+    
+    guard let uuid = data["userID"] as? String else { return then(nil) }
+    if uuid == "" { return then(nil) }
+    
+    UserList.shared.pull(for: uuid){ (_,_,user) in
+        guard let user = user else { return then(nil) }
+        let mem = OrgBid(
+            uuid      : uuid,
+            user      : user,
+            timeStamp : unsafeCastInt(data["timestamp"]),
+            latest    : unsafeCastInt(data["latest"]),
+            bidInCents: unsafeCastIntToZero(data["bidInCents"]),
+            canceled  : unsafeCastBool(data["canceled"])
+        )
+        return then(mem)
     }
 }
+
 
 
 
@@ -248,7 +255,7 @@ func typeClub( _ perm: ClubType ) -> String {
 }
 
 
-//MARK:- permission
+//MARK:- permission of club members
 
 enum ClubPermission {
     case levelA

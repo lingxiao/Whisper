@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05C497E8043C40E91BD70E5B /* Pods_Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA420C1A2B3389D4FE14172D /* Pods_Whisper.framework */; };
 		29AF0AF3D4F4CAAC16B4A984 /* Pods_Whisper_WhisperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D91A2AEBBFA7B6FA82EBDDD6 /* Pods_Whisper_WhisperUITests.framework */; };
+		2C957C5C25F478D200361EFB /* ClubWidgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C957C5B25F478D200361EFB /* ClubWidgetCell.swift */; };
 		2CB7F5D225EEDF8B006D2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */; };
 		2CB7F5DB25F18E00006D2597 /* OnboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */; };
 		2CB7F60325F1E198006D2597 /* PlayListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7F60225F1E198006D2597 /* PlayListHeader.swift */; };
@@ -113,7 +114,6 @@
 		2CD3281825EC636F000638A0 /* HomeFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327AB25EC636E000638A0 /* HomeFooter.swift */; };
 		2CD3281925EC636F000638A0 /* NewCohortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327AC25EC636E000638A0 /* NewCohortView.swift */; };
 		2CD3281A25EC636F000638A0 /* ResumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327AD25EC636E000638A0 /* ResumeView.swift */; };
-		2CD3281B25EC636F000638A0 /* ClubWidgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327AE25EC636E000638A0 /* ClubWidgetCell.swift */; };
 		2CD3281C25EC636F000638A0 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327AF25EC636E000638A0 /* HomeHeader.swift */; };
 		2CD3281D25EC636F000638A0 /* ClubCohortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327B025EC636E000638A0 /* ClubCohortCell.swift */; };
 		2CD3281E25EC636F000638A0 /* OrgListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD327B125EC636E000638A0 /* OrgListController.swift */; };
@@ -156,7 +156,6 @@
 		2CD3285325EC636F000638A0 /* IconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280925EC636F000638A0 /* IconController.swift */; };
 		2CD3285425EC636F000638A0 /* SplashPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280A25EC636F000638A0 /* SplashPages.swift */; };
 		2CD3285625EC636F000638A0 /* RoomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280E25EC636F000638A0 /* RoomHeaderCell.swift */; };
-		2CD3285725EC636F000638A0 /* WidgetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3280F25EC636F000638A0 /* WidgetRow.swift */; };
 		2CD3285825EC636F000638A0 /* RoomGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281025EC636F000638A0 /* RoomGridController.swift */; };
 		2CD3285925EC636F000638A0 /* SpeakerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281125EC636F000638A0 /* SpeakerRow.swift */; };
 		2CD3285A25EC636F000638A0 /* PodHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD3281225EC636F000638A0 /* PodHeaderCell.swift */; };
@@ -184,6 +183,7 @@
 
 /* Begin PBXFileReference section */
 		2952496FA50DEAEBEF5F0695 /* Pods-Whisper-WhisperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whisper-WhisperUITests.release.xcconfig"; path = "Target Support Files/Pods-Whisper-WhisperUITests/Pods-Whisper-WhisperUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2C957C5B25F478D200361EFB /* ClubWidgetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubWidgetCell.swift; sourceTree = "<group>"; };
 		2CB7F5D125EEDF8B006D2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2CB7F5DA25F18E00006D2597 /* OnboardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEntry.swift; sourceTree = "<group>"; };
 		2CB7F60225F1E198006D2597 /* PlayListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListHeader.swift; sourceTree = "<group>"; };
@@ -297,7 +297,6 @@
 		2CD327AB25EC636E000638A0 /* HomeFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFooter.swift; sourceTree = "<group>"; };
 		2CD327AC25EC636E000638A0 /* NewCohortView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCohortView.swift; sourceTree = "<group>"; };
 		2CD327AD25EC636E000638A0 /* ResumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeView.swift; sourceTree = "<group>"; };
-		2CD327AE25EC636E000638A0 /* ClubWidgetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubWidgetCell.swift; sourceTree = "<group>"; };
 		2CD327AF25EC636E000638A0 /* HomeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
 		2CD327B025EC636E000638A0 /* ClubCohortCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubCohortCell.swift; sourceTree = "<group>"; };
 		2CD327B125EC636E000638A0 /* OrgListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgListController.swift; sourceTree = "<group>"; };
@@ -340,7 +339,6 @@
 		2CD3280925EC636F000638A0 /* IconController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconController.swift; sourceTree = "<group>"; };
 		2CD3280A25EC636F000638A0 /* SplashPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPages.swift; sourceTree = "<group>"; };
 		2CD3280E25EC636F000638A0 /* RoomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomHeaderCell.swift; sourceTree = "<group>"; };
-		2CD3280F25EC636F000638A0 /* WidgetRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetRow.swift; sourceTree = "<group>"; };
 		2CD3281025EC636F000638A0 /* RoomGridController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomGridController.swift; sourceTree = "<group>"; };
 		2CD3281125EC636F000638A0 /* SpeakerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerRow.swift; sourceTree = "<group>"; };
 		2CD3281225EC636F000638A0 /* PodHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodHeaderCell.swift; sourceTree = "<group>"; };
@@ -724,9 +722,9 @@
 			isa = PBXGroup;
 			children = (
 				2CD327AB25EC636E000638A0 /* HomeFooter.swift */,
+				2C957C5B25F478D200361EFB /* ClubWidgetCell.swift */,
 				2CD327AC25EC636E000638A0 /* NewCohortView.swift */,
 				2CD327AD25EC636E000638A0 /* ResumeView.swift */,
-				2CD327AE25EC636E000638A0 /* ClubWidgetCell.swift */,
 				2CD327AF25EC636E000638A0 /* HomeHeader.swift */,
 				2CD327B025EC636E000638A0 /* ClubCohortCell.swift */,
 				2CD327A625EC636E000638A0 /* ClubHomDirCell.swift */,
@@ -859,7 +857,6 @@
 			isa = PBXGroup;
 			children = (
 				2CD3280E25EC636F000638A0 /* RoomHeaderCell.swift */,
-				2CD3280F25EC636F000638A0 /* WidgetRow.swift */,
 				2CD3281025EC636F000638A0 /* RoomGridController.swift */,
 				2CD3281125EC636F000638A0 /* SpeakerRow.swift */,
 				2CD3281225EC636F000638A0 /* PodHeaderCell.swift */,
@@ -1140,13 +1137,13 @@
 				2CD326DF25EC61DD000638A0 /* WhisperEdge.swift in Sources */,
 				2CD3282125EC636F000638A0 /* InviteUser+Events.swift in Sources */,
 				2CD3283825EC636F000638A0 /* PhoneBookController.swift in Sources */,
+				2C957C5C25F478D200361EFB /* ClubWidgetCell.swift in Sources */,
 				2CD326E225EC61DD000638A0 /* User.swift in Sources */,
 				2CD3284525EC636F000638A0 /* EditClub.swift in Sources */,
 				2CD3282425EC636F000638A0 /* Calendar+View.swift in Sources */,
 				2CD3283A25EC636F000638A0 /* UserListController.swift in Sources */,
 				2CD326CE25EC61DD000638A0 /* Club+Media.swift in Sources */,
 				2CD3278725EC6358000638A0 /* UserRowCell.swift in Sources */,
-				2CD3281B25EC636F000638A0 /* ClubWidgetCell.swift in Sources */,
 				2CD3284125EC636F000638A0 /* PhoneNumberView.swift in Sources */,
 				2CD3273425EC6281000638A0 /* UINavigationController+style.swift in Sources */,
 				2CD3273525EC6281000638A0 /* Number+Pretty.swift in Sources */,
@@ -1203,7 +1200,6 @@
 				2CD326E525EC61DD000638A0 /* Prelude.swift in Sources */,
 				2CD326EF25EC61DD000638A0 /* Authed+Mutate.swift in Sources */,
 				2CD326D325EC61DD000638A0 /* Club.swift in Sources */,
-				2CD3285725EC636F000638A0 /* WidgetRow.swift in Sources */,
 				2CD3281F25EC636F000638A0 /* InviteUser+TextInput.swift in Sources */,
 				2CD3271625EC626A000638A0 /* ModelDelegate.swift in Sources */,
 				2CD3279325EC6358000638A0 /* AppText.swift in Sources */,

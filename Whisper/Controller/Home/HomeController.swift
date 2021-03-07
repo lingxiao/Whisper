@@ -109,7 +109,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 return
             } else {
                 // if I have not been onboarded yet, then go onboard
-                if true { //AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
+                if AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
                     self.didShowOnBoard = true
                     self.goOnboard()
                 }

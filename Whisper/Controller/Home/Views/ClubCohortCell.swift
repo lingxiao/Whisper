@@ -31,7 +31,6 @@ class ClubCohortCell: UITableViewCell, ClubCohortCellDelegate {
     static var identifier: String = "ClubCohortCell"
     
     var parent: UIView?
-    var widget: ClubWidgets?
     var delegate: ClubCohortCellDelegate?
 
     fileprivate var cells : [ClubCohortCellView] = []

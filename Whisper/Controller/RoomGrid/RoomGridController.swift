@@ -13,7 +13,6 @@ import UIKit
 protocol RoomGridControllerDelegate {
     func onTapUser( at user: User? ) -> Void
     func onTapHeader( for club: Club?, at room: Room? ) -> Void
-    func onHandleTapWidget(on widget: ClubWidgets? ) -> Void
     func didRefreshGrid() -> Void
 }
 
@@ -231,10 +230,6 @@ extension RoomGridController : PodHeaderCellDelegate, RoomHeaderCellDelegate, Sp
     
     func handleTapRoomHeader( on club: Club?, from room: Room?, with user: User? ){
         delegate?.onTapHeader( for: club, at: room )
-    }
-    
-    func onTapWidget( at widget: ClubWidgets? ){
-        delegate?.onHandleTapWidget(on: widget)
     }
     
     func onSkipR( from pod: PodItem? ){

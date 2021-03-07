@@ -36,11 +36,6 @@ extension AudioRoomController : RoomGridControllerDelegate {
         AuthDelegate.shared.home?.navigationController?.pushViewController(v, animated: true)
     }
     
-    func onHandleTapWidget(on widget: ClubWidgets?){
-        return
-    }
-
-    
     func didRefreshGrid(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
             self?.maybeLayoutAnalyticsBtn()
