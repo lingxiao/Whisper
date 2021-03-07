@@ -182,6 +182,46 @@ func socialLimit( _ val: String? ) -> SocialLimit {
 
 //MARK:- Bid to join org
 
+enum BidState {
+    case bidding
+    case canceled
+    case liveDidNotPay
+    case livePaid
+    case livePaymentFailed
+}
+
+func bidState( _ str: String ) -> BidState {
+    switch str {
+    case "bidding":
+        return .bidding
+    case "canceled":
+        return .canceled
+    case "liveDidNotPay":
+        return .liveDidNotPay
+    case "livePaid":
+        return .livePaid
+    case "livePaymentFailed":
+        return .livePaymentFailed
+    default:
+        return .canceled
+    }
+}
+
+func stateBid( _ st: BidState ) -> String {
+    switch st {
+    case .bidding:
+        return "bidding"
+    case .canceled:
+        return "canceled"
+    case .liveDidNotPay:
+        return "liveDidNotPay"
+    case .livePaid:
+        return "livePaid"
+    case .livePaymentFailed:
+        return "livePaymentFailed"
+    }
+}
+
 struct OrgBid {
     var uuid     : String
     var user     : User
@@ -190,7 +230,7 @@ struct OrgBid {
     var timeStamp: Int
     var latest   : Int
     var bidInCents: Int
-    var canceled  : Bool
+    var state     : BidState
 }
 
 extension OrgBid : Equatable {
@@ -217,7 +257,7 @@ func decodeOrgBid( _ blob : FirestoreData?, _ then: @escaping(OrgBid?) -> Void )
             timeStamp : unsafeCastInt(data["timestamp"]),
             latest    : unsafeCastInt(data["latest"]),
             bidInCents: unsafeCastIntToZero(data["bidInCents"]),
-            canceled  : unsafeCastBool(data["canceled"])
+            state     : bidState(unsafeCastString(data["state"]))
         )
         return then(mem)
     }
