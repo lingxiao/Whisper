@@ -24,6 +24,7 @@ class OrgModel : Sink, Renderable {
     var creatorID: String = ""
     var iamOwner: Bool = false
     var bespokeOnboard: Bool = false
+    var unlocked: Bool = false
 
     var fetched: Bool = false
     var clubIDs: [ClubID] = []
@@ -50,6 +51,7 @@ class OrgModel : Sink, Renderable {
             self.bio  = unsafeCastString(data["bio"])
             self.creatorID = unsafeCastString(data["creatorID"])
             self.iamOwner  = self.creatorID == UserAuthed.shared.uuid
+            self.unlocked  = unsafeCastBool(data["unlocked"])
             self.bespokeOnboard = unsafeCastBool(data["bespokeOnboard"])
         }
     }
@@ -257,5 +259,9 @@ extension OrgModel {
         return AppDelegate.shared.fireRef?.collection("organizations").document( uid )
     }
     
-
+    static func bidCol() -> CollectionReference? {
+        guard AppDelegate.shared.onFire() else { return nil }
+        return AppDelegate.shared.fireRef?.collection("log_org_bids")
+    }
+    
 }
