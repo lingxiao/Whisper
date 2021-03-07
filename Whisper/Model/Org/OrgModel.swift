@@ -252,7 +252,10 @@ extension OrgModel {
                 "unlocked"       : false,
                 "parent"         : "",
                 "childs"         : [],
-                "outvite_code"   : ""
+                "outvite_code"   : code,
+                
+                "frontdoor_code" : "",
+                "backdoor_code"  : ""
             ]
             
             // create club and create the home room
@@ -307,15 +310,33 @@ extension OrgModel {
         }
     }
     
-    // @use: search for club at code
+    // @use: search for orgs with code. first search front door, then find backdoor
     static func query( at code: String?, _ then: @escaping(OrgModel?) -> Void ){
         
         guard let code = code else { return then(nil) }
+            
+        OrgModel.goQueryCode(at:code, field: "frontdoor_code"){ org in
+            if let org = org {
+                return then(org)
+            } else {
+                OrgModel.goQueryCode(at:code, field: "backdoor_code"){ org in
+                    return then(org)
+                }
+            }
+        }
+
+    }
+    
+    // query code at specific field
+    private static func goQueryCode( at val: String?, field: String,  _ then: @escaping(OrgModel?) -> Void ){
         
-        AppDelegate.shared.fireRef?
+        guard let val = val else { return then(nil) }
+        
+        let ref = AppDelegate.shared.fireRef?
             .collection("organizations")
-            .whereField("outvite_code", isEqualTo: code)
             .whereField("deleted", isEqualTo: false)
+        
+        ref?.whereField(field, isEqualTo: val)
             .getDocuments() { (querySnapshot, err) in
 
                 guard let docs = querySnapshot?.documents else {
@@ -337,6 +358,7 @@ extension OrgModel {
                 }
             }
     }
+    
 
 }
 
