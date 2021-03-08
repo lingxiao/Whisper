@@ -94,7 +94,8 @@ class PhoneNumberView: UIView {
         }
         if club.iamOwner && !self.short {
             org.scrambleBackdoorCode(){ code in
-                self.h1?.text = org.getPhoneNumber(front:false)
+                print(">>> new code: ", code)
+                self.h1?.text = code
             }
         } else {
             delegate?.onDismissPhoneNumberView()
