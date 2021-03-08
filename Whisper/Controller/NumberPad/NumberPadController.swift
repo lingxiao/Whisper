@@ -128,19 +128,20 @@ extension NumberPadController : AppHeaderDelegate {
                     self.raw = ""
                     self.number = ""
                     self.textInput?.text = ""
-                    self.layoutRoom(for: club)
                     self.newClub = club
                     
                     UserAuthed.shared.setCurrentOrg(to: org?.uuid)
-                    
+
+                    self.layoutRoom(for: club)
+
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
                         postRefreshNewsFeed()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
                         postRefreshClubPage( at: club.uuid )
-                        if let parent = self?.onboardDelegate {
-                            parent.onDidSyncWithSponsor( at: code, with: club )
+                        if let delegate = self?.onboardDelegate {
+                            delegate.onDidSyncWithSponsor( at: code, with: club )
                         } else {
                             self?.removeIndicator()
                             let name = org?.get_H1() ?? "Server"
@@ -150,7 +151,7 @@ extension NumberPadController : AppHeaderDelegate {
                     }
                     
                 } else {
-                    ToastSuccess(title: "Oh no!", body: "We can't find an account matching this number, please try again")
+                    ToastSuccess(title: "Oh no", body: "We can't find a server matching this code")
                     self.removeIndicator()
                     self.raw = ""
                     self.number = ""
