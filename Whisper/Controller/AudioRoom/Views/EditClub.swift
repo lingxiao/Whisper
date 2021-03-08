@@ -409,10 +409,11 @@ extension EditClubController: UserRowCellProtocol {
     // go to profile or if i am admin: set permissions
     func handleTap(on user: User?) {
         
-        guard let user = user else { return }
-        guard let org = org else { return }
-
         mediumImpact()
+        guard let user = user else { return }
+        goToProfile(user)
+
+        /*guard let org = org else { return }
 
         if user.isMe() {
             
@@ -431,7 +432,7 @@ extension EditClubController: UserRowCellProtocol {
         } else {
             
             goToProfile(user)
-        }
+        }*/
         
     }
     
