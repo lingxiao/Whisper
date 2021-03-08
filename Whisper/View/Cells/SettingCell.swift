@@ -39,8 +39,8 @@ class SettingCell: UITableViewCell {
         self.h1?.removeFromSuperview()
     }
     
-    func config( with kind: EditClubCellKind, club: Club? ){
-        layout( kind, club )
+    func config( with kind: EditClubCellKind, club: Club?, org: OrgModel? ){
+        layout( kind, club, org )
     }
     
     //MARK:- events + view
@@ -77,44 +77,45 @@ class SettingCell: UITableViewCell {
 
     //MARK:- view
 
-    private func layout( _ kind: EditClubCellKind, _ club: Club? ){
+    private func layout( _ kind: EditClubCellKind, _ club: Club?, _ org: OrgModel? ){
         
         var str = "name"
         var strB = ""
+        let keyword = org != nil ? "channel" : "room"
         
         switch kind {
         case .editName:
             str = "name"
-            strB = "Edit channel name"
+            strB = "Edit \(keyword) name"
             let _ = self.tappable(with: #selector(handleTapName))
         case .editPhoto:
             str = "photo-stack"
-            strB = "Edit channel photo"
+            strB = "Edit \(keyword) photo"
             let _ = self.tappable(with: #selector(handleTapPhoto))
         case .editNumber:
             str = "hashtag"
-            strB = "Scramble channel number"
+            strB = "Scramble \(keyword) code"
             let _ = self.tappable(with: #selector(handleTapNumber))
         case .deleteClub:
             str = "xmark"
-            strB = "Delete channel"
+            strB = "Delete \(keyword)"
             let _ = self.tappable(with: #selector(handleTapDelete))
         case .leaveClub:
             str = "exit-1"
-            strB = "Leave channel"
+            strB = "Leave room"
             let _ = self.tappable(with: #selector(handleLeaveGroup))
         case .lockGroup:
             if let club = club {
                 if club.locked {
                     str = "locked"
-                    strB = "This channel is hidden"
+                    strB = "This \(keyword) is hidden"
                 } else {
                     str = "unlock"
-                    strB = "This channel is visible"
+                    strB = "This \(keyword) is visible"
                 }
             } else {
                 str = "locked"
-                strB = "This channel is locked"
+                strB = "This \(keyword) is locked"
             }
             let _ = self.tappable(with: #selector(handleTapLock))
         default:

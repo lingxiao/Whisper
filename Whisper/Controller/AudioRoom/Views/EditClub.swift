@@ -712,7 +712,7 @@ extension EditClubController :  UITableViewDataSource, UITableViewDelegate {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as! SettingCell
-            cell.config( with: kind, club: self.club )
+            cell.config( with: kind, club: self.club, org: self.org )
             cell.selectionStyle = .none
             cell.backgroundColor = Color.primary
             cell.delegate = self
