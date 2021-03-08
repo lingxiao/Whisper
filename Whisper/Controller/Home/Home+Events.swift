@@ -86,9 +86,8 @@ extension HomeController: ResumeViewDelegate {
 
 //MARK:- CLUB
 
-
 extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
-    
+
     func showClub( at club: Club? ){
         heavyImpact()
         if let club = club {
@@ -97,28 +96,6 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         } else {
             ToastSuccess(title: "Oh no", body: "We can't find this channel right now")
         }
-        // @Use: uncomment this if you want to show the user confirmation modal
-        // before navigating away from current live room
-        //let actives = ClubList.shared.whereAmILive()
-        /*if actives.count == 0 {
-            goShowClub( at: club )
-        } else {
-            if actives.count == 1 && actives[0].uuid == club.uuid {
-                goShowClub( at: club )
-            } else {
-                if UserAuthed.shared.did_switch_rooms {
-                    goShowClub( at: club )
-                } else {
-                    let f = view.frame
-                    let ratio = SwitchRoomModal.height()/f.height
-                    let attributes = centerToastFactory(ratio: ratio, displayDuration: 100000)
-                    let modal = SwitchRoomModal()
-                    modal.delegate = self
-                    modal.config( at: club, width: f.width-20)
-                    SwiftEntryKit.display(entry: modal, using: attributes)
-                }
-            }
-        }*/
     }
 
     private func goShowClub(at club: Club){
@@ -132,12 +109,12 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         } else {
             ToastSuccess(title: "Oh no!", body: "This channel is locked")
         }
-        
     }
-       
+    
+    
     // show modal that create new channels
-    func onCreateNewCohort(from org: OrgModel?) {
-        
+    func onCreateNewRoom(from org: OrgModel? ){
+
         guard let org = org else { return }
 
         newCohortView?.removeFromSuperview()
@@ -145,7 +122,7 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         self.newCohortView = nil
 
         let f  = view.frame
-        let ht = NewCohortView.Height()
+        let ht = NewRoomModal.height()
         let dy = (f.height - ht)/2 - 10
 
         let v = UIView()
@@ -159,8 +136,8 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
 
         let card = NewRoomModal()
         card.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: ht)
-        card.config( width: f.width-20 )
-        //card.delegate = self
+        card.config( at: org, width: f.width-20 )
+        card.delegate = self
         card.roundCorners(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight], radius: 15)
         view.addSubview(card)
         view.bringSubviewToFront(card)
@@ -173,6 +150,8 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
 
     }
     
+       
+    // share number of htis channel
     func shareNumber(from org: OrgModel?){
         
         heavyImpact()
@@ -233,10 +212,10 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
     
     // on tap background view, hide modal
     @objc func onTapOnDarkView(sender : UITapGestureRecognizer){
-        hideNewCohort()
+        hideNewRoomModal()
     }
     
-    private func hideNewCohort(){
+    private func hideNewRoomModal(){
         let f = view.frame
         func fn(){
             self.newCohortView?.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: f.height-60)
@@ -252,49 +231,33 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
 
 //MARK:- NEW MODAL
 
-extension HomeController : NewCohortViewDelegate {
+extension HomeController : NewRoomModalDelegate {
     
-    func onDismissNewCard( from card: NewCohortView ){
-        hideNewCohort()
+    func onCancel( at org: OrgModel? ){
+        hideNewRoomModal()
     }
     
-    func onCreateNewCard( from card: NewCohortView, image: UIImage?, name: String, isHidden: Bool ){
-
-        hideNewCohort()
-        placeIndicator("Creating channel")
-
-        Club.create(name: name, orgID: card.org?.uuid ?? "", type: .cohort, locked:isHidden ){ cid in
+    func onMkOpen( at org: OrgModel? ){
+        mkRoomAndOpenRoom(at: org, type: .cohort)
+    }
+    
+    func onMkOneTime( at org: OrgModel? ){
+        mkRoomAndOpenRoom(at: org, type: .ephemeral)
+    }
+    
+    
+    private func mkRoomAndOpenRoom( at org: OrgModel?, type: ClubType ){
         
-            guard let cid = cid else {
-                self.hideIndicator()
-                return ToastSuccess(title: "Ops", body: "Network error")
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
-                self?.hideIndicator()
-                guard let _ = self else { return }
-                ClubList.shared.getClub(at: cid){ club in
-                    club?.changeClubImage(to: image){ _ in return }
-                    postRefreshClubPage(at:"ALL")
-                }
-            }
-        }
-    }
-    
-    func onCreateEmphRoom( from org: OrgModel?, name: String ){
-
-        hideNewCohort()
-
+        // change view
+        hideNewRoomModal()
         if self.isCreatingRoom { return }
         guard let org = org else { return }
         self.isCreatingRoom = true
-        
-        let title = name != ""
-            ?  name
-            : "\(UserAuthed.shared.get_H1())'s channel"
-        
-        placeIndicator("Creating channel")
-        Club.create(name: title, orgID: org.uuid, type: .ephemeral, locked:false ){ cid in
+        placeIndicator("Creating room")
+
+        // make club and go to it
+        let title = "\(UserAuthed.shared.get_H1())'s room"
+        Club.create(name: title, orgID: org.uuid, type: type, locked:false ){ cid in
         
             guard let cid = cid else {
                 self.hideIndicator()
@@ -313,30 +276,7 @@ extension HomeController : NewCohortViewDelegate {
     }
 }
 
-//MARK:- ROOM MODAL
 
-extension HomeController : SwitchRoomModalDelgate {
-
-    func onExit(at club: Club?) {
-        SwiftEntryKit.dismiss()
-        if let club = club {
-            goShowClub(at: club)
-        }
-    }
-    
-    func onCancel() {
-        SwiftEntryKit.dismiss()
-    }
-    
-    func onExitAndDoNotShow( at club: Club? ) {
-        SwiftEntryKit.dismiss()
-        if let club = club {
-            goShowClub(at: club)
-            UserAuthed.shared.didSwitchRoom()
-        }
-    }
-    
-}
 
 //MARK:- FOOTER
 
@@ -442,4 +382,3 @@ extension HomeController : HomeFooterDelegate {
     }
 
 }
-

@@ -157,19 +157,22 @@ class AudioRoomHeader : UIView {
         
         if let _ = self.setting { return }
         
-        var str = "hidden"
+        var str = "pin-2"
         if let club = club {
             switch club.type {
             case .home:
                 str = "fire"
             case .ephemeral:
                 str = "timer-2"
-            default:
+            case .cohort:
+                str = "pin-l"
+            /*default:
                 if club.locked {
                     str = "hidden"
                 } else {
                     str = "hidden-false"
                 }
+            }*/
             }
         }
 

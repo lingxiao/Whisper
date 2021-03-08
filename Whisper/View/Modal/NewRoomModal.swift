@@ -12,15 +12,15 @@ import SwiftEntryKit
 
 
 protocol NewRoomModalDelegate {
-    func onCancel() -> Void
-    func onMkOpen() -> Void
-    func onMkOneTime() -> Void
+    func onCancel( at org: OrgModel? ) -> Void
+    func onMkOpen( at org: OrgModel? ) -> Void
+    func onMkOneTime( at org: OrgModel? ) -> Void
 }
 
 class NewRoomModal: UIView {
     
     // data
-    var club : Club?
+    var org: OrgModel?
     var delegate: NewRoomModalDelegate?
     
     //style
@@ -45,22 +45,23 @@ class NewRoomModal: UIView {
         return dy
     }
     
-    func config( width: CGFloat ){
+    func config( at org: OrgModel?, width: CGFloat ){
+        self.org = org
         self.width = width
         layout()
     }
     
     
     @objc func onPerm(_ button: TinderButton ){
-        delegate?.onMkOpen()
+        delegate?.onMkOpen( at: self.org )
     }
 
     @objc func onCancel(_ button: TinderButton ){
-        delegate?.onCancel()
+        delegate?.onCancel( at: self.org )
     }
 
     @objc func onOnetime(_ button: TinderButton ){
-        delegate?.onMkOneTime()
+        delegate?.onMkOneTime( at: self.org )
     }
 
     
@@ -72,6 +73,7 @@ class NewRoomModal: UIView {
         addSubview(parent)
 
         var dy: CGFloat = 10
+        let btnWidth = self.width-60
 
         let v = UIView(frame:CGRect(x:0,y:0,width:width, height:20))
         v.backgroundColor = Color.primary
@@ -79,9 +81,9 @@ class NewRoomModal: UIView {
 
         // add header
         let h1 = UITextView(frame:CGRect(x:0,y:dy,width:width, height:AppFontSize.H1))
-        h1.font = UIFont(name: FontName.bold, size: AppFontSize.footer)
+        h1.font = UIFont(name: FontName.bold, size: AppFontSize.H3)
         h1.text = "Start a new room"
-        h1.textColor = Color.primary_dark
+        h1.textColor = Color.primary_dark.darker(by: 15)
         h1.textAlignment = .center
         h1.textContainer.lineBreakMode = .byWordWrapping
         h1.backgroundColor = Color.primary
@@ -92,33 +94,33 @@ class NewRoomModal: UIView {
         
         // add button
         let btn = TinderTextButton()
-        btn.frame = CGRect(x: 20, y:dy,width:width-40,height:40)
-        btn.config(with:"Create permanen roomt")
-        btn.backgroundColor = Color.graySecondary
+        btn.frame = CGRect(x: (width-btnWidth)/2, y:dy,width:btnWidth,height:40)
+        btn.config(with:"Open pinned room")
+        btn.backgroundColor = Color.grayTertiary
         btn.textLabel?.textColor = Color.primary_dark
-        btn.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footer)
+        btn.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         parent.addSubview(btn)
         btn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onPerm)))
 
         dy += 40 + 10
         
         let btn2 = TinderTextButton()
-        btn2.frame = CGRect(x: 20, y:dy,width:width-40,height:40)
-        btn2.config(with:"Create ephemeral room")
-        btn2.backgroundColor = Color.graySecondary
+        btn2.frame = CGRect(x: (width-btnWidth)/2, y:dy,width:btnWidth,height:40)
+        btn2.config(with:"Open one-time room")
+        btn2.backgroundColor = Color.redLite
         btn2.textLabel?.textColor = Color.primary_dark
-        btn2.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footer)
+        btn2.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         parent.addSubview(btn2)
         btn2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onOnetime)))
 
         dy += 40 + 10
         
         let btn3 = TinderTextButton()
-        btn3.frame = CGRect(x: 20, y:dy,width:width-40,height:40)
-        btn3.config(with: "cancel")
+        btn3.frame = CGRect(x: (width-btnWidth)/2, y:dy,width:btnWidth,height:40)
+        btn3.config(with: "Cancel")
         btn3.backgroundColor = Color.graySecondary
         btn3.textLabel?.textColor = Color.primary_dark
-        btn3.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footer)
+        btn3.textLabel?.font = UIFont(name: FontName.bold, size: AppFontSize.footerBold)
         parent.addSubview(btn3)
         btn3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCancel)))
 

@@ -463,29 +463,30 @@ extension AudioRoomController: AudioRoomHeaderDelegate, PhoneNumberViewDelegate 
             bod = "This is the home room, you can hold bigger events here"
             str = "Ok"
         case .ephemeral:
-            bod = "This is an ephemeral channel, anyone can enter this channel and speak. However once the creator of the channel leaves, the space will shut down."
+            bod = "This is an one-time room, once the creator of the channel leaves, the space will shut down."
             str = "Ok"
         case .cohort:
-            bod = club.locked
+            bod = "This is a pinned room, it will be on the home page even after everyone leaves. If you want to delete this room or change its name, tap the horizontal bar at the top of this page."
+            str = "Ok"
+            /*bod = club.locked
                 ? "This channel is hidden, only channel members may enter this space."
                 : "This channel is open, anyone can enter this space and chat with you."
-            str = club.locked ? "Unlock" : "Lock"
+            str = club.locked ? "Unlock" : "Lock"*/
         }
         
-        let optionMenu = UIAlertController(title: "Privacy Settings", message: bod, preferredStyle: .actionSheet)
-        let a1 = UIAlertAction(title: str, style: .default, handler: {a in
-            if club.iamAdmin() && club.type == .cohort {
+        let optionMenu = UIAlertController(title: "Room Settings", message: bod, preferredStyle: .actionSheet)
+        let a1 = UIAlertAction(title: str, style: .default) //, handler: {a in
+            /*if club.iamAdmin() && club.type == .cohort {
                 club.toggleLock()
                 ToastSuccess(title: "Give it 2 seconds", body: "")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
                     SwiftEntryKit.dismiss()
                     self?.grid?.header?.refresh()
                 }
-            }
-        })
-        let a2 = UIAlertAction(title: "Dismiss", style: .cancel )
+            }*/
+        //let a2 = UIAlertAction(title: "Dismiss", style: .cancel )
         optionMenu.addAction(a1)
-        optionMenu.addAction(a2)
+        //optionMenu.addAction(a2)
         self.present(optionMenu, animated: true, completion: nil)
     }
     

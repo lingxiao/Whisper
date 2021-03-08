@@ -188,12 +188,14 @@ private class ClubCohortCellView : UIView {
         
         // icon
         let icon_R = ht
-        var icon_str = "hidden-false"
+        var icon_str = "fire" //hidden-false"
         var icolor = Color.redDark
         switch club.type {
         case .cohort:
-            icon_str = club.locked ? "hidden" : "hidden-false"
-            icolor = club.locked ? Color.redDark : Color.greenDark
+            //icon_str = club.locked ? "hidden" : "hidden-false"
+            //icolor = club.locked ? Color.redDark : Color.greenDark
+            icon_str = "pin-l"
+            icolor = Color.redDark
         case .home:
             icon_str = "fire"
         case .ephemeral:

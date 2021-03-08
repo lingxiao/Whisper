@@ -30,8 +30,7 @@ enum DirectoryCellKind {
 protocol ClubDirectoryDelegate {
     func showClub( at club: Club? ) -> Void
     func shareNumber(from org: OrgModel?) -> Void
-    func onCreateNewCohort(from org: OrgModel?) -> Void
-    func onCreateEmphRoom( from org: OrgModel?, name: String) -> Void
+    func onCreateNewRoom(from org: OrgModel? ) -> Void
 }
 
 typealias DirectoryDataSource = [(DirectoryCellKind, [Club?])]
@@ -191,7 +190,7 @@ extension ClubDirectoryController : ClubWidgetCellDelegate {
     func onTap( at kind: ClubWidgetCellKind ){
         switch kind {
         case .newRoom:
-            delegate?.onCreateNewCohort(from: self.org)
+            delegate?.onCreateNewRoom(from:self.org)
         case .shareNumber:
             delegate?.shareNumber(from:self.org)
         case .calendar:
@@ -220,7 +219,7 @@ extension ClubDirectoryController: ClubCohortCellDelegate
         if let club = club {
             delegate?.showClub(at:club)
         } else {
-            delegate?.onCreateNewCohort(from: self.org)
+            return
         }
     }
 
@@ -262,7 +261,7 @@ extension ClubDirectoryController : HomeHeaderDelegate {
     }
     
     func onNewGroup() {
-        delegate?.onCreateNewCohort(from: self.org)
+        delegate?.onCreateNewRoom(from:self.org)
     }
 }
 
