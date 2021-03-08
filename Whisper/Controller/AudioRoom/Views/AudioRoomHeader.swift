@@ -138,7 +138,7 @@ class AudioRoomHeader : UIView {
         
         if let club = self.club {
             if club.type == .ephemeral{
-                label.text = "Ephemeral"
+                label.text = ""
             } else {
                 label.text = "Main"
             }

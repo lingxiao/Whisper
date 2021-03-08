@@ -98,7 +98,7 @@ class EditClubController: UIViewController {
         layoutHeaderA()
         layoutHeaderB()
         layoutTable()
-        layoutBtn()
+        //layoutBtn()
         if let header = self.header {
             tableView?.tableHeaderView = header
         }
@@ -123,7 +123,7 @@ class EditClubController: UIViewController {
             res = [.pad,.pad, .headerA,.leaveClub ].map{ ($0,nil)}
         }
 
-        let head : EditClubData = club.getMembers().filter{ club.isAdmin($0) }.map{ (.user, $0) }
+        /*let head : EditClubData = club.getMembers().filter{ club.isAdmin($0) }.map{ (.user, $0) }
         let tail : EditClubData = club.getMembers().filter{ club.isAdmin($0) == false }.map{ (.user,$0) }
         
         res.append( (.headerC,nil) )
@@ -133,7 +133,7 @@ class EditClubController: UIViewController {
             res.append( (.headerD,nil) )
             res.append( contentsOf:  tail)
             res.append( (.bot_pad,nil) )
-        }
+        }*/
         
         self.dataSource = res
         tableView?.reloadData()
@@ -561,7 +561,6 @@ extension EditClubController {
         
         guard let club = self.club else { return }
         if club.iamAdmin() == false { return }
-        
         let btn = TinderTextButton()
         let R : CGFloat = 40.0
         let f = view.frame

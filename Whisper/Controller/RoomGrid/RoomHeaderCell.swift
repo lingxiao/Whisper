@@ -152,7 +152,7 @@ class RoomHeaderCell: UITableViewCell {
         } else {
             if let n = room?.getAttending().count {
                 let num = Double(n).formatPoints()
-                str = n > 1 ? "\(num) people are in the room." : "1 person is in this room."
+                str = n > 1 ? "\(num) people are in the room." : "1 person is live in this room."
             }
         }
         
@@ -160,8 +160,12 @@ class RoomHeaderCell: UITableViewCell {
 
         guard let club = self.club else { return }
         
+        // determine if this club can be edited by me
+        let b1  = club.type == .cohort && club.creatorID == UserAuthed.shared.uuid
+        let b2  = club.type == .home && club.creatorID == UserAuthed.shared.uuid
+           
         // cohorts have their own settings
-        if club.type == .cohort {
+        if b1 || b2 {
             let icon = TinderButton()
             icon.frame = CGRect(x:pf.width-r-5,y:(pf.height-r)/2, width:r, height:r)
             icon.changeImage(to: "vdots", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
