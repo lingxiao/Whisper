@@ -120,7 +120,7 @@ extension NumberPadController : AppHeaderDelegate {
 
             placeIndicator( type: .ballBeat )
 
-            UserAuthed.shared.syncWithNumber(at: code){ club in
+            UserAuthed.shared.syncWithOrg(at: code){ (org,club) in
 
                 if let club = club {
 
@@ -130,7 +130,9 @@ extension NumberPadController : AppHeaderDelegate {
                     self.textInput?.text = ""
                     self.layoutRoom(for: club)
                     self.newClub = club
-
+                    
+                    UserAuthed.shared.setCurrentOrg(to: org?.uuid)
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
                         postRefreshNewsFeed()
                     }
@@ -141,7 +143,8 @@ extension NumberPadController : AppHeaderDelegate {
                             parent.onDidSyncWithSponsor( at: code, with: club )
                         } else {
                             self?.removeIndicator()
-                            ToastSuccess(title: "Synced with \(club.get_H1())", body: "Tap any active channel to chat with members.")
+                            let name = org?.get_H1() ?? "Server"
+                            ToastSuccess(title: "Synced with \(name)", body: "Tap any active channel to chat with members.")
                             self?.onHandleDismiss()
                         }
                     }

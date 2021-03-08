@@ -67,29 +67,27 @@ class FinishOnboardController: UIViewController, NumberPadControllerDelegateOnbo
 
         let name = club?.getOrg()?.get_H1() ?? "the server"
         ToastSuccess(title: "Confirmed with \(name)", body: "Give us a few seconds while we sync with the server")
+            
+        // have onboarded,do not do it again
+        AuthDelegate.shared.doNotOnboard()
         
-        UserAuthed.shared.syncWithSponsor(at:code){ sponsor in
-            
-            // have onboarded,do not do it again
-            AuthDelegate.shared.doNotOnboard()
-            
-            // wait for db to sync, then determine if additional onboarding steps needed
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
-                SwiftEntryKit.dismiss()
-                if let org = club?.getOrg() {
-                    if org.bespokeOnboard && ClubList.shared.fetchTags(for: org).count > 0 {
-                        let vc = OnboardCommunController()
-                        vc.view.frame = UIScreen.main.bounds
-                        vc.config(with:club)
-                        AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
-                    }
+        // wait for db to sync, then determine if additional onboarding steps needed
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
+            SwiftEntryKit.dismiss()
+            if let org = club?.getOrg() {
+                if org.bespokeOnboard && ClubList.shared.fetchTags(for: org).count > 0 {
+                    let vc = OnboardCommunController()
+                    vc.view.frame = UIScreen.main.bounds
+                    vc.config(with:club)
+                    AuthDelegate.shared.home?.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
                 }
+            } else {
+                AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
             }
         }
+
     }
 }
 

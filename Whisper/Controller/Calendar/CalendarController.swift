@@ -290,7 +290,7 @@ extension CalendarController: CalendarCellDelegate {
 
         let cohorts = ClubList.shared.fetchClubsFor(school: org).filter{ $0.type == .home }
         if cohorts.count == 0 { return }
-        let num = cohorts[0].getPhoneNumber()
+        let num = org.getPhoneNumber(front:false) ?? ""
         
         let startDate = Date()
         let endDate = startDate.addingTimeInterval(1 * 60 * 60)

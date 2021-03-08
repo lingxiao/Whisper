@@ -102,10 +102,11 @@ class OrgModel : Sink, Renderable {
     }
         
     // scramble backdoor code
-    public func scrambleBackdoorCode(){
+    public func scrambleBackdoorCode( _ then: @escaping(String) -> Void ){
         OrgModel.generateFreshCode(){ code in
             let res : FirestoreData = ["backdoor_code": code]
             OrgModel.rootRef(for: self.uuid)?.updateData(res){e in return }
+            then(code)
         }
     }
     
@@ -152,9 +153,26 @@ class OrgModel : Sink, Renderable {
         return self.bio
     }
     
-    func get_numHidden() -> Int {
-        //let clubs = ClubList.shared.fetchClubsFor(school: self).filter{ $0.deleted == false }
-        return 0 //self.clubIDs.count - clubs.count
+    
+    func getPhoneNumber(front:Bool) -> String {
+        
+        var res : String = "("
+        
+        let code = front ? self.frontdoor_code : self.backdoor_code
+
+        for c in code.enumerated() {
+
+            let idx = c.offset
+            
+            if idx == 2 {
+                res = res + "\(c.element)) "
+            } else if idx == 5 {
+                res = res + "\(c.element)-"
+            } else {
+                res = res + "\(c.element)"
+            }
+        }
+        return res
     }
     
     func fetchThumbURL() -> URL? {
@@ -180,6 +198,18 @@ class OrgModel : Sink, Renderable {
             res.append(contentsOf:us)
         }
         return res
+    }
+    
+    func getHomeClub() -> Club? {
+        var home : Club?
+        for id in self.clubIDs {
+            if let club = ClubList.shared.clubs[id] {
+                if club.type == .home {
+                    home = club
+                }
+            }
+        }
+        return home
     }
     
     // get all users in this org
@@ -292,7 +322,7 @@ extension OrgModel {
 
                 // scamble backdoor code
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 ) {
-                    ClubList.shared.getSchool(at: uuid){ org in org?.scrambleBackdoorCode() }
+                    ClubList.shared.getSchool(at: uuid){ org in org?.scrambleBackdoorCode(){ _ in return } }
                 }
                 return then(uuid)
             }

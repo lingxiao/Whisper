@@ -45,7 +45,7 @@ class UserAuthed {
     var invite_code   : String = ""
     var sponsor_id    : UserID?
     var sponsor       : User?
-    var sponsor_club  : String = ""
+    var sponsorOrg    : String = ""
     
     // if is privilidged user,
     // then give access to certain buttons
@@ -283,7 +283,7 @@ extension UserAuthed {
                     , "invite_code" : "" // code I received to sign up for app
                     , "new_account" : true
                     , "userID"      : userID
-                    , "sponsor_club": ""
+                    , "sponsorOrg"  : ""
                 ]
                 
                 let blob_onboard: FirestoreData = [

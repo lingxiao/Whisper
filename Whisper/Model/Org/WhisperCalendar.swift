@@ -82,7 +82,7 @@ class WhisperCalendar: Sink {
      */
     func await(){
 
-        let orgs = Array(ClubList.shared.schools.keys)
+        let orgs = Array(ClubList.shared.orgs.keys)
         if orgs.count == 0 { return }
         
         self.listener?.remove()

@@ -33,7 +33,6 @@ class Club : Sink {
     var creatorID: String = ""
     var iamOwner : Bool = false
     var creator  : User?
-    var outvite_code: String = ""
     var locked: Bool = false
     
     // type
@@ -92,15 +91,14 @@ class Club : Sink {
             self.creatorID    = unsafeCastString(data["creatorID"])
             self.iamOwner     = self.creatorID == UserAuthed.shared.uuid
             self.locked       = unsafeCastBool(data["locked"])
-            self.outvite_code = unsafeCastString(data["outvite_code"])
             self.timeStampLatest = unsafeCastInt(data["timeStampLatest"])
             self.timeStamp = unsafeCastInt(data["timeStamp"])
 
             self.getHost(){ user in
                 self.creator = user
             }
-                        
             
+
             let prev_del = self.deleted
             self.deleted = unsafeCastBool(data["deleted"])
             if prev_del != self.deleted {
@@ -142,7 +140,8 @@ class Club : Sink {
             
         // await root room
         awaitRooms(isRoot: true)
-        awaitRooms(isRoot: false)        
+        awaitRooms(isRoot: false)
+        
     }
     
     // get club analytics
@@ -216,55 +215,49 @@ extension Club : Equatable {
     ){
         
         let host = UserAuthed.shared.uuid
+            
+        // get club id
+        let uuid = UUID().uuidString
 
-        // generate a fresh phone number
-        Club.generateFreshPhoneNumber(){ outvite_code in
-            
-            // get club id
-            let uuid = UUID().uuidString
-
-            // club root data
-            let blob : FirestoreData = [
-                "ID"             : uuid ,
-                "timeStamp"      : now(),
-                "timeStampLatest": now(),
-                "creatorID"      : host,
-                "orgID"          : orgID,
-                "outvite_code"   : outvite_code,
-                "locked"         : locked,
-                "deleted"        : false,
-                "widgets"        : [],
-                "type"           : typeClub(type)
-            ]
-            
-            Club.rootRef(for: uuid)?.setData(blob){ e in return }
-            
-            // view
-            let stat : FirestoreData = [
-                "numFollowers"   : 1,
-                "numLives"       : 0,
-                "name"           : name,
-                "bio"            : "",
-                "thumbURL"       : "",
-                "storageURL"     : "",
-                "numNameEdits"   : 0,
-            ]
-            
-            Club.viewRef(for: uuid)?.setData(stat){ e in return }
-            
-            // create default audio room
-            Room.create(by: host, for: uuid, isRoot: true ){ _ in return }
-            
-            // add host
-            var host_record = makeMemberStub(host)
-            host_record["iamFollowing"] = true
-            host_record["isFollowingMe"] = true
-            Club.followerRef(for: uuid, at: host)?.setData(host_record){ e in return }
-            let res : FirestoreData = [ "didJoin": true, "timeStamp": now(), "ID": uuid ]
-            UserAuthed.clubRef(for: host, at: uuid)?.setData(res){ e in return }
-            
-            then( uuid )
-        }
+        // club root data
+        let blob : FirestoreData = [
+            "ID"             : uuid ,
+            "timeStamp"      : now(),
+            "timeStampLatest": now(),
+            "creatorID"      : host,
+            "orgID"          : orgID,
+            "locked"         : locked,
+            "deleted"        : false,
+            "widgets"        : [],
+            "type"           : typeClub(type)
+        ]
+        
+        Club.rootRef(for: uuid)?.setData(blob){ e in return }
+        
+        // view
+        let stat : FirestoreData = [
+            "numFollowers"   : 1,
+            "numLives"       : 0,
+            "name"           : name,
+            "bio"            : "",
+            "thumbURL"       : "",
+            "storageURL"     : "",
+            "numNameEdits"   : 0,
+        ]
+        
+        Club.viewRef(for: uuid)?.setData(stat){ e in return }
+        
+        // create default audio room
+        Room.create(by: host, for: uuid, isRoot: true ){ _ in return }
+        
+        // add host
+        var host_record = makeMemberStub(host)
+        host_record["iamFollowing"] = true
+        host_record["isFollowingMe"] = true
+        Club.followerRef(for: uuid, at: host)?.setData(host_record){ e in return }
+        let res : FirestoreData = [ "didJoin": true, "timeStamp": now(), "ID": uuid ]
+        
+        then( uuid )
     }
     
     // get a club
@@ -302,61 +295,6 @@ extension Club : Equatable {
             }
         }
     }
-    
-    // @use: get phone number
-    static func generateFreshPhoneNumber( _ then: @escaping(String) -> Void){
-
-        // punt and say one of these is new random #
-        let c1 = randomPhoneNumber()
-        let c2 = randomPhoneNumber()
-        let c3 = randomPhoneNumber()
-
-        Club.queryClub(at: c1){ club in
-            if let _ = club {
-                Club.queryClub(at: c2){ club in
-                    if let _ = club {
-                        return then(c3)
-                    } else {
-                        return then(c2)
-                    }
-                }
-            } else {
-                return then(c1)
-            }
-        }
-    }
-    
-    // @use: search for club at code
-    static func queryClub( at code: String?, _ then: @escaping(Club?) -> Void ){
-        
-        guard let code = code else { return then(nil) }
-        
-        AppDelegate.shared.fireRef?
-            .collection("clubs")
-            .whereField("outvite_code", isEqualTo: code)
-            .whereField("deleted", isEqualTo: false)
-            .getDocuments() { (querySnapshot, err) in
-
-                guard let docs = querySnapshot?.documents else {
-                    return then(nil)
-                }
-
-                var res : [ClubID] = []
-
-                for doc in docs {
-                    guard let data = doc.data() as? FirestoreData else { continue }
-                    guard let id = data["ID"] as? String else { continue }
-                    res.append(id)
-                }
-                
-                if res.count == 0 {
-                    return then(nil)
-                } else {
-                    Club.get(at: res[0] ){ club in then(club) }
-                }
-            }
-    }
-    
     
     static func rootRef( for uid : String? ) -> DocumentReference? {
         guard AppDelegate.shared.onFire() else { return nil }

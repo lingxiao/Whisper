@@ -203,9 +203,9 @@ extension EditClubController : SettingCellProtocol, InputStringModalDelegate  {
 
         switch domain {
         case 0:
-            club.changeNumber(){ code in
-                ToastSuccess(title: "Done!", body: "You have a new number")
-            }
+            let org = ClubList.shared.fetchOrg(for:club)
+            org?.scrambleBackdoorCode(){ _ in return }
+            ToastSuccess(title: "Done!", body: "You have a new number")
         case 1:
             let tit = "Are you sure you want to delete this channel"
             let bod = "This action cannot be reversed"

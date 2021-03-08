@@ -90,10 +90,11 @@ extension InviteController: AppHeaderDelegate, PhoneBookControllerProtocol, MFMe
     func didSelect( users: [PhoneContact] ){
 
         guard let club = club else { return }
+        guard let org = ClubList.shared.fetchOrg(for: club) else { return }
         guard let url = UserAuthed.shared.getInstallURL() else { return }
 
         let numbers = users.map{ $0.get_H2() }
-        let code = club.getPhoneNumber()
+        let code = org.getPhoneNumber(front: false)
 
         if (MFMessageComposeViewController.canSendText()) {
             DispatchQueue.main.async {

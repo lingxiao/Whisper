@@ -359,7 +359,7 @@ func makeMemberStub(_ uid: UserID ) -> FirestoreData {
         "userID"     : uid,
         "timeStamp"  : now(),
         "latest"     : now(),
-        "permission"   : fromClubPermission(.levelA),
+        "permission" : fromClubPermission(.levelA),
     ]
     
     return res

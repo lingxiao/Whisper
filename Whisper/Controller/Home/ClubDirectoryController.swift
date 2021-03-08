@@ -174,11 +174,6 @@ class ClubDirectoryController: UIViewController {
             res.append(contentsOf: xs)
         }
         
-        let num = org?.get_numHidden() ?? 0
-        if num > 0 {
-            res.append( (.footer,[]) )
-        }
-
         res.append( (.bot_pad,[]) )
 
         self.dataSource = res
@@ -402,7 +397,7 @@ extension ClubDirectoryController: UITableViewDataSource, UITableViewDelegate {
             return cell
 
         case .footer:
-            let num = org?.get_numHidden() ?? 0
+            let num = 0
             let pp = Double(num).formatPoints()
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderH2Cell", for: indexPath) as! HeaderH2Cell
             cell.config(with: "\(pp) hidden" )

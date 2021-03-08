@@ -147,7 +147,6 @@ class Room : Sink {
 
     // get all people that's in this club but is not in this room
     func inClubButNotInRoom() -> [User] {
-
         var users : [User] = []
         if let club = ClubList.shared.clubs[self.clubID] {
             users = club.getFollowers()

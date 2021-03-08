@@ -25,7 +25,7 @@ class ClubList : Sink {
     
     // clubs
     var clubs : [ClubID:Club] = [:]
-    var schools: [String:OrgModel] = [:]
+    var orgs: [String:OrgModel] = [:]
     var tags: [String:TagModel] = [:]
     
     
@@ -88,7 +88,7 @@ extension ClubList {
         
         var res : [(OrgModel,[Club],Int)] = []
 
-        for (_,org) in self.schools {
+        for (_,org) in self.orgs {
             let clubs = fetchClubsFor(school: org)
             let rooms : [Room] = Array(clubs.map{ Array( $0.rooms.values ) }.joined())
             let n : Int = rooms.filter{ $0.iamHere() }.count > 0
@@ -133,12 +133,12 @@ extension ClubList {
         guard let id = id else { return then(nil) }
         if id == "" { return then(nil) }
 
-        if let org = self.schools[id] {
+        if let org = self.orgs[id] {
             then(org)
         } else {
             let org = OrgModel(at: id)
             org.await()
-            self.schools[id] = org
+            self.orgs[id] = org
             then(org)
             
             org.join()
@@ -153,6 +153,11 @@ extension ClubList {
             .filter{ $0.deleted == false }
             .filter{ $0.isVisibleToMe() }
         return res
+    }
+    
+    func fetchOrg(for club: Club? ) -> OrgModel? {
+        guard let club = club else { return nil }
+        return self.orgs[club.orgID]
     }
     
     // get home club for this org
@@ -199,7 +204,7 @@ extension ClubList {
         guard let club = club else { return }
         let cid = club.uuid
         self.clubs[cid] = nil
-        for (_,org) in self.schools {
+        for (_,org) in self.orgs {
             let sm = org.clubIDs.filter{ $0 != cid }
             org.clubIDs = sm
         }

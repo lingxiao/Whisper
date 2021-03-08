@@ -77,7 +77,7 @@ extension UserAuthed {
             }
             
             self.sponsor_id = unsafeCastString(data["sponsor"])
-            self.sponsor_club = unsafeCastString(data["sponsor_club"])
+            self.sponsorOrg = unsafeCastString(data["sponsorOrg"])
 
             UserList.shared.pull(for: self.sponsor_id ){ (_,_,sponsor) in
 

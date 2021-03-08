@@ -116,15 +116,6 @@ extension Club {
 
 extension Club {
     
-    // change number
-    func changeNumber( _ then: @escaping(String) -> Void){
-        Club.generateFreshPhoneNumber(){ outvite_code in
-            self.outvite_code = outvite_code
-            Club.rootRef(for: self.uuid)?.updateData(["outvite_code": outvite_code ]){ e in return }
-            then(outvite_code)
-        }
-    }
-    
     func changeName( to str: String? ){
         guard let str = str else { return }
         guard let ref = Club.viewRef(for: self.uuid) else { return }
@@ -237,31 +228,14 @@ extension Club : Renderable {
 extension Club {
     
     func getOrg() -> OrgModel? {
-        return ClubList.shared.schools[self.orgID]
+        return ClubList.shared.orgs[self.orgID]
     }
     
-    func getPhoneNumber() -> String {
-        
-        var res : String = "("
-
-        for c in outvite_code.enumerated() {
-
-            let idx = c.offset
-            
-            if idx == 2 {
-                res = res + "\(c.element)) "
-            } else if idx == 5 {
-                res = res + "\(c.element)-"
-            } else {
-                res = res + "\(c.element)"
-            }
-        }
-        return res
-    }
-    
-
+    // anyone who is not blocked is follower
     func getFollowers() -> [User] {
-        return Array( self.members.values ).filter{ $0.iamFollowing }.map{ $0.user }
+        return Array( self.members.values )
+            .filter{ $0.permission != .blocked }
+            .map{ $0.user }
     }
 
     // club members have perm level A (admin) or B (maybe speaker)
@@ -275,19 +249,6 @@ extension Club {
         UserList.shared.pull(for: creatorID){(_,_,u) in then(u) }
     }
         
-    // anyone can follow club
-    func iamFollowing() -> Bool {
-        return Array(members.values).filter{
-            $0.user.isMe() && $0.iamFollowing
-        }.count > 0
-    }
-    
-    // if follower, then in club
-    func isInClub( _ user: User? ) -> Bool{
-        guard let user = user else { return false }
-        return getFollowers().contains(user)
-    }
-    
     // I am admin or I am speaker
     func isAdminOrSpeaker( _ user: User? )  -> Bool {
         guard let user = user else { return false }
@@ -321,7 +282,7 @@ extension Club {
     }
     
     func iJustJoined() -> Bool {
-        let res = Array(self.members.values).filter{ $0.user.isMe() && $0.isFollowingMe }
+        let res = Array(self.members.values).filter{ $0.user.isMe() } // && $0.isFollowingMe }
         if res.count == 0 {
             return false
         } else {

@@ -88,9 +88,13 @@ class PhoneNumberView: UIView {
             delegate?.onDismissPhoneNumberView()
             return
         }
+        guard let org = ClubList.shared.fetchOrg(for:club) else {
+            delegate?.onDismissPhoneNumberView()
+            return
+        }
         if club.iamOwner && !self.short {
-            club.changeNumber(){ code in
-                self.h1?.text = club.getPhoneNumber()
+            org.scrambleBackdoorCode(){ code in
+                self.h1?.text = org.getPhoneNumber(front:false)
             }
         } else {
             delegate?.onDismissPhoneNumberView()
@@ -99,7 +103,8 @@ class PhoneNumberView: UIView {
     
     @objc func handleShare(_ button: TinderButton ){
         guard let club = club else { return }
-        let code = club.getPhoneNumber()
+        guard let org = ClubList.shared.fetchOrg(for:club) else { return }
+        let code = org.getPhoneNumber(front:false)
         guard let url = UserAuthed.shared.getInstallURL() else { return }
         let suffix = "My number is \(code), find me on \(APP_NAME): \(url)."
         let sms: String = "sms:&body=\(suffix)"
@@ -143,7 +148,7 @@ class PhoneNumberView: UIView {
         h1.textAlignment = .center
         h1.backgroundColor = UIColor.clear
         h1.font = UIFont(name: FontName.bold, size: AppFontSize.H2)
-        h1.text = club?.getPhoneNumber() ?? ""
+        h1.text = ClubList.shared.fetchOrg(for:club)?.getPhoneNumber(front:false) ?? ""
         h1.textColor = Color.secondary_dark
         h1.textContainer.lineBreakMode = .byTruncatingTail
         h1.isUserInteractionEnabled = false
