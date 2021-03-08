@@ -86,13 +86,20 @@ class OrgModel : Sink, Renderable {
     
     //MARK:- write
     
-    // @use: join this organization, subscribe to all clubs
+    // @use: join this organization, subscribe to all clubs that are not locked
     public func join(){
         let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }
         for id in self.clubIDs {
             ClubList.shared.getClub(at:id){ club in
-                club?.join(with: .levelB){ return }
+                guard let club = club else { return }
+                if club.type == .home {
+                    club.join(with: .levelB){ return }
+                } else if club.type == .cohort {
+                    if (!club.locked){
+                        club.join(with: .levelB){ return }
+                    }
+                }
             }
         }
     }
