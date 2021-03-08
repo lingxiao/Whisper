@@ -164,15 +164,6 @@ private class ClubCohortCellView : UIView {
         v.addBottomBorderWithColor(color:Color.graySecondary,width:4.0)
         v.addRightBorderWithColor(color:Color.graySecondary,width:3.0)
         
-        /*v.applyShadowWithCornerRadius(
-            color: Color.graySecondary.darker(by: 5),
-            opacity: 1.0,
-            cornerRadius: 5,
-            radius: 2,
-            edge: AIEdge.Bottom_Right,
-            shadowSpace: 2
-        )*/
-        
         let dx: CGFloat = 20
         var dy: CGFloat = 10
         let R : CGFloat = 60
@@ -289,8 +280,6 @@ private class ClubCohortCellView : UIView {
                 p.addSubview(ho)
             }
         }
-
-
     }
 
 }
