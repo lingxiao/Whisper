@@ -341,7 +341,7 @@ extension Club {
        
     // @use: request to join club
     func requestToJoin( from uid: UserID? ){
-        
+        return
     }
     
     /*
@@ -354,40 +354,27 @@ extension Club {
             return then()
         }
         
-        var myid = UserAuthed.shared.uuid
+        let userId = _HARD_UID ?? UserAuthed.shared.uuid
         
-        if let _id = _HARD_UID {
-            myid = _id
-        }
-
-        guard let ref = Club.followerRef(for: self.uuid, at: myid) else { return then() }
+        guard let ref = Club.followerRef(for: self.uuid, at: userId) else { return then() }
         let perms = fromClubPermission(perm)
         
-        if let _ = members[myid] {
+        if let _ = members[userId] {
             let st : FirestoreData = ["permission": perms, "latest": now()]
             ref.updateData(st){ e in return then() }
         } else {
-            var res = makeMemberStub(myid)
+            var res = makeMemberStub(userId)
             res["permission"] = perms
             ref.setData(res){ e in return then() }
         }
         
-        // join home room if this is not home room
-        if self.type != .home {
-            for club in ClubList.shared.fetchClubsFor(school: getOrg()) {
-                if club.type == .home {
-                    club.join(with: .levelB){ return }
-                }
-            }            
+        // follow everyone in this org
+        guard let org = self.getOrg() else { return }
+        for user in org.getRelevantUsers() {
+            if user.isMe() { continue }
+            UserAuthed.shared.follow(user)
         }
-
-        // follow everyone in this group when I choose to join this group
-        if myid == UserAuthed.shared.uuid {
-            UserAuthed.shared.follow(self.creator)
-            for mem in getMembers() {
-                UserAuthed.shared.follow(mem)
-            }
-        }
+        
     }
     
     

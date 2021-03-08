@@ -65,8 +65,8 @@ class FinishOnboardController: UIViewController, NumberPadControllerDelegateOnbo
      */
     func onDidSyncWithSponsor( at code: String, with club: Club? ){
 
-        let name = club?.getOrg()?.get_H1() ?? "the server"
-        ToastSuccess(title: "Confirmed with \(name)", body: "Give us a few seconds while we sync with the server")
+        let name = club?.getOrg()?.get_H1() ?? "the channel"
+        ToastSuccess(title: "Confirmed with \(name)", body: "Give us a few seconds while we sync with the channel")
             
         // have onboarded,do not do it again
         AuthDelegate.shared.doNotOnboard()
@@ -74,7 +74,10 @@ class FinishOnboardController: UIViewController, NumberPadControllerDelegateOnbo
         // wait for db to sync, then determine if additional onboarding steps needed
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
             SwiftEntryKit.dismiss()
-            if let org = club?.getOrg() {
+            AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
+            
+            // @use: uncomment this if you want to have the option of bespoke onboarding
+            /*if let org = club?.getOrg() {
                 if org.bespokeOnboard && ClubList.shared.fetchTags(for: org).count > 0 {
                     let vc = OnboardCommunController()
                     vc.view.frame = UIScreen.main.bounds
@@ -85,7 +88,7 @@ class FinishOnboardController: UIViewController, NumberPadControllerDelegateOnbo
                 }
             } else {
                 AuthDelegate.shared.home?.navigationController?.popToRootViewController(animated: true)
-            }
+            }*/
         }
 
     }

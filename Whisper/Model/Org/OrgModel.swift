@@ -91,8 +91,10 @@ class OrgModel : Sink {
     
     //MARK:- write
     
-    // @use: join this organization, subscribe to all clubs that are not locked
+    // @use: join this organization,
+    //       subscribe to all clubs that are not locked
     public func join(){
+
         // update my user/orgs/orgID collection item
         let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }

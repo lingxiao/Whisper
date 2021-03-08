@@ -130,28 +130,34 @@ extension NumberPadController : AppHeaderDelegate {
                     self.textInput?.text = ""
                     self.newClub = club
                     
+                    // set new org as home page defeault
                     UserAuthed.shared.setCurrentOrg(to: org?.uuid)
-
+                    
+                    // show the org modal
                     self.layoutRoom(for: club)
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) {
                         postRefreshNewsFeed()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
+                        guard let self = self else { return }
                         postRefreshClubPage( at: club.uuid )
-                        if let delegate = self?.onboardDelegate {
+                        self.removeIndicator()
+                        self.raw = ""
+                        self.number = ""
+                        self.textInput?.text = ""
+                        if let delegate = self.onboardDelegate {
                             delegate.onDidSyncWithSponsor( at: code, with: club )
                         } else {
-                            self?.removeIndicator()
-                            let name = org?.get_H1() ?? "Server"
-                            ToastSuccess(title: "Synced with \(name)", body: "Tap any active channel to chat with members.")
-                            self?.onHandleDismiss()
+                            let name = org?.get_H1() ?? "the channel"
+                            ToastSuccess(title: "Synced with \(name)", body: "Tap any room to chat with members.")
+                            self.onHandleDismiss()
                         }
                     }
                     
                 } else {
-                    ToastSuccess(title: "Oh no", body: "We can't find a server matching this code")
+                    ToastSuccess(title: "Oh no", body: "We can't find a channel matching this code")
                     self.removeIndicator()
                     self.raw = ""
                     self.number = ""

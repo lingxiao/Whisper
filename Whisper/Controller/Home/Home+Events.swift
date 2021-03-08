@@ -34,11 +34,12 @@ extension HomeController : OrgCellDelegate {
 extension HomeController : NumberPadControllerDelegate, ClubHomeDirCellDelegate {
     
     func onHandleHideNumberPad( with club: Club? ){
-
-        AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
-        guard let club = club else { return }
+        return;
+        //AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
+        //guard let club = club else { return }
+        /*
+         @use: uncomment this if you want to show the
         newClubView?.removeFromSuperview()
-        
         let f = view.frame
         let ht = ClubHomeDirCell.Height(type: .newItem)
         let v = ClubHomeDirCell()
@@ -48,13 +49,11 @@ extension HomeController : NumberPadControllerDelegate, ClubHomeDirCellDelegate 
         v.delegate = self
         view.addSubview(v)
         self.newClubView = v
-
         func fn(){ self.newClubView?.alpha = 1.0 }
         runAnimation( with: fn, for: 0.25 ){ return }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0 ) { [weak self] in
             self?.hideNewClubView()
-        }
+        }*/
     }
     
     func onTapHomeClub( at club: Club? ){
@@ -117,6 +116,9 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         } else {
             ToastSuccess(title: "Oh no", body: "We can't find this channel right now")
         }
+        
+        // @Use: uncomment this if you want to show the user confirmation modal
+        // before navigating away from current live room
         //let actives = ClubList.shared.whereAmILive()
         /*if actives.count == 0 {
             goShowClub( at: club )
@@ -413,7 +415,7 @@ extension HomeController : HomeFooterDelegate {
             let f = view.frame
             let vc = NumberPadController()
             vc.view.frame = CGRect(x: 0, y: 0, width: f.width, height: f.height-footerHeight)
-            vc.config( with: "Join private channel", showHeader: true, isHome: true)
+            vc.config( with: "Join channel", showHeader: true, isHome: true)
             vc.delegate = self
             self.padView = vc
             view.addSubview(vc.view)
