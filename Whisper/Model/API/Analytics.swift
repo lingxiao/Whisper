@@ -57,16 +57,18 @@ class WhisperAnalytics : Sink {
 
     func await(){ return }
     
+    // when club has been loaded, await analytics
     func didLoadClub( at club: Club? ){
-        guard let club = club else { return }
+        /*guard let club = club else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
             self?.await(for: club)
-        }
+        }*/
     }
 
     //MARK: - db
 
-    func await(for club: Club){
+    // await
+    private func await(for club: Club){
 
         guard AppDelegate.shared.onFire() else { return }
         let uid = UserAuthed.shared.uuid
