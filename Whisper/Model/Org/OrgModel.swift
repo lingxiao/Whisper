@@ -21,13 +21,15 @@ class OrgModel : Sink, Renderable {
     var uid    : String = ""
     var name   : String = ""
     var bio    : String = ""
-    var creatorID     : String = ""
-    var iamOwner      : Bool = false
     var unlocked      : Bool = false
     var frontdoor_code: String = ""
     var backdoor_code : String = ""
     var bespokeOnboard: Bool = false
 
+    var creatorID  : String = ""
+    var iamOwner   : Bool = false
+    var creator    : User?
+    
     var fetched: Bool = false
     var clubIDs: [ClubID] = []
 
@@ -58,6 +60,9 @@ class OrgModel : Sink, Renderable {
             self.frontdoor_code = unsafeCastString(data["frontdoor_code"])
             self.backdoor_code  = unsafeCastString(data["backdoor_code"])
             self.bespokeOnboard = unsafeCastBool(data["bespokeOnboard"])
+            UserList.shared.pull(for: self.creatorID){(_,_,user) in
+                self.creator = user
+            }
         }
         awaitClubs()
     }
@@ -221,7 +226,7 @@ class OrgModel : Sink, Renderable {
     }
     
     // get all users in this org
-    func getRelevantUsers() -> [User] {
+    func getRelevantUsers( excludeCreator: Bool = false ) -> [User] {
 
         var head : [User] = []
         var prefix : [User] = []
@@ -268,7 +273,17 @@ class OrgModel : Sink, Renderable {
         for u in end {
             if res.contains(u) == false { res.append(u)}
         }
-        return res
+        
+        if excludeCreator {
+            if let creator = self.creator {
+                let sm = res.filter{ $0.uuid != creator.uuid }
+                return sm
+            } else {
+                return res
+            }
+        } else {
+            return res
+        }
     }
 
 }

@@ -47,6 +47,7 @@ class EditClubController: UIViewController {
     var room: Room?
     var delegate: EditClubProtocol?
     var dataSource : EditClubData = []
+    var isOrgSetting: Bool = false
 
     // style
     var textHt: CGFloat = 40
@@ -90,10 +91,11 @@ class EditClubController: UIViewController {
     }
     
     
-    func config( with club: Club?, room: Room? ){
+    func config( with club: Club?, room: Room?, isOrgSetting: Bool = false ){
 
         self.club = club
         self.room = room
+        self.isOrgSetting = isOrgSetting
         
         layoutHeaderA()
         layoutHeaderB()
@@ -115,25 +117,35 @@ class EditClubController: UIViewController {
 
         if club.iamOwner {
             if club.type == .home {
-                res = [.pad,.pad,.headerA,.editPhoto, .editNumber].map{ ($0,nil)}
+                res = [.pad,.pad,.headerA,.editPhoto].map{ ($0,nil)} // .editNumber].map{ ($0,nil)}
             } else {
-                res = [.pad,.pad,.headerA,.editName,.editPhoto,.deleteClub,.editNumber].map{ ($0,nil)}
+                res = [.pad,.pad,.headerA,.editName,.editPhoto,.deleteClub].map{ ($0,nil)} //,.editNumber].map{ ($0,nil)}
             }
         } else {
             res = [.pad,.pad, .headerA,.leaveClub ].map{ ($0,nil)}
         }
-
-        /*let head : EditClubData = club.getMembers().filter{ club.isAdmin($0) }.map{ (.user, $0) }
-        let tail : EditClubData = club.getMembers().filter{ club.isAdmin($0) == false }.map{ (.user,$0) }
         
-        res.append( (.headerC,nil) )
-        res.append( contentsOf: head)
-        
-        if tail.count > 0 {
-            res.append( (.headerD,nil) )
-            res.append( contentsOf:  tail)
-            res.append( (.bot_pad,nil) )
-        }*/
+        if self.isOrgSetting {
+            
+            res.append( (.editNumber, nil) )
+            
+            guard let org = ClubList.shared.fetchOrg(for: self.club) else { return }
+            
+            let head : EditClubData = [(.user,org.creator)]
+            let tail : EditClubData = org.getRelevantUsers( excludeCreator: true ).map{ (.user,$0) }
+            
+            if let _ = org.creator {
+                res.append( (.headerC,nil) )
+                res.append( contentsOf: head)
+            }
+            
+            if tail.count > 0 {
+                res.append( (.headerD,nil) )
+                res.append( contentsOf:  tail)
+                res.append( (.bot_pad,nil) )
+            }
+            
+        }
         
         self.dataSource = res
         tableView?.reloadData()

@@ -152,7 +152,7 @@ class RoomHeaderCell: UITableViewCell {
         } else {
             if let n = room?.getAttending().count {
                 let num = Double(n).formatPoints()
-                str = n > 1 ? "\(num) people are in the room." : "1 person is live in this room."
+                str = n > 1 ? "\(num) people are in the room." : "1 person is in this room."
             }
         }
         

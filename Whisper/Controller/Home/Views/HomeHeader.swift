@@ -46,7 +46,6 @@ class HomeHeader : UIView {
         } else {
             layout()
         }
-        listenFreshAlerts(on: self, for: #selector(didGetNewAlerts))
     }
     
     func setLabel( to str: String ){
@@ -82,38 +81,8 @@ class HomeHeader : UIView {
             styleAdd(dark: false)
         }*/
     }
-    
-    public func addAlertDot(){
-        /*self.redDot?.removeFromSuperview()
-        self.redDot = nil
-        
-        let f = self.frame
-        let R = CGFloat(40)
-        let r = R/3
-
-        let v = UIImageView(frame: CGRect(x: 0, y: 0, width: r, height: r))
-        v.backgroundColor = Color.redDark
-        let _ = v.round()
-        v.center.x = f.width - 20 - R/2 - R - 5 - r
-        v.center.y = f.height - R + r/2
-        addSubview(v)
-        self.redDot = v
-        self.addedRedDot = true*/
-    }
-    
-    public func maybeRemoveAlertDot(){
-        if UserAuthed.shared.fetchUnseenAlerts().count == 0 {
-            self.addedRedDot = true
-            self.redDot?.removeFromSuperview()
-            self.redDot = nil
-        }
-    }
 
     
-    @objc func didGetNewAlerts(_ notification: NSNotification){
-        addAlertDot()
-    }
-
     private func styleAdd( dark: Bool ){
         guard let btn = self.addBtn else { return }
         if dark {

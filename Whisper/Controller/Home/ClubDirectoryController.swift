@@ -320,7 +320,6 @@ extension ClubDirectoryController: UITableViewDataSource, UITableViewDelegate {
         heavyImpact()
         refresh()
         self.refreshControl.endRefreshing()
-        self.header?.maybeRemoveAlertDot()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView){
