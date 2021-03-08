@@ -340,11 +340,11 @@ func toClubPermission( _ str: String) -> ClubPermission {
 //MARK:- member blob
 
 struct ClubMember {
-    var uuid: String
-    var user: User
-    var timeStamp: Int
-    var latest   : Int
-    var permission   : ClubPermission
+    var uuid      : String
+    var user      : User
+    var timeStamp : Int
+    var latest    : Int
+    var permission: ClubPermission
 }
 
 extension ClubMember : Equatable {

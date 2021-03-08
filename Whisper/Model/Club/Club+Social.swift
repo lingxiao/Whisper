@@ -364,12 +364,10 @@ extension Club {
         let perms = fromClubPermission(perm)
         
         if let _ = members[myid] {
-            let st : FirestoreData = ["iamFollowing":true, "permission": perms, "latest": now()]
+            let st : FirestoreData = ["permission": perms, "latest": now()]
             ref.updateData(st){ e in return then() }
         } else {
             var res = makeMemberStub(myid)
-            res["iamFollowing"] = true
-            res["isFollowingMe"] = true
             res["permission"] = perms
             ref.setData(res){ e in return then() }
         }
@@ -395,13 +393,10 @@ extension Club {
     
     // Unfollow club
     func leave( _ then: @escaping() -> Void){
-
         let myid = UserAuthed.shared.uuid
         guard let ref = Club.followerRef(for: self.uuid, at: myid) else { return then() }
         if let _ = members[myid] {
-            let none =  fromClubPermission( .levelC )
-            ref.updateData(["iamFollowing":false, "isFollowingMe":false, "permission": none, "latest": now()]){ e in return then() }
-            let res : FirestoreData = ["didJoin": false, "timeStamp": now(), "ID": self.uuid]
+            ref.delete()
         } else {
             return then()
         }
