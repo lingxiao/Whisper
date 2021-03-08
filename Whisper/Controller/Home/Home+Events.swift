@@ -140,7 +140,7 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         
         guard let org = org else { return }
 
-        newCohortView?.view.removeFromSuperview()
+        newCohortView?.removeFromSuperview()
         darkView?.removeFromSuperview()
         self.newCohortView = nil
 
@@ -157,16 +157,16 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
         v.addGestureRecognizer(g1)
         self.darkView = v
 
-        let card = NewCohortView()
-        card.view.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: ht)
-        card.config( with: org )
-        card.delegate = self
-        card.view.roundCorners(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight], radius: 15)
-        view.addSubview(card.view)
-        view.bringSubviewToFront(card.view)
+        let card = NewRoomModal()
+        card.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: ht)
+        card.config( width: f.width-20 )
+        //card.delegate = self
+        card.roundCorners(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight], radius: 15)
+        view.addSubview(card)
+        view.bringSubviewToFront(card)
         self.newCohortView = card
         func fn(){
-            self.newCohortView?.view.frame = CGRect(x: 10, y: dy, width: f.width-20, height: ht)
+            self.newCohortView?.frame = CGRect(x: 10, y: dy, width: f.width-20, height: ht)
             self.darkView?.alpha = 1.0
         }
         runAnimation( with: fn, for: 0.25 ){ return }
@@ -239,10 +239,10 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
     private func hideNewCohort(){
         let f = view.frame
         func fn(){
-            self.newCohortView?.view.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: f.height-60)
+            self.newCohortView?.frame = CGRect(x: 10, y: f.height, width: f.width-20, height: f.height-60)
         }
         runAnimation( with: fn, for: 0.25 ){
-            self.newCohortView?.view.removeFromSuperview()
+            self.newCohortView?.removeFromSuperview()
             self.newCohortView = nil
             self.darkView?.removeFromSuperview()
             self.darkView = nil

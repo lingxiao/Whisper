@@ -32,7 +32,7 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
     var phoneNumberView: PhoneNumberView?
     
     var darkView : UIView?
-    var newCohortView: NewCohortView?
+    var newCohortView: NewRoomModal?
 
     // no content view
     var emptyLabel : UITextView?
@@ -103,16 +103,10 @@ class HomeController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-            // Hack: until they sign back in,do not make these bespoke account redo onboarding
-            if ["RWEhYwXou2RnnUmpdZxEKtLL2YK2"].contains(UserAuthed.shared.uuid){
+            // if I have not been onboarded yet, then go onboard
+            if AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
                 self.didShowOnBoard = true
-                return
-            } else {
-                // if I have not been onboarded yet, then go onboard
-                if AuthDelegate.shared.shouldOnBoard && !self.didShowOnBoard {
-                    self.didShowOnBoard = true
-                    self.goOnboard()
-                }
+                self.goOnboard()
             }
         }
             
