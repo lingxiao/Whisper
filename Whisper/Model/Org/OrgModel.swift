@@ -105,8 +105,9 @@ class OrgModel : Sink, Renderable {
     public func scrambleBackdoorCode( _ then: @escaping(String) -> Void ){
         OrgModel.generateFreshCode(){ code in
             let res : FirestoreData = ["backdoor_code": code]
-            OrgModel.rootRef(for: self.uuid)?.updateData(res){e in return }
-            then(code)
+            OrgModel.rootRef(for: self.uuid)?.updateData(res){e in
+                then(code)
+            }
         }
     }
     
