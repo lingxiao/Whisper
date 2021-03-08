@@ -212,7 +212,7 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - AgoraRtcEngine_iOS (3.3.0)
+  - AgoraRtcEngine_iOS (3.3.1)
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -440,7 +440,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  AgoraRtcEngine_iOS: 1a0adbf959ab5175b700c8bab30b1346fc27ef1a
+  AgoraRtcEngine_iOS: 17e55feec1bde14adc30fd9d743332d1e7821b62
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   Firebase: cd2ab85eec8170dc260186159f21072ecb679ad5
@@ -476,6 +476,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   ViewState: 78aa77483e74e592c22e841619b853bc686843be
 
-PODFILE CHECKSUM: 5ca2e0fe8bedc131623f314af606452a6e511188
+PODFILE CHECKSUM: b704f5d053eca69fcb795e495eaf3499d23d030e
 
 COCOAPODS: 1.10.1

@@ -21,26 +21,33 @@ class IconController: UIViewController {
     
     private func mountName(){
 
-        self.view.backgroundColor = Color.tertiary_dark // UIColor.black
+        self.view.backgroundColor = UIColor.white
 
         let f = view.frame
         let ht = f.width*0.40
         
-        let h1 = UILabel(frame: CGRect(x: 0, y: 0, width: f.width, height: ht))
+        /*let h1 = UILabel(frame: CGRect(x: 0, y: 0, width: f.width, height: ht))
         h1.textAlignment = .center
-        h1.text = APP_NAME
+        h1.text = "W"
         h1.font = UIFont(name: FontName.icon, size: AppFontSize.H1*2 )
         h1.textColor = UIColor.white
         h1.center = view.center
-        view.addSubview(h1)
+        view.addSubview(h1)*/
+
+        let im = UIImage(named: "triangle-2")!
+        let colored = im.imageWithColor(UIColor.black)
+
+        let imgl = UIImageView(frame: CGRect(x: 0, y: 0, width: ht, height: ht))
+        imgl.center.y = self.view.center.y
+        imgl.center.x = self.view.center.x - ht/6
+        imgl.image = colored
+        view.addSubview(imgl)
         
-        /*let dy = self.view.center.y + ht/2
-        let v = UIView(frame: CGRect(x: 0, y: dy, width: 60, height: 10))
-        v.backgroundColor = Color.tan
-        let _ = v.roundCorners(corners: [.topLeft,.bottomLeft,.topRight,.bottomRight], radius: 5)
-        view.addSubview(v)
-        v.center.x = self.view.center.x
-        */
+        let imgr = UIImageView(frame: CGRect(x: 0, y: 0, width: ht, height: ht))
+        imgr.center.y = self.view.center.y
+        imgr.center.x = self.view.center.x + ht/6
+        imgr.image = colored
+        view.addSubview(imgr)
     }
     
     private func mountLanding(){

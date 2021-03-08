@@ -71,23 +71,7 @@ public final class ImageLoader {
             return false
         }
     }
-    
-    // @use: load image and crop
-    public func loadImageAndCrop(
-        from url: URL?,
-        width  w: CGFloat,
-        height h: CGFloat,
-        _ then  : @escaping ( UIImage? ) -> Void
-    ){
-        guard let url = url else { return then(nil) }
-        let source : AnyPublisher<UIImage?, Never> = ImageLoader.shared.loadImage(from: url)
-        let _ = source.sink { [unowned self] image in
-            guard let image = image else { return then(nil) }
-            let sm = UIImage.resizeImage(with: image, scaledToFill:  CGSize(width:w,height:h))
-            then(sm)
-        }
-    }
-       
+
     
     // @Use: force lazy loading to complete
     public func forceEval( on source : AnyPublisher<UIImage?, Never> ){
@@ -204,31 +188,3 @@ extension UIImage {
         return resized ?? self
       }
 }
-
-
-/*
- 
- 
- if let image = image {
-
-     let fixed = image // image.fixOrientation()
-     imgView.alpha = firstLoad(for: url) ? 0.0 : 1.0
-     imgView.image = fixed
-
-     if shouldFocusOnFace {
-         //imgView.focusOnFaces = true
-     }
-
-     if sizeToFit.width > 0 && sizeToFit.height > 0 {
-         let resized = UIImage.resizeImage(with: fixed, scaledToFill: sizeToFit)
-         imgView.image = resized
-     }
-     
-     if firstLoad(for: url){
-         func fn(){ imgView.alpha = 1.0 }
-         runAnimation( with: fn, for: 0.15 ){
-             self.record[url] = true
-         }
-     }
- 
- */
