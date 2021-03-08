@@ -16,7 +16,7 @@ import UIKit
 
 //MARK:- model
 
-class OrgModel : Sink, Renderable {
+class OrgModel : Sink {
     
     var uid    : String = ""
     var name   : String = ""
@@ -93,8 +93,11 @@ class OrgModel : Sink, Renderable {
     
     // @use: join this organization, subscribe to all clubs that are not locked
     public func join(){
+        // update my user/orgs/orgID collection item
         let res : FirestoreData = ["didJoin": true, "timeStamp": now(), "ID": self.uuid]
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).setData(res){ e in return }
+        
+        // join all public clubs in house
         for id in self.clubIDs {
             ClubList.shared.getClub(at:id){ club in
                 guard let club = club else { return }
@@ -109,8 +112,14 @@ class OrgModel : Sink, Renderable {
         }
     }
     
+    // leave org, leave all clubs in org
     public func leave(){
         UserAuthed.orgColRef(for: UserAuthed.shared.uuid)?.document(self.uuid).delete(){ e in return }
+        for id in self.clubIDs {
+            ClubList.shared.getClub(at:id){ club in
+                club?.leave(){ return }
+            }
+        }
     }
         
     // scramble backdoor code
@@ -123,15 +132,20 @@ class OrgModel : Sink, Renderable {
         }
     }
     
+    // scramble the front door code, never used outside of of this file
     private func scrambleFrontDoorCode(){
         OrgModel.generateFreshCode(){ code in
             let res : FirestoreData = ["frontdoor_code": code]
             OrgModel.rootRef(for: self.uuid)?.updateData(res){e in return }
         }
     }
+}
 
     
-    //MARK:- render
+//MARK:- render-
+
+extension OrgModel : Renderable {
+    
     
     func get_H1() -> String {
         return self.name

@@ -705,8 +705,8 @@
 			children = (
 				2CD327AA25EC636E000638A0 /* Views */,
 				2CD327A425EC636E000638A0 /* HomeController.swift */,
-				2CD327A525EC636E000638A0 /* ClubDirectoryController.swift */,
 				2CD327A925EC636E000638A0 /* Home+Events.swift */,
+				2CD327A525EC636E000638A0 /* ClubDirectoryController.swift */,
 				2CD327B125EC636E000638A0 /* OrgListController.swift */,
 			);
 			path = Home;

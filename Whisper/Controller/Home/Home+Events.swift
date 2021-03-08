@@ -110,32 +110,22 @@ extension HomeController: ResumeViewDelegate {
 extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
     
     func showClub( at club: Club? ){
-        
         heavyImpact()
-        
-        guard let club = club else {
-            return
-        }
-        let actives = ClubList.shared.whereAmILive()
-        
-        showActiveView(on: club)
-        
-        if actives.count == 0 {
-
+        if let club = club {
+            showActiveView(on: club)
             goShowClub( at: club )
-
         } else {
-            
+            ToastSuccess(title: "Oh no", body: "We can't find this channel right now")
+        }
+        //let actives = ClubList.shared.whereAmILive()
+        /*if actives.count == 0 {
+            goShowClub( at: club )
+        } else {
             if actives.count == 1 && actives[0].uuid == club.uuid {
-
                 goShowClub( at: club )
-                
             } else {
-                
                 if UserAuthed.shared.did_switch_rooms {
-
                     goShowClub( at: club )
-
                 } else {
                     let f = view.frame
                     let ratio = SwitchRoomModal.height()/f.height
@@ -145,9 +135,8 @@ extension HomeController: ClubDirectoryDelegate, PhoneNumberViewDelegate {
                     modal.config( at: club, width: f.width-20)
                     SwiftEntryKit.display(entry: modal, using: attributes)
                 }
-                
             }
-        }
+        }*/
     }
 
     private func goShowClub(at club: Club){

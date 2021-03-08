@@ -251,7 +251,10 @@ extension ClubDirectoryController: ClubCohortCellDelegate
 extension ClubDirectoryController : HomeHeaderDelegate {
 
     func onProfile() {
-        return
+        let v = EditClubController()
+        v.view.frame = UIScreen.main.bounds
+        v.config(with: nil, room: nil, org: self.org )
+        AuthDelegate.shared.home?.navigationController?.pushViewController(v, animated: true)
     }
     
     func onBell() {

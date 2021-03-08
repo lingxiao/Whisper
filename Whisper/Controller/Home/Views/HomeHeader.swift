@@ -66,22 +66,8 @@ class HomeHeader : UIView {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        /*let dy = -(scrollView.contentOffset.y + scrollView.contentInset.top)
-        let ddy = dy - self.prevHt
-        self.prevHt = dy
-
-        if ddy < -20 && now() - lastOpen > 3 && dy > 0 {
-            heavyImpact()
-            self.lastOpen = now()
-            styleAdd(dark: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 ) { [weak self] in
-                self?.delegate?.onNewGroup()
-            }
-        } else {
-            styleAdd(dark: false)
-        }*/
+        return
     }
-
     
     private func styleAdd( dark: Bool ){
         guard let btn = self.addBtn else { return }
@@ -101,7 +87,7 @@ class HomeHeader : UIView {
 
         let f = self.frame
         let R = CGFloat(40)
-        let lwd = f.width - 2*20 - R - 10 //- 2*R - 10 - 10
+        let lwd = f.width - 2*20 - 2*R - 10 //- 2*R - 10 - 10
         
         // label
         let label = VerticalAlignLabel()
@@ -118,21 +104,19 @@ class HomeHeader : UIView {
         
         let icon = TinderButton()
         icon.frame = CGRect(x:0,y:(f.height-R), width:R, height:R)
-        icon.changeImage(to: "plus", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
+        icon.changeImage(to: "vdots", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
         icon.backgroundColor = Color.graySecondary
-        icon.addTarget(self, action: #selector(onGroup), for: .touchUpInside)
+        icon.addTarget(self, action: #selector(onProfile), for: .touchUpInside)
         addSubview(icon)
         icon.center.x = f.width - 20 - R/2
         
-        /*
         let icon2 = TinderButton()
         icon2.frame = CGRect(x:0,y:(f.height-R), width:R, height:R)
-        icon2.changeImage(to: "calendar", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
+        icon2.changeImage(to: "plus", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
         icon2.backgroundColor = Color.graySecondary
-        icon2.addTarget(self, action: #selector(onProfile), for: .touchUpInside)
+        icon2.addTarget(self, action: #selector(onGroup), for: .touchUpInside)
         addSubview(icon2)
         icon2.center.x = f.width - 20 - R/2 - 5 - R
-         */
     }
 
 

@@ -45,9 +45,9 @@ class EditClubController: UIViewController {
     // data
     var club: Club?
     var room: Room?
+    var org : OrgModel?
     var delegate: EditClubProtocol?
     var dataSource : EditClubData = []
-    var isOrgSetting: Bool = false
 
     // style
     var textHt: CGFloat = 40
@@ -91,45 +91,51 @@ class EditClubController: UIViewController {
     }
     
     
-    func config( with club: Club?, room: Room?, isOrgSetting: Bool = false ){
+    func config( with club: Club?, room: Room?, org: OrgModel? =  nil ){
 
         self.club = club
         self.room = room
-        self.isOrgSetting = isOrgSetting
+        self.org  = org
         
         layoutHeaderA()
-        layoutHeaderB()
+        if let club = club {
+            layoutHeaderB()
+        }
         layoutTable()
-        //layoutBtn()
         if let header = self.header {
             tableView?.tableHeaderView = header
         }
         listenClubPagePTR(on: self, for: #selector(goReloadPage))
         refresh()
-
     }
     
     func refresh(){
         
-        guard let club = club else { return }
+        if let club = self.club {
                 
-        var res : EditClubData = []
+            var res : EditClubData = []
 
-        if club.iamOwner {
-            if club.type == .home {
-                res = [.pad,.pad,.headerA,.editPhoto].map{ ($0,nil)} // .editNumber].map{ ($0,nil)}
+            if club.iamOwner {
+                if club.type == .home {
+                    res = [.pad,.pad,.headerA,.editPhoto].map{ ($0,nil)}
+                } else {
+                    res = [.pad,.pad,.headerA,.editName,.editPhoto,.deleteClub].map{ ($0,nil)}
+                }
             } else {
-                res = [.pad,.pad,.headerA,.editName,.editPhoto,.deleteClub].map{ ($0,nil)} //,.editNumber].map{ ($0,nil)}
+                res = [.pad,.pad, .headerA,.leaveClub ].map{ ($0,nil)}
             }
-        } else {
-            res = [.pad,.pad, .headerA,.leaveClub ].map{ ($0,nil)}
-        }
+            
+            self.dataSource = res
+            tableView?.reloadData()
+            
+        } else if let org = self.org {
+            
+            var res : EditClubData = []
         
-        if self.isOrgSetting {
-            
-            res.append( (.editNumber, nil) )
-            
-            guard let org = ClubList.shared.fetchOrg(for: self.club) else { return }
+            if org.creatorID == UserAuthed.shared.uuid {
+                res.append( (.headerA, nil) )
+                res.append( (.editNumber, nil) )
+            }
             
             let head : EditClubData = [(.user,org.creator)]
             let tail : EditClubData = org.getRelevantUsers( excludeCreator: true ).map{ (.user,$0) }
@@ -145,11 +151,11 @@ class EditClubController: UIViewController {
                 res.append( (.bot_pad,nil) )
             }
             
+            self.dataSource = res
+            tableView?.reloadData()
         }
-        
-        self.dataSource = res
-        tableView?.reloadData()
     }
+        
     
     @objc func goReloadPage(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) { [weak self] in
@@ -273,7 +279,7 @@ extension EditClubController : SettingCellProtocol, InputStringModalDelegate  {
     func handleTapNumber() {
 
         heavyImpact()
-        guard let club = club else {
+        guard let club = self.org?.getHomeClub() else {
             return ToastSuccess(title: "", body: "No data found")
         }
         
@@ -318,19 +324,14 @@ extension EditClubController : SettingCellProtocol, InputStringModalDelegate  {
         guard let club = club else { return }
         
         if club.locked {
-            
             ToastExplain(title: "Unlock channel", body: EDIT_OPEN, btn: "Unlock"){
                 self.handleConsent(from: 2)
             }
-            
         } else {
-
             ToastExplain(title: "Lock channel", body: EDIT_CLOSE, btn: "Lock"){
                 self.handleConsent(from: 2)
             }
-
         }
-        
     }
     
     func handleLeaveGroup(){
@@ -409,7 +410,7 @@ extension EditClubController: UserRowCellProtocol {
     func handleTap(on user: User?) {
         
         guard let user = user else { return }
-        guard let club = club else { return }
+        guard let org = org else { return }
 
         mediumImpact()
 
@@ -417,7 +418,7 @@ extension EditClubController: UserRowCellProtocol {
             
             heavyImpact()
             
-        } else if club.iamOwner {
+        } else if org.iamOwner {
 
             let f = view.frame
             let ratio = ClubPageModal.height()/f.height
