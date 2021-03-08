@@ -124,23 +124,27 @@ class ClubHomeDirCell : UITableViewCell, UserRowCellProtocol {
 
         // parent container
         let parent = UIImageView(frame:CGRect(x: 10, y: dy, width: f.width-20, height: ht))
-        //parent.roundCorners(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight], radius: 15)
         parent.backgroundColor = bkColor
         
-        parent.applyShadowWithCornerRadius(
-            color: Color.graySecondary.darker(by: 5),
-            opacity: 1.0,
-            cornerRadius: 15,
-            radius: 2,
-            edge: AIEdge.Bottom_Right,
-            shadowSpace: 2
-        )
-        
-        /*if type == .live {
+        var isLIVE : Bool = type == .live
+        if let club = club {
+            isLIVE = club.someoneIsLiveHere()
+        }
+
+        if isLIVE {
+            parent.applyShadowWithCornerRadius(
+                color: Color.graySecondary.darker(by: 5),
+                opacity: 1.0,
+                cornerRadius: 15,
+                radius: 2,
+                edge: AIEdge.Bottom_Right,
+                shadowSpace: 2
+            )
+        } else {
+            parent.roundCorners(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight], radius: 15)
             parent.addBottomBorderWithColor(color:Color.graySecondary,width:4.0)
             parent.addRightBorderWithColor(color:Color.graySecondary,width:3.0)
-        } else {
-        }*/
+        }
         
         addSubview(parent)
         self.container = parent
@@ -283,7 +287,9 @@ class ClubHomeDirCell : UITableViewCell, UserRowCellProtocol {
         }
 
         dy += topHt
-
+        
+        
+        // get users and layout heere
         var all_users:[User] = []
         switch type {
         case .home:
