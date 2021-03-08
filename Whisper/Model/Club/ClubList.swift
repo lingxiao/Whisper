@@ -129,10 +129,8 @@ extension ClubList {
     
     // get school associated with org
     func getSchool( at id: String?, _ then: @escaping(OrgModel?) -> Void ){
-        
         guard let id = id else { return then(nil) }
         if id == "" { return then(nil) }
-
         if let org = self.orgs[id] {
             then(org)
         } else {
@@ -140,8 +138,6 @@ extension ClubList {
             org.await()
             self.orgs[id] = org
             then(org)
-            
-            org.join()
         }
     }
 

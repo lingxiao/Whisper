@@ -13,8 +13,6 @@ import FirebaseAuth
 
 //MARK:- onboarding
 
-private let AggressiveFollow : Bool = true
-
 extension UserAuthed {
 
     public func didDragNewsFeed(){
@@ -63,7 +61,7 @@ extension UserAuthed {
         }
     } 
     
-
+    // @Use: connect this user to the sponsoring user
     private func linkToSponsor( at sponsor: User?, code: String, orgID: String, _ then: @escaping(User?) -> Void ){
 
         guard let sponsor = sponsor else {
