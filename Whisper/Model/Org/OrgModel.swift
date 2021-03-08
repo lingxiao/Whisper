@@ -147,8 +147,7 @@ class OrgModel : Sink {
 //MARK:- render-
 
 extension OrgModel : Renderable {
-    
-    
+        
     func get_H1() -> String {
         return self.name
     }
@@ -322,7 +321,7 @@ extension OrgModel {
     
     /*
      @Use: create Org. Note this is for debuggint only
-     */
+    */
     static func _create( name: String, _ then: @escaping(String) -> Void ){
         
         // get club id
