@@ -74,8 +74,8 @@ class RoomHeaderCell: UITableViewCell {
 
         layout( showImage )
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        self.addGestureRecognizer(tap)
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        //self.addGestureRecognizer(tap)
 
     }
     
@@ -147,43 +147,30 @@ class RoomHeaderCell: UITableViewCell {
         var str = ""
         
         if GLOBAL_DEMO {
-
             let n = Int.random(in: 30..<100)
-            let m = Int.random(in: 0..<10) + n
-            str = "\(n) people in room, \(m) people in channel."
-
+            str = "\(n) people are in the room"
         } else {
-                        
             if let n = room?.getAttending().count {
                 let num = Double(n).formatPoints()
-                str = n > 1 ? "\(num) people are here. " : "1 person is here. "
+                str = n > 1 ? "\(num) people are in the room." : "1 person is in this room."
             }
-            
-            if let club = club {
-                if club.type == .home {
-                    str = club.getOrg()?.get_H2() ?? ""
-                } else {
-                    let m   = club.getMembers().count
-                    let num = Double(m).formatPoints()
-                    let suffix = m > 1 ? "\(num) people in channel" : ""
-                    str = "\(str)\(suffix)"
-                }
-            }
-            
         }
         
         h2.text = str
+
+        guard let club = self.club else { return }
         
-        let icon = TinderButton()
-        icon.frame = CGRect(x:pf.width-r-5,y:(pf.height-r)/2, width:r, height:r)
-        icon.changeImage(to: "vdots", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
-        icon.backgroundColor = Color.graySecondary
-        icon.addTarget(self, action: #selector(onTapMore), for: .touchUpInside)
-        parent.addSubview(icon)
-        icon.center.x = f.width - 20 - R/2
-
-
-        let _ = self.tappable(with: #selector(handleTap))
+        // cohorts have their own settings
+        if club.type == .cohort {
+            let icon = TinderButton()
+            icon.frame = CGRect(x:pf.width-r-5,y:(pf.height-r)/2, width:r, height:r)
+            icon.changeImage(to: "vdots", alpha: 1.0, scale: 0.40, color: Color.grayPrimary.darker(by: 50))
+            icon.backgroundColor = Color.graySecondary
+            icon.addTarget(self, action: #selector(onTapMore), for: .touchUpInside)
+            parent.addSubview(icon)
+            icon.center.x = f.width - 20 - R/2
+            let _ = self.tappable(with: #selector(handleTap))
+        }
     }    
     
 }
