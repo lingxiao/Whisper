@@ -363,9 +363,7 @@ extension OrgModel {
                 }
                 return then(uuid)
             }
-                
-        }
-        
+        }        
     }
     
     // @internal: create a campus and add admins to it
