@@ -266,14 +266,16 @@ class ClubHomeDirCell : UITableViewCell, UserRowCellProtocol {
         if let club = club {
             switch club.type {
             case .cohort:
-                icon_str = club.locked ? "hidden" : "hidden-false"
-                icolor   = club.locked ? Color.redDark : Color.greenDark
+                //icon_str = club.locked ? "hidden" : "hidden-false"
+                //icolor   = club.locked ? Color.redDark : Color.greenDark
+                icon_str = "pin-l"
+                icolor = Color.grayPrimary
             case .home:
                 icon_str = "fire"
                 icolor = Color.redDark
             case .ephemeral:
                 icon_str = "timer-2"
-                icolor = Color.purpleLite
+                icolor = Color.grayPrimary //purpleLite
             }
         }
         

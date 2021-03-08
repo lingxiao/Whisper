@@ -188,19 +188,20 @@ private class ClubCohortCellView : UIView {
         
         // icon
         let icon_R = ht
-        var icon_str = "fire" //hidden-false"
-        var icolor = Color.redDark
+        var icon_str = "fire"
+        var icolor = Color.white
         switch club.type {
         case .cohort:
             //icon_str = club.locked ? "hidden" : "hidden-false"
             //icolor = club.locked ? Color.redDark : Color.greenDark
             icon_str = "pin-l"
-            icolor = Color.redDark
+            icolor = Color.grayPrimary
         case .home:
             icon_str = "fire"
+            icolor = Color.redDark
         case .ephemeral:
             icon_str = "timer-2"
-            icolor = Color.purpleLite
+            icolor = Color.grayPrimary
         }
         let icon = TinderButton()
         icon.frame = CGRect(x: f.width-icon_R-10, y: dy, width: icon_R , height: icon_R)

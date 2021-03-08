@@ -463,10 +463,10 @@ extension AudioRoomController: AudioRoomHeaderDelegate, PhoneNumberViewDelegate 
             bod = "This is the home room, you can hold bigger events here"
             str = "Ok"
         case .ephemeral:
-            bod = "This is an one-time room, once the creator of the channel leaves, the space will shut down."
+            bod = "This is an one-time room, once the creator of this room leaves, it will shut down"
             str = "Ok"
         case .cohort:
-            bod = "This is a pinned room, it will be on the home page even after everyone leaves. If you want to delete this room or change its name, tap the horizontal bar at the top of this page."
+            bod = "This is a pinned room, it will be on the home page even after everyone leaves. If you want to delete this room or change its name, tap the three vertical dots near the top of this page underneath the pin icon"
             str = "Ok"
             /*bod = club.locked
                 ? "This channel is hidden, only channel members may enter this space."
@@ -475,7 +475,7 @@ extension AudioRoomController: AudioRoomHeaderDelegate, PhoneNumberViewDelegate 
         }
         
         let optionMenu = UIAlertController(title: "Room Settings", message: bod, preferredStyle: .actionSheet)
-        let a1 = UIAlertAction(title: str, style: .default) //, handler: {a in
+        //let a1 = UIAlertAction(title: str, style: .default) //, handler: {a in
             /*if club.iamAdmin() && club.type == .cohort {
                 club.toggleLock()
                 ToastSuccess(title: "Give it 2 seconds", body: "")
@@ -484,9 +484,9 @@ extension AudioRoomController: AudioRoomHeaderDelegate, PhoneNumberViewDelegate 
                     self?.grid?.header?.refresh()
                 }
             }*/
-        //let a2 = UIAlertAction(title: "Dismiss", style: .cancel )
-        optionMenu.addAction(a1)
-        //optionMenu.addAction(a2)
+        let a2 = UIAlertAction(title: "Dismiss", style: .cancel )
+        //optionMenu.addAction(a1)
+        optionMenu.addAction(a2)
         self.present(optionMenu, animated: true, completion: nil)
     }
     

@@ -121,7 +121,7 @@ extension AudioRoomController: ClubDelegate {
     func didDeleteClub(at club: Club) {
         guard let _club = self.club else { return }
         if club.uuid != _club.uuid { return }
-        ToastSuccess(title: "This channel has ended", body: "")
+        ToastSuccess(title: "This room has ended", body: "")
         exitLive(){ return }
         AuthDelegate.shared.home?.navigationController?.popViewController(animated: true)
     }
