@@ -98,7 +98,7 @@ class EditClubController: UIViewController {
         self.org  = org
         
         layoutHeaderA()
-        if let club = club {
+        if let _ = club {
             layoutHeaderB()
         }
         layoutTable()
@@ -416,11 +416,8 @@ extension EditClubController: UserRowCellProtocol {
         /*guard let org = org else { return }
 
         if user.isMe() {
-            
             heavyImpact()
-            
         } else if org.iamOwner {
-
             let f = view.frame
             let ratio = ClubPageModal.height()/f.height
             let attributes = centerToastFactory(ratio: ratio, displayDuration: 100000)
@@ -428,9 +425,7 @@ extension EditClubController: UserRowCellProtocol {
             modal.delegate = self
             modal.config( with: club, for: user, width: f.width-20)
             SwiftEntryKit.display(entry: modal, using: attributes)
-     
         } else {
-            
             goToProfile(user)
         }*/
         

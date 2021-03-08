@@ -155,13 +155,21 @@ private class ClubCohortCellView : UIView {
         
         let f = self.frame
         let v = UIImageView(frame: CGRect(x: 0, y: 0, width: f.width, height: f.height-20))
-        v.roundCorners(corners: [.topLeft,.bottomLeft,.topRight,.bottomRight], radius: 5)
+        //v.roundCorners(corners: [.topLeft,.bottomLeft,.topRight,.bottomRight], radius: 5)
         v.backgroundColor = bkColor
         addSubview(v)
         self.child = v
         
-        v.addBottomBorderWithColor(color:Color.graySecondary,width:4.0)
-        v.addRightBorderWithColor(color:Color.graySecondary,width:3.0)
+        //v.addBottomBorderWithColor(color:Color.graySecondary,width:4.0)
+        //v.addRightBorderWithColor(color:Color.graySecondary,width:3.0)
+        v.applyShadowWithCornerRadius(
+            color: Color.graySecondary.darker(by: 5),
+            opacity: 1.0,
+            cornerRadius: 5,
+            radius: 2,
+            edge: AIEdge.Bottom_Right,
+            shadowSpace: 2
+        )
         
         let dx: CGFloat = 20
         var dy: CGFloat = 10
