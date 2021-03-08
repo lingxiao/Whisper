@@ -151,6 +151,7 @@ private class ClubCohortCellView : UIView {
         return dy
     }
     
+    
     private func layout( _ club: Club ){
         
         let f = self.frame
