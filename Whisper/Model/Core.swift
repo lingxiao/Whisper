@@ -434,11 +434,16 @@ func toRoomMemberState( _ str: String ) -> RoomMemberState {
 }
 
 struct RoomMember {
-
+    
     var uuid: String
     var user: User
     var timeStamp: Int
     var joinedTime: Int
+
+    // room parentage
+    var roomId: String
+    var clubId: String
+    var orgId : String
 
     // member state
     var state : RoomMemberState
@@ -457,12 +462,15 @@ extension RoomMember : Equatable {
 }
 
 
-func makeRoomMemberStub(_ uid: UserID ) -> FirestoreData {
+func makeRoomMemberStub( uid: UserID, roomId: String, clubId: String ) -> FirestoreData {
     
     let res : FirestoreData = [
         "userID"    : uid,
         "timeStamp" : now(),
         "joinedTime": now(),
+        "roomId"    : roomId,
+        "clubId"    : clubId,
+        "orgId"     : "",
         "state"     : fromRoomMemberState(.notHere),
         "symbol"    : "",
         "agoraTok"  : "",
@@ -491,6 +499,11 @@ func decodeRoomMember( _ blob : FirestoreData?, _ then: @escaping(RoomMember?) -
             user      : user,
             timeStamp : unsafeCastInt(data["timestamp"]),
             joinedTime: unsafeCastInt(data["joinedTime"]),
+            
+            roomId    : unsafeCastString(data["roomId"]),
+            clubId    : unsafeCastString(data["clubId"]),
+            orgId     : unsafeCastString(data["orgId"]),
+        
             state     : toRoomMemberState( unsafeCastString(data["state"])),
             symbol    : unsafeCastString(data["symbol"]),
             agoraTok  : unsafeCastString(data["agoraTok"]),

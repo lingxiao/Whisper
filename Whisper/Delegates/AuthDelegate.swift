@@ -64,7 +64,7 @@ class AuthDelegate {
         - plug all models into backend db
     */
     func onAuthStateChange(withWindow window: UIWindow?) {
-                self.window = window
+        self.window = window
         ///signOut()
         ///unlinkTwitter()
         Auth.auth().addStateDidChangeListener { (auth, user) in

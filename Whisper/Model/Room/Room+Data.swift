@@ -89,6 +89,7 @@ extension Room {
     func awaitAudience(){
         
         Room.audienceCollectionRef(for: self.uuid)?
+            .whereField("roomId", isEqualTo: self.uuid)
             .addSnapshotListener { querySnapshot, error in
              
                 guard let docs = querySnapshot?.documents else { return }

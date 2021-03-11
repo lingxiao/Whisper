@@ -355,8 +355,18 @@ extension OrgModel {
             // create the home room where all bidders are moved into the room as .levelB members
             OrgModel.rootRef(for: uuid)?.setData(blob){ e in
                 
-                // create home room
-                Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ _ in return }
+                // create home room and join org
+                Club.create(name: "Home room", orgID: uuid, type: .home, locked: false){ cid in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        /*ClubList.shared.getClub(at: cid){ club in
+                            club?.join(with: .levelA){ return }
+                        }*/
+                        
+                        ClubList.shared.getSchool(at: uuid){ org in
+                            org?.join()
+                        }
+                    }
+                }
 
                 // scamble backdoor code
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 ) {
@@ -368,7 +378,7 @@ extension OrgModel {
     }
     
     // @internal: create a campus and add admins to it
-    static func _createAndJoinAdmins( name: String, with admins: [String] ){
+    static private func _createAndJoinAdmins( name: String, with admins: [String] ){
         OrgModel._create(name: name){ oid in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 ClubList.shared.getSchool(at: oid){ org in

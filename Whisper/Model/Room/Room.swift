@@ -12,6 +12,7 @@ import Firebase
 
 //MARK:- class
 
+// Live user beat heart at 45 second intervals
 private let HEART_BEAT_INTERVAL = Int(45)
 
 class Room : Sink {
@@ -164,7 +165,12 @@ class Room : Sink {
         if iamHere() { return }
 
         let uid = UserAuthed.shared.uuid
-        var res = makeRoomMemberStub(uid)
+
+        var res = makeRoomMemberStub(
+            uid:uid,
+            roomId: self.uuid,
+            clubId: self.clubID
+        )
         
         res["beat"]  = now()
         res["muted"] = true
@@ -201,7 +207,12 @@ class Room : Sink {
             Room.chatRef(for: self.uuid)?.delete()
         }
         
-        Room.audienceRef(for: self.uuid, at: uid)?.setData( makeRoomMemberStub(uid) ){ e in return }
+        let stub = makeRoomMemberStub(
+            uid:uid,
+            roomId: self.uuid,
+            clubId: self.clubID
+        )
+        Room.audienceRef(for: self.uuid, at: uid)?.setData( stub ){ e in return }
         
         // log duration >> this is extermely buggy
         if self.entryTimeStamp != ThePast() {
@@ -227,7 +238,12 @@ class Room : Sink {
             if club.iamOwner {
                 for mem in getAttending() {
                     if mem.isMe() { continue }
-                    Room.audienceRef(for: self.uuid, at: mem.uuid)?.setData( makeRoomMemberStub(uid) ){ e in return }
+                    let stub = makeRoomMemberStub(
+                        uid:uid,
+                        roomId: self.uuid,
+                        clubId: self.clubID
+                    )
+                    Room.audienceRef(for: self.uuid, at: mem.uuid)?.setData( stub ){ e in return }
                 }
                 club.deleteClub()
             } else {
@@ -265,7 +281,12 @@ class Room : Sink {
     // expel user from room
     func expel( this user: User? ){
         guard let user = user else { return }
-        Room.audienceRef(for: self.uuid, at: user.uuid)?.setData( makeRoomMemberStub(user.uuid) ){ e in return }
+        let stub = makeRoomMemberStub(
+            uid:uid,
+            roomId: self.uuid,
+            clubId: self.clubID
+        )
+        Room.audienceRef(for: self.uuid, at: user.uuid)?.setData( stub ){ e in return }
     }
     
     // @use: shut down room.
@@ -275,8 +296,13 @@ class Room : Sink {
         if club.iamAdmin() == false { return then() }
 
         for user in getAttending() {
+            let stub = makeRoomMemberStub(
+                uid:uid,
+                roomId: self.uuid,
+                clubId: self.clubID
+            )
             Room.audienceRef(for: self.uuid, at: user.uuid)?
-                .setData( makeRoomMemberStub(user.uuid) ){ e in return }
+                .setData( stub ){ e in return }
         }
         
         let st : FirestoreData = ["state":stateCall(.ended), "timeStamp":now(), "isRecording":false]
@@ -393,13 +419,12 @@ extension Room {
         }
     }
     
-    // If I am the latest one to join the room,
-    // then it's my duty to purge roomates with no heart beat for two cycles
+    // purge dead roomates
     private func purgeDeadRoomates(){
-        let mems = getAttendingMembers().sorted{ $0.joinedTime > $1.joinedTime }
+        /*let mems = getAttendingMembers().sorted{ $0.joinedTime > $1.joinedTime }
         if mems.count == 0 { return }
-        if mems[0].user.isMe() == false { return }
-        for aud in mems {
+        if mems[0].user.isMe() == false { return }*/
+        for aud in getAttendingMembers() {
             let dead = aud.beat < now() - 2*HEART_BEAT_INTERVAL
             if dead && aud.user.isMe() == false {
                 self.expel(this: aud.user)
@@ -470,8 +495,12 @@ extension Room {
         return AppDelegate.shared.fireRef?.collection("rooms").document( id )
     }
 
+    // @TODO: change this to "rooms_user_logs"
     static func audienceCollectionRef( for id: String? ) -> CollectionReference? {
-        return Room.rootRef(for: id)?.collection("users")
+//        return Room.rootRef(for: id)?.collection("users")
+        guard let id = id else { return nil }
+        if id == "" { return nil }
+        return AppDelegate.shared.fireRef?.collection("room_users_logs")
     }
     
     static func audienceRef( for id: String?, at uid: UserID? ) -> DocumentReference? {
